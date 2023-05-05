@@ -1,0 +1,46 @@
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 45px 0;
+    width: 100%;
+}
+
+.menu .menu-itens {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 35px;
+}
+
+ion-icon {
+    --ionicon-stroke-width: 50px;
+}
+
+.search {
+    display: flex;
+    padding-top: 5px;
+    font-size: 22px;
+}
+
+.store-name {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.menu div span {
+    font-size: 14px;
+}
+
+.menu-selected {
+    background-color: black;
+    color: #D6A324;
+    width: 95px;
+    height: 28px;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
