@@ -1,0 +1,72 @@
+* {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: #44627C;
+    overflow-x: hidden;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding: 0 160px;
+}
+
+.menu span {
+    color: white;
+}
+
+.menu-selected {
+    background-color: white;
+}
+
+.menu-selected > span {
+    color: #44627C;
+}
+
+ion-icon {
+    color: white;
+}
+
+.container-signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: 65%;
+    min-width: 475px;
+    max-width: 690px;
+    border-radius: 50px;
+    padding: 70px 50px;
+    margin: 40px 0 100px;
+}
+
+.forms-title {
+    margin-bottom: 40px;
+    min-width: 375px;
+    width: 70%;
+}
+
+.forms-input {
+    padding: 14px;
+    margin: -2px 0;
+    border: 1px solid rgba(0, 0, 0, 0.23);
+    border-radius: 5px;
+    min-width: 375px;
+    width: 70%;
+}
+
+.forms-button {
+    margin-top: 40px;
+    background: #44627C;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+}
