@@ -30,7 +30,7 @@ ion-icon {
     letter-spacing: 2px;
 }
 
-.menu div span {
+.menu span {
     font-size: 14px;
 }
 
@@ -39,8 +39,12 @@ ion-icon {
     color: #D6A324;
     width: 95px;
     height: 28px;
+    border: none;
     border-radius: 7px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
 }
