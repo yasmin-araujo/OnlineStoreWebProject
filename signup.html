@@ -8,14 +8,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;800&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
 <body>
-    <div class="main-signup">
-        <div class="header">
-            VAN GOGH STORE
+    <div class="page">
+        <div class="menu">
+            <div><span class="store-name">VAN GOGH STORE</span></div>
+            <div class="menu-itens">
+                <div><span>All Products</span></div>
+                <div><span>About Us</span></div>
+                <div class="menu-selected"><span>Sign up</span></div>
+                <div class="search"><ion-icon name="search-outline"></ion-icon></div>
+            </div>
         </div>
         <div class="container-signup">
+            <div class="forms-title"><span>Sign up</span></div><br>
+            <input type="text" class="forms-input" placeholder="Name" /><br>
+            <input type="text" class="forms-input" placeholder="Email" /><br>
+            <input type="text" class="forms-input" placeholder="Address" /><br>
+            <input type="text" class="forms-input" placeholder="Telephone" /><br>
+            <input type="password" class="forms-input" placeholder="Password" /><br>
+            <input type="password" class="forms-input" placeholder="Confirm password" /><br>
+            <button type="submit" class="forms-input forms-button">SIGN UP</button>
         </div>
     </div>
 </body>
