@@ -9,38 +9,31 @@ body {
 }
 
 .page {
-    height: 2520px;
+    min-height: 2520px;
     padding: 0 160px;
+    font-size: 24px;
+    line-height: 46px;
 }
 
 .item1 {
-    height: 800px;
     width: 100%;
+    min-width: 620px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 80px;
+    justify-content: space-between;
+    gap: 140px;
 }
 
 .welcome-main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-}
-
-.welcome-box {
-    width: 254px;
+    align-items: flex-start;
 }
 
 .welcome-text {
-    font-size: 40px;
-}
-
-.welcome-desc {
-    font-size: 16px;
-    line-height: 30px;
+    font-size: 64px;
+    line-height: 80px;
 }
 
 .image1-box {
@@ -49,47 +42,39 @@ body {
     align-items: center;
 }
 
-.image1-box img {
-    height: 681px;
-    width: 576px;
+.image1-box>img {
+    height: 680px;
+    width: 575px;
     position: absolute;
+}
+
+#welcome-margins {
+    height: 720px;
+    width: 615px;
 }
 
 #welcome-margin-top {
     background: #70251852;
-    height: 681px;
-    width: 576px;
-    position: relative;
-    left: 20px;
-    bottom: 320px;
-    z-index: -9999;
+    height: 680px;
+    width: 575px;
+    position: absolute;
 }
 
 #welcome-margin-bottom {
     background: #70251852;
-    height: 681px;
-    width: 576px;
-    position: relative;
-    top: 320px;
-    right: 20px;
-    z-index: -9999;
-}
-
-.item2 {
-    margin: 100px 0 0 105px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
+    height: 680px;
+    width: 575px;
+    position: absolute;
+    margin-top: 40px;
+    margin-left: 40px;
 }
 
 .explore-item {
-    margin: 100px 0 10px 80px;
-    font-size: 19px;
+    margin: 80px 0;
+    font-size: 36px;
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 30px;
 }
 
 .explore-item img {
@@ -107,13 +92,22 @@ body {
     position: absolute;
 }
 
+.item2 {
+    margin: 100px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 140px;
+}
+
 #item2-margin {
     background: rgba(165, 159, 93, 0.58);
     position: relative;
     width: 640px;
     height: 407px;
-    bottom: 15px;
-    right: 15px;
+    bottom: 20px;
+    right: 20px;
     z-index: -9999;
 }
 
@@ -125,12 +119,12 @@ span img {
 
 
 .item3 {
-    margin: 100px 0 0 105px;
+    margin: 300px 0 80px;
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 140px;
 }
 
 
@@ -139,7 +133,21 @@ span img {
     position: relative;
     width: 640px;
     height: 407px;
-    bottom: 15px;
-    left: 15px;
+    bottom: 20px;
+    left: 20px;
     z-index: -9999;
+}
+
+@media only screen and (max-width: 1340px) {
+
+    .item1,
+    .item2,
+    .item3 {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .item3 {
+        margin-top: 100px;
+    }
 }
