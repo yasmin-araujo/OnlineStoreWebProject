@@ -26,7 +26,7 @@ body {
     background-color: white;
 }
 
-.menu-selected > span {
+.menu-selected>span {
     color: #44627C;
 }
 
@@ -51,6 +51,7 @@ ion-icon {
     margin-bottom: 40px;
     min-width: 375px;
     width: 70%;
+    font-size: 24px;
 }
 
 .forms-input {
@@ -60,6 +61,7 @@ ion-icon {
     border-radius: 5px;
     min-width: 375px;
     width: 70%;
+    font-size: 16px;
 }
 
 .forms-button {
