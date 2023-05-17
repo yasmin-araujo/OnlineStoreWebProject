@@ -4,6 +4,7 @@ import './style.css';
 import reportWebVitals from './reportWebVitals';
 
 import HomePage from './pages/HomePage';
+import ProductsPage from './pages/ProductsPage';
 
 import { BrowserRouter } from 'react-router-dom';
 import { Switch, Route } from 'react-router';
@@ -15,6 +16,7 @@ root.render(
 			<Switch>
 				<Route path="/" component={HomePage} />
 			</Switch>
+				<Route path="/products" element={<ProductsPage />} />
 		</BrowserRouter>
 	</StrictMode>
 );
