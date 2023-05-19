@@ -4,19 +4,19 @@ import './style.css';
 import reportWebVitals from './reportWebVitals';
 
 import HomePage from './pages/HomePage';
-import ProductsPage from './pages/ProductsPage';
+// import ProductsPage from './pages/ProductsPage';
 
 import { BrowserRouter } from 'react-router-dom';
-import { Switch, Route } from 'react-router';
+import { Route, Routes } from 'react-router';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<StrictMode>
 		<BrowserRouter>
-			<Switch>
-				<Route path="/" component={HomePage} />
-			</Switch>
-				<Route path="/products" element={<ProductsPage />} />
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+				{/* <Route path="/products" element={<ProductsPage />} /> */}
+			</Routes>
 		</BrowserRouter>
 	</StrictMode>
 );
