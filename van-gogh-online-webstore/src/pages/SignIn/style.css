@@ -1,0 +1,22 @@
+body{
+   
+    background-color: #44627C;
+}
+
+.meio-signin{
+    background-color: #FFFFFF;
+    width: 600px;
+    margin: 100px auto;
+    border-radius: 50px;
+    border:none;
+    padding: 60px 110px;
+    box-sizing: border-box;
+}
+.signin{
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+.button-signin{
+    background-color:#44627C;
+}
