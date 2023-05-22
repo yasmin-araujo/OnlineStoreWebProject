@@ -1,0 +1,72 @@
+*{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.profileOptions{
+    position: absolute;
+    width: 257px;
+    height: 233px;
+    left: 129px;
+    top: 568px;
+}
+
+button{
+    background-color: white;
+    border: none;
+    font-size: 36px;
+    margin: 10px;
+}
+
+.TextField{
+    width: 670px;
+    height: 56px;
+}
+
+.informations{
+    position: absolute;
+    width: 670px;
+    height: 317px;
+    left: 598px;
+    top: 353px;
+
+}
+
+.profileDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 25px;
+    position: absolute;
+    left: 129px;
+    top: 208px;
+}
+
+#profileIcon{
+    width: 226px;
+    height: 230px;
+    border-radius: 50%;
+}
+
+#profileName{
+    font-style: normal;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 26px;
+    width: 140px;
+    height: 26px;
+}
+
+#changePicture{
+    width: 264px;
+    height: 45px;
+    background: #C4C4C4;
+    border-radius: 10px;
+    border: none;
+    font-weight: 700;
+    font-size: 20px;
+    font-style: normal;
+}
+
+#save{
+    position: absolute;
+}

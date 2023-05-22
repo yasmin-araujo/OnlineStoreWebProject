@@ -4,6 +4,7 @@ import './style.css';
 import reportWebVitals from './reportWebVitals';
 
 import HomePage from './pages/HomePage';
+import ProfilePage from './pages/ProfilePage';
 // import ProductsPage from './pages/ProductsPage';
 
 import { BrowserRouter } from 'react-router-dom';
@@ -15,6 +16,7 @@ root.render(
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<HomePage />} />
+				<Route path="/profile" element={<ProfilePage />} />
 				{/* <Route path="/products" element={<ProductsPage />} /> */}
 			</Routes>
 		</BrowserRouter>
