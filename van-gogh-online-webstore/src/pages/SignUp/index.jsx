@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React,{ useState,useEffect } from 'react'
 import './style.css'
 import Navbar from '../../components/Navbar'
 import Input from '../../components/TextInput'
@@ -7,6 +7,10 @@ import Button from '../../components/Button'
 
 
 const SignUp = () => {
+
+    useEffect(() => {
+        document.body.style.backgroundColor='#A1C1AA'
+    },[])
 
     const [inputData1,setInputData1]= useState('')
     const [inputData2,setInputData2]= useState('')
