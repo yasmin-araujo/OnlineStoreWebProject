@@ -5,6 +5,8 @@ import reportWebVitals from './reportWebVitals';
 
 import HomePage from './pages/HomePage';
 // import ProductsPage from './pages/ProductsPage';
+import SignUp from './pages/SignUp'
+import SignIn from './pages/SignIn'
 
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
@@ -16,6 +18,8 @@ root.render(
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				{/* <Route path="/products" element={<ProductsPage />} /> */}
+				<Route path="/signup" element={<SignUp />} />
+				<Route path="/signin" element={<SignIn />} />
 			</Routes>
 		</BrowserRouter>
 	</StrictMode>
