@@ -16,10 +16,14 @@ export const theme = createTheme({
 			'Helvetica Neue',
 			'sans-serif'
 		].join(','),
-        title: {
+        headerTitle: {
             fontWeight: '800',
             color: 'black',
             fontSize: '18px'
-        }
+        },
+        headerLink: {
+            color: 'black',
+            fontSize: '18px'
+        },
 	}
 });
