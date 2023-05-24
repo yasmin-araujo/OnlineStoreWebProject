@@ -1,0 +1,10 @@
+.links-navbar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+}
+.links-navbar>a{
+    text-decoration: none;
+    padding: 15px;
+}
