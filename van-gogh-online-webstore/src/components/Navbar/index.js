@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './style.css';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
+import NavbarDrawer from '../NawbarDrawer';
 import { pages, pages_admin, pages_user } from './pages';
 
 export default function Navbar({ userStatus }) {
@@ -23,7 +24,7 @@ export default function Navbar({ userStatus }) {
 					VAN GOGH STORE
 				</Typography>
 				{isMobile ? (
-                    <></>
+					<NavbarDrawer pages={pagesHeader} />
 				) : (
 					<div className="links-navbar">
 						{pagesHeader.map(
