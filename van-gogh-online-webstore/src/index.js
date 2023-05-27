@@ -6,20 +6,27 @@ import reportWebVitals from './reportWebVitals';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
 // import ProductsPage from './pages/ProductsPage';
+import SignUp from './pages/SignUp';
+import SignIn from './pages/SignIn';
 
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
+import { ThemeProvider } from '@mui/material';
+import { theme } from './theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<StrictMode>
-		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<HomePage />} />
-				<Route path="/profile" element={<ProfilePage />} />
-				{/* <Route path="/products" element={<ProductsPage />} /> */}
-			</Routes>
-		</BrowserRouter>
+		<ThemeProvider theme={theme}>
+				<BrowserRouter>
+					<Routes>
+						<Route path="/" element={<HomePage />} />
+						<Route path="/profile" element={<ProfilePage />} />
+						<Route path="/signup" element={<SignUp />} />
+						<Route path="/signin" element={<SignIn />} />
+					</Routes>
+				</BrowserRouter>
+		</ThemeProvider>
 	</StrictMode>
 );
 
