@@ -20,7 +20,7 @@ export default function NavbarDrawer({ pages }) {
                 <div className='header-row'><Typography variant="headerTitle">VAN GOGH STORE</Typography></div>
                 <List>
                     {pages.map((page) =>
-                        <ListItemButton onClick={(e) => handleNavigation(e, page.href)}>
+                        <ListItemButton onClick={(e) => handleNavigation(e, page.href)} key={'navbardrawer-' + page.label}>
                             <ListItemText>
                                 <Typography variant='headerLink' className='links'>{page.label}</Typography>
                             </ListItemText>
