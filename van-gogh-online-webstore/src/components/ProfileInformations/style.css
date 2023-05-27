@@ -1,0 +1,14 @@
+
+.informations{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 310px;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 40%;
+    margin-top: 10px
+}

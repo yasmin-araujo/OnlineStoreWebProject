@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './style.css';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
-import NavbarDrawer from '../NawbarDrawer';
+import NavbarDrawer from '../NavbarDrawer';
 import { pages, pages_admin, pages_user } from './pages';
 
 export default function Navbar({ userStatus }) {

@@ -1,0 +1,21 @@
+.profileMenu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+
+
+#profileIcon{
+    width: 230px;
+    height: 245px;
+    border-radius: 50%;
+}
+
+#profileName{
+    text-align: center;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 26px;
+}
