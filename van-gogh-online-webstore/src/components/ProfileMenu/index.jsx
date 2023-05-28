@@ -4,13 +4,14 @@ import imagem from './profile-icons/vicent-self-portrait.jpg'
 import './style.css';
 
 
-export default function ProfileMenu() {
+export default function ProfileMenu({ handleProfileChange }) {
 	let name = 'Van Gogh'
 	let profilePages = ['Informations', 'Orders', 'Logout']
-	const [value, setValue] = useState(0);
-	const handleChange = (e, tabIndex) => {
+	const [menuIndex, setMenuIndex] = useState(0);
+	const handleTabChange = (e, tabIndex) => {
 		console.log(tabIndex)
-		setValue(tabIndex);	
+		setMenuIndex(tabIndex)
+		handleProfileChange(tabIndex)
 	}
 	
 	return (
@@ -19,11 +20,11 @@ export default function ProfileMenu() {
 				<img id='profileIcon' src={imagem}/>
 				<h2 id='profileName'>{name}</h2>
 				<Tabs 
-					value={value} 
+					value={menuIndex} 
 					orientation="vertical" 
-					onChange={handleChange} 
+					onChange={handleTabChange} 
 					textColor='black'
-					TabIndicatorProps= {{ style: {backgroundColor: "black"}}}>
+					TabIndicatorProps= {{ style: {backgroundColor: "black"  }}}>
   					{
 						profilePages.map( (page) => <Tab className='Tab' label={page} />)
 					}
