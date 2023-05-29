@@ -1,0 +1,16 @@
+.Order{
+    border-bottom: 1px solid #DADADA;
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    width: 98%;
+}
+
+.OrderInfo{
+    padding: 10px;
+}
+
+#productImage{
+    height: 200px;
+    width: 200px;
+}

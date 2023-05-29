@@ -17,7 +17,7 @@ export default function ProfilePage() {
 	
 	return(
 		<>
-			<div className='profile'>
+			<div className='Profile'>
 				<Navbar/>
 				<ProfileMenu handleProfileChange={handleProfileChange}/>
 				{profilePage}

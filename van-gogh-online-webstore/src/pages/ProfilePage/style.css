@@ -2,11 +2,10 @@
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-.profile{
+.Profile{
     display: flex;
     flex-direction: row;
-    justify-content: left;
-    gap: 15%;
+    gap: 10%;
     padding: 100px;
-    margin: 20px;
+    margin: 18px;
 }

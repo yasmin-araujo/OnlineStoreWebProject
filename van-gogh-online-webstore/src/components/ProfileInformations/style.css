@@ -2,8 +2,8 @@
 .informations{
     display: flex;
     flex-direction: column;
+    min-width: 322px;
     width: 50%;
-    height: 310px;
 }
 
 .buttons{
