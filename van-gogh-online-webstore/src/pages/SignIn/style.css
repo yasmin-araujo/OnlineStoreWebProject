@@ -14,6 +14,13 @@
     font-size: 24px;
 }
 
-.button-signin{
-    background-color:#44627C;
+
+
+@media screen and (max-width: 600px) {
+
+.meio-signin{
+    width:auto;
 }
+
+}
+

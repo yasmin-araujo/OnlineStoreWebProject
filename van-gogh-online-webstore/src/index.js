@@ -7,11 +7,13 @@ import HomePage from './pages/HomePage';
 // import ProductsPage from './pages/ProductsPage';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
+import Thanks from './pages/Thanks';
 
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './theme';
+import SalesOverview from './pages/SalesOverview';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +24,8 @@ root.render(
 						<Route path="/" element={<HomePage />} />
 						<Route path="/signup" element={<SignUp />} />
 						<Route path="/signin" element={<SignIn />} />
+						<Route path="/thanks" element={<Thanks />} />
+						<Route path="/salesoverview" element={<SalesOverview/>}/>
 					</Routes>
 				</BrowserRouter>
 		</ThemeProvider>
