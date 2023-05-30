@@ -1,5 +1,11 @@
 
-.informations{
+.Informations{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.InformationsFields{
     display: flex;
     flex-direction: column;
     min-width: 322px;

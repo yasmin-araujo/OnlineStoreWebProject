@@ -25,9 +25,9 @@ export const theme = createTheme({
             color: 'black',
             fontSize: '18px'
         },
-		profileItens: {
+		profileSectionTitle: {
 			color: 'black',
-			fontSize: '36px',
+			fontSize: '48px'
 		}
 	}
 });

@@ -9,17 +9,17 @@ import ProfileInformations from '../../components/ProfileInformations';
 import ProfileOrders from '../../components/ProfileOrders';
 
 export default function ProfilePage() {
-	const pages = [<ProfileInformations/>, <ProfileOrders/>]
+	const pages = [<ProfileInformations />, <ProfileOrders />]
 	const [profilePage, setProfilePage] = useState(pages[0])
 	const handleProfileChange = (index) => {
 		setProfilePage(pages[index])
 	}
-	
-	return(
+
+	return (
 		<>
 			<div className='Profile'>
-				<Navbar/>
-				<ProfileMenu handleProfileChange={handleProfileChange}/>
+				<Navbar />
+				<ProfileMenu handleProfileChange={handleProfileChange} />
 				{profilePage}
 			</div>
 		</>
