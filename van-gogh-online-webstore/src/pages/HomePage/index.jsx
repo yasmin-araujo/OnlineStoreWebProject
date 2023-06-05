@@ -4,10 +4,23 @@ import './style.css';
 import Navbar from '../../components/Navbar';
 
 export default function HomePage() {
-    const [color, setColor] = useState('#D6A324');
+    const [bgColor, setBgColor] = useState('#D6A324');
+    const [fontColor, setFontColor] = useState('black');
+    const changeNavbarColor = () => {
+        if (window.scrollY >= 600) {
+            setBgColor('rgba(0, 0, 0, 0.60)');
+            setFontColor('white');
+        }
+        else {
+            setBgColor('#D6A324');
+            setFontColor('black');
+        }
+    };
+    window.addEventListener('scroll', changeNavbarColor);
 
     return (<div className='main-home'>
-        <Navbar color={color} />
+        <Navbar bgColor={bgColor} fontColor={fontColor} />
+
         <div className="first-section">
             <div className="fs-text">
                 <span className="fs-title">Get closer to the world of Vincent van Gogh</span>
