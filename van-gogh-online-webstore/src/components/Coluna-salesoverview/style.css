@@ -1,19 +1,18 @@
-.col{
-font-family: Plus Jakarta Sans;
-font-size: 16px;
-font-weight: 300;
-line-height: 26px;
-letter-spacing: 0px;
-text-align: center;
-
-
-width:100px;
-min-width: 100px;
-
+.col {
+    font-family: Plus Jakarta Sans;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 26px;
+    letter-spacing: 0px;
+    text-align: center;
+    width: 100px;
+    min-width: 100px;
 }
-.col-container{
+
+.col-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-top:6px;
+    margin-top: 7px;
+    height: 300px
 }

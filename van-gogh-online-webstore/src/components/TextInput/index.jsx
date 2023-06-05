@@ -1,16 +1,15 @@
 import React from 'react'
 import './style.css'
+import { TextField } from '@mui/material';
 
-const Input = ({placeholder,type,setInputData}) => {
-
+const Input = ({ placeholder, type, setInputData }) => {
 
     const handleInputChange = (e) => {
         setInputData(e.target.value)
     }
 
     return <>
-
-     <input onChange={handleInputChange} type={type} className="input" placeholder={placeholder}></input>
+        <TextField onChange={handleInputChange} className='input' label={placeholder} variant='outlined' margin='normal' type={type} />
     </>
 
 }

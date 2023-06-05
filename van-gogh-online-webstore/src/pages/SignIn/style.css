@@ -1,26 +1,20 @@
-
-
-.meio-signin{
+.meio-signin {
     background-color: #FFFFFF;
-    width: 600px;
+    width: 700px;
     margin: 100px auto;
     border-radius: 50px;
-    border:none;
+    border: none;
     padding: 60px 110px;
     box-sizing: border-box;
 }
-.signin{
+
+.signin {
     margin-bottom: 30px;
     font-size: 24px;
 }
 
-
-
 @media screen and (max-width: 600px) {
-
-.meio-signin{
-    width:auto;
+    .meio-signin {
+        width: auto;
+    }
 }
-
-}
-
