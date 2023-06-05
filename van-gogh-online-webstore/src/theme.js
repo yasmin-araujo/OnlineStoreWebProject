@@ -25,5 +25,22 @@ export const theme = createTheme({
             color: 'black',
             fontSize: '18px'
         },
+        mainTitle: {
+            fontSize: '72px',
+            lineHeight: '80px'
+        },
+        mainSubtitle: {
+            fontSize: '24px',
+            lineHeight: '46px',
+            marginTop: '40px'
+        },
+        mainSectionTitle: {
+            fontSize: '36px',
+            lineHeight: '46px',
+        },
+        mainText: {
+            fontSize: '24px',
+            lineHeight: '46px',
+        }
 	}
 });

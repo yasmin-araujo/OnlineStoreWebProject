@@ -7,8 +7,6 @@
     display: flex;
     flex: auto;
     flex-direction: column;
-    font-size: 24px;
-    line-height: 46px;
 }
 
 .first-section {
@@ -17,20 +15,15 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     gap: 160px;
-} 
+}
 
 .fs-text {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-}
-
-.fs-title {
-    font-size: 72px;
-    line-height: 80px;
-    margin-bottom: 40px;
 }
 
 .fs-image-box {
@@ -53,18 +46,89 @@
     width: 545px;
 }
 
-.fs-box-margin-top {
+.fs-box-margin {
     background: #70251852;
     height: 610px;
     width: 505px;
     position: absolute;
 }
 
-.fs-box-margin-bottom {
-    background: #70251852;
-    height: 610px;
-    width: 505px;
-    position: absolute;
+.fs-box-margin.bottom {
     margin-top: 40px;
     margin-left: 40px;
+}
+
+.explore-title {
+    margin: 80px 0;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.arrow-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.arrow-button>img {
+    width: 40px;
+    height: 10px;
+}
+
+.explore-section {
+    margin: 100px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 140px;
+}
+
+.explore-section.first {
+    margin-top: 20px;
+}
+
+.explore-image-box {
+    width: 640px;
+    height: 410px;
+    display: flex;
+}
+
+.explore-image-box>img {
+    position: absolute;
+    width: 640px;
+    height: 410px;
+    object-fit: cover;
+}
+
+.explore-image-margin {
+    position: relative;
+    width: 640px;
+    height: 410px;
+    bottom: 20px;
+}
+
+.explore-image-margin.left {
+    background: rgba(165, 159, 93, 0.58);
+    right: 20px;
+}
+
+.explore-image-margin.right {
+    background: rgba(39, 38, 64, 0.4);
+    left: 20px;
+}
+
+.row-reverse {
+    flex-direction: row-reverse;
+}
+
+@media only screen and (max-width: 1340px) {
+
+    .first-section,
+    .explore-section {
+        flex-direction: column;
+        gap: 50px;
+    }
 }
