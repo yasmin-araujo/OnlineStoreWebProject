@@ -1,0 +1,65 @@
+#singleproductpage {
+    display: flex;
+    padding: 50px 100px;
+    margin-left: 30px;
+}
+
+#productname {
+    color: #D7A324;
+    font-family: Plus Jakarta Sans;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 80px;
+    letter-spacing: 0px;
+    text-align: left;
+}
+
+#productinformations {
+    margin-left: 100px;
+    margin-top: 100px;
+}
+
+#price {
+    font-family: Plus Jakarta Sans;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 26px;
+    letter-spacing: 0px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+#quantity {
+    display: flex;
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+
+#quantitytext {
+    font-family: Plus Jakarta Sans;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 26px;
+    letter-spacing: 0px;
+    text-align: left;
+    margin-top: 30px;
+    margin-right: 30px;
+}
+
+#image-singleproduct {
+    height: 530px;
+}
+
+#button-productpage {
+    width: 100%
+}
+
+#links {
+    margin-top: 80px;
+    margin-left: 134px;
+    color: #D7A324;
+}
+
+.productpagelink {
+    color: #D7A324
+}
