@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './style.css'
 import Navbar from '../../components/Navbar'
-import Input from '../../components/TextInput'
+import { TextField } from '@mui/material';
 import Button from '../../components/Button'
 
 
@@ -12,21 +12,23 @@ const SignUp = () => {
         document.body.style.backgroundColor = '#A1C1AA'
     }, [])
 
-    const [inputData1, setInputData1] = useState('')
-    const [inputData2, setInputData2] = useState('')
-    const [inputData3, setInputData3] = useState('')
-    const [inputData4, setInputData4] = useState('')
-    const [inputData5, setInputData5] = useState('')
-    const [inputData6, setInputData6] = useState('')
+    const [SignUp, setSignUp] = useState({ name: '', email: '', adress: '', telephone: '', password: '', confirmpass: '' })
+
+    const handleInputChange = (e) => {
+        setSignUp(SignUp => ({
+            ...SignUp,
+            [e.target.name]: e.target.value
+        }))
+    }
 
     const onClick = () => {
 
-        console.log(inputData1);
-        console.log(inputData2);
-        console.log(inputData3);
-        console.log(inputData4);
-        console.log(inputData5);
-        console.log(inputData6);
+        console.log(SignUp.name);
+        console.log(SignUp.email);
+        console.log(SignUp.adress);
+        console.log(SignUp.telephone);
+        console.log(SignUp.password);
+        console.log(SignUp.confirmpass);
 
     }
 
@@ -38,14 +40,14 @@ const SignUp = () => {
                 <div className='signup'>
                     <span >Sign Up</span>
                 </div>
-                <div>
+                <div className='inputs-signup'>
 
-                    <Input setInputData={setInputData1} placeholder={"Name"} type={"text"} />
-                    <Input setInputData={setInputData2} placeholder={"Email"} type={"email"} />
-                    <Input setInputData={setInputData3} placeholder={"Adress"} type={"text"} />
-                    <Input setInputData={setInputData4} placeholder={"Telephone"} type={"tel"} />
-                    <Input setInputData={setInputData5} placeholder={"Password"} type={"password"} />
-                    <Input setInputData={setInputData6} placeholder={"Confirm Password"} type={"password"} />
+                    <TextField variant='outlined' margin='normal' onChange={handleInputChange} name="name" label="Name" type="text" />
+                    <TextField variant='outlined' margin='normal' onChange={handleInputChange} name="email" label="Email" type={"email"} />
+                    <TextField variant='outlined' margin='normal' onChange={handleInputChange} name="adress" label="Adress" type={"text"} />
+                    <TextField variant='outlined' margin='normal' onChange={handleInputChange} name="telephone" label="Telephone" type={"tel"} />
+                    <TextField variant='outlined' margin='normal' onChange={handleInputChange} name="password" label="Password" type={"password"} />
+                    <TextField variant='outlined' margin='normal' onChange={handleInputChange} name="confirmpass" label="Confirm Password" type={"password"} />
 
                 </div><br />
 

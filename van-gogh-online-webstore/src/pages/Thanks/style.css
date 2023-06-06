@@ -1,8 +1,8 @@
 .meio-thanks {
     background-color: rgba(217, 217, 217, 0.3);
-    height: 350px;
-    width: 794px;
-    border-radius: 102px;
+    height: 300px;
+    width: 680px;
+    border-radius: 87px;
     margin: 0px auto;
     margin-top: 140px;
     box-sizing: border-box;
@@ -22,7 +22,7 @@
 
 .tks {
     font-family: Plus Jakarta Sans;
-    font-size: 40px;
+    font-size: 36px;
     font-weight: 500;
     line-height: 80px;
     letter-spacing: 0px;
@@ -37,7 +37,7 @@
 
 .vangogh-tks {
     font-family: Plus Jakarta Sans;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 800;
     line-height: 30px;
     letter-spacing: 3px;
@@ -62,10 +62,23 @@
     transition: 1s;
 }
 
-@media screen and (max-width:794px) {
+@media screen and (max-width:740px) {
+
     .meio-thanks {
+        margin-left: 40px;
+        margin-right: 40px;
         width: auto;
+        border-radius: 80px;
     }
+
+    .tks {
+        font-size: 30px;
+    }
+
+    .vangogh-tks {
+        font-size: 15px;
+    }
+
 }
 
 @media screen and (max-width:600px) {
@@ -89,6 +102,6 @@
 
     .meio-thanks {
         height: 264px;
-        border-radius: 80px;
+        border-radius: 70px;
     }
 }

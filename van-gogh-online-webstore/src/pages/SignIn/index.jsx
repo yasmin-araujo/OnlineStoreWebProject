@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import './style.css'
 import Navbar from '../../components/Navbar'
-import Input from '../../components/TextInput'
 import Button from '../../components/Button'
+import { TextField } from '@mui/material';
 
 
 const SignIn = () => {
@@ -11,14 +11,21 @@ const SignIn = () => {
         document.body.style.backgroundColor = '#44627C'
     }, [])
 
-    const [inputData1, setInputData1] = useState('')
-    const [inputData2, setInputData2] = useState('')
+    const [SignIn, setSignIn] = useState({ email: '', password: '' });
+
 
     const onClick = () => {
 
-        console.log(inputData1);
-        console.log(inputData2);
+        console.log(SignIn.email);
+        console.log(SignIn.password);
 
+    }
+
+    const handleInputChange = (e) => {
+        setSignIn(SignIn => ({
+            ...SignIn,
+            [e.target.type]: e.target.value
+        }))
     }
 
     return <>
@@ -31,9 +38,9 @@ const SignIn = () => {
                     <span >Sign In</span>
                 </div>
 
-                <div>
-                    <Input setInputData={setInputData1} placeholder={"Email"} type={"email"} />
-                    <Input setInputData={setInputData2} placeholder={"Password"} type={"password"} />
+                <div className='inputs-signin'>
+                    <TextField variant='outlined' margin='normal' onChange={handleInputChange} label="Email" type="email" />
+                    <TextField variant='outlined' margin='normal' onChange={handleInputChange} label="Password" type="password" />
                 </div><br />
 
                 <Button onClick={onClick} backgroundcolor="#44627C">SIGN IN</Button>

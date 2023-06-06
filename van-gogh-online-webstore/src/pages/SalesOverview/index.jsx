@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './style.css'
 import imagem from './SalesIcons/vicent-self-portrait.jpg'
-import imagem2 from './SalesIcons/logout.png'
+import imagem2 from './SalesIcons/logout30.png'
 import Navbar from '../../components/Navbar'
 import Coluna from '../../components/Coluna-salesoverview'
 

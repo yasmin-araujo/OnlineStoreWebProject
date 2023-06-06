@@ -7,7 +7,7 @@
 #productname {
     color: #D7A324;
     font-family: Plus Jakarta Sans;
-    font-size: 48px;
+    font-size: 32px;
     font-weight: 500;
     line-height: 80px;
     letter-spacing: 0px;
@@ -15,39 +15,42 @@
 }
 
 #productinformations {
-    margin-left: 100px;
-    margin-top: 100px;
+    margin-left: 90px;
+    margin-top: 40px;
+    transition: 1s;
 }
 
 #price {
     font-family: Plus Jakarta Sans;
-    font-size: 32px;
+    font-size: 23px;
     font-weight: 500;
     line-height: 26px;
     letter-spacing: 0px;
     text-align: left;
-    margin-top: 20px;
+    margin-top: 8px;
 }
 
 #quantity {
     display: flex;
-    margin-top: 100px;
+    margin-top: 70px;
     margin-bottom: 30px;
 }
 
 #quantitytext {
     font-family: Plus Jakarta Sans;
-    font-size: 32px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 26px;
     letter-spacing: 0px;
     text-align: left;
-    margin-top: 30px;
+    margin-top: 22px;
     margin-right: 30px;
 }
 
 #image-singleproduct {
-    height: 530px;
+    max-height: 400px;
+    max-width: 340px;
+
 }
 
 #button-productpage {
@@ -57,9 +60,43 @@
 #links {
     margin-top: 80px;
     margin-left: 134px;
-    color: #D7A324;
+}
+
+#links2 {
+    margin-top: 80px;
+    margin-left: 134px;
+    display: none;
 }
 
 .productpagelink {
     color: #D7A324
+}
+
+#quantityinput {
+    width: 40%;
+}
+
+@media screen and (max-width:1000px) {
+    #productinformations {
+        margin-top: 0px;
+    }
+}
+
+@media screen and (max-width:900px) {
+    #singleproductpage {
+        flex-direction: column;
+    }
+
+    #productinformations {
+        margin-left: 0px;
+        width: auto;
+    }
+
+    #links {
+        display: none;
+    }
+
+    #links2 {
+        display: flex;
+    }
 }
