@@ -158,3 +158,9 @@
         min-width: 68px;
     }
 }
+
+@media screen and (max-width :950px) {
+    .container-sales {
+        flex-direction: column;
+    }  
+}
