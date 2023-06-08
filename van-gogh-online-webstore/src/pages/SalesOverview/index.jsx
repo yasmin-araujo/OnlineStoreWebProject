@@ -7,10 +7,10 @@ import Coluna from '../../components/Coluna-salesoverview'
 
 const SalesOverview = () => {
 
-    const [TotalIncome, setTotalIncome] = useState(['$ 4009.00', '$ 5689.00', '$ 5568.00', '$ 3207.00', '$ 6522.00', '$ 4859.00']);
-    const [AmountSales, setAmountSales] = useState(['1200', '2500', '456', '1423', '2100', '1266']);
-    const [AvgTicket, setAvgTicket] = useState(['$ 209.00', '$ 390.00', '$ 750.00', '$ 248.00', '$ 659.00', '$ 129.00']);
-    const [QtyProducts, setQtyProducts] = useState(['100', '250', '100', '250', '250', '160']);
+    const [totalIncome, setTotalIncome] = useState(['$ 4009.00', '$ 5689.00', '$ 5568.00', '$ 3207.00', '$ 6522.00', '$ 4859.00']);
+    const [amountSales, setAmountSales] = useState(['1200', '2500', '456', '1423', '2100', '1266']);
+    const [avgTicket, setAvgTicket] = useState(['$ 209.00', '$ 390.00', '$ 750.00', '$ 248.00', '$ 659.00', '$ 129.00']);
+    const [qtyProducts, setQtyProducts] = useState(['100', '250', '100', '250', '250', '160']);
 
 
     return <>
@@ -56,10 +56,10 @@ const SalesOverview = () => {
                             <div>May23</div>
                             <div>June23</div>
                         </div>
-                        <Coluna valores={TotalIncome} />
-                        <Coluna valores={AmountSales} />
-                        <Coluna valores={AvgTicket} />
-                        <Coluna valores={QtyProducts} />
+                        <Coluna valores={totalIncome} />
+                        <Coluna valores={amountSales} />
+                        <Coluna valores={avgTicket} />
+                        <Coluna valores={qtyProducts} />
                     </div>
                 </div>
             </div>

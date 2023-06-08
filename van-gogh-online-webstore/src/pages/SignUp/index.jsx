@@ -12,23 +12,23 @@ const SignUp = () => {
         document.body.style.backgroundColor = '#A1C1AA'
     }, [])
 
-    const [SignUp, setSignUp] = useState({ name: '', email: '', adress: '', telephone: '', password: '', confirmpass: '' })
+    const [signUp, setSignUp] = useState({ name: '', email: '', adress: '', telephone: '', password: '', confirmpass: '' })
 
     const handleInputChange = (e) => {
-        setSignUp(SignUp => ({
-            ...SignUp,
+        setSignUp(signUp => ({
+            ...signUp,
             [e.target.name]: e.target.value
         }))
     }
 
     const onClick = () => {
 
-        console.log(SignUp.name);
-        console.log(SignUp.email);
-        console.log(SignUp.adress);
-        console.log(SignUp.telephone);
-        console.log(SignUp.password);
-        console.log(SignUp.confirmpass);
+        console.log(signUp.name);
+        console.log(signUp.email);
+        console.log(signUp.adress);
+        console.log(signUp.telephone);
+        console.log(signUp.password);
+        console.log(signUp.confirmpass);
 
     }
 

@@ -10,19 +10,19 @@ const SignIn = () => {
         document.body.style.backgroundColor = '#44627C'
     }, [])
 
-    const [SignIn, setSignIn] = useState({ email: '', password: '' });
+    const [signIn, setSignIn] = useState({ email: '', password: '' });
 
 
     const onClick = () => {
 
-        console.log(SignIn.email);
-        console.log(SignIn.password);
+        console.log(signIn.email);
+        console.log(signIn.password);
 
     }
 
     const handleInputChange = (e) => {
-        setSignIn(SignIn => ({
-            ...SignIn,
+        setSignIn(signIn => ({
+            ...signIn,
             [e.target.type]: e.target.value
         }))
     }

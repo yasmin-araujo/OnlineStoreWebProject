@@ -50,15 +50,9 @@
     width: 100%
 }
 
-#links {
+.links {
     margin-top: 80px;
     margin-left: 134px;
-}
-
-#links2 {
-    margin-top: 80px;
-    margin-left: 134px;
-    display: none;
 }
 
 .productpagelink {
@@ -79,13 +73,8 @@
     #productinformations {
         margin-left: 0px;
         width: auto;
+        max-width: 340px;
     }
 
-    #links {
-        display: none;
-    }
 
-    #links2 {
-        display: flex;
-    }
 }
