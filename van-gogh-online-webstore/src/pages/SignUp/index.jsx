@@ -33,7 +33,7 @@ const SignUp = () => {
     }
 
     return <>
-        <Navbar /><br /><br /><br />
+        <Navbar bgColor='#A1C1AA' /><br /><br /><br />
 
         <div>
             <div className='meio'>

@@ -23,7 +23,7 @@ const SingleProduct = () => {
 
     return <>
 
-        <Navbar /><br /><br /><br />
+        <Navbar bgColor='#FFF' /><br /><br /><br />
         <div id='links'>
             <Breadcrumbs color='#D7A324' aria-label="breadcrumb">
                 <Link underline="hover" color="#D7A324" href="http://localhost:3000/">
