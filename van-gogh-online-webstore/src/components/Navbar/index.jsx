@@ -6,7 +6,7 @@ import { AppBar, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/mater
 import NavbarDrawer from '../NavbarDrawer';
 import { pages, pages_admin, pages_user } from './pages';
 
-export default function Navbar({ userStatus }) {
+export default function Navbar({ bgColor = 'none', fontColor = 'black', userStatus }) {
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
     const [pagesHeader, setPagesHeader] = useState(pages);
 
@@ -18,19 +18,21 @@ export default function Navbar({ userStatus }) {
     );
 
     return (
-        <AppBar sx={{ background: 'none', boxShadow: 'none', padding: '25px 112px' }}>
+        <AppBar sx={{ background: bgColor, boxShadow: 'none', padding: '10px 136px', transition: '0.4s' }}>
             <Toolbar>
-                <Typography variant="headerTitle" sx={{ width: '220px' }}>
-                    VAN GOGH STORE
-                </Typography>
+                <Link to={'/'} key={'navbar-title'} className='title-navbar'>
+                    <Typography variant="headerTitle" sx={{ color: fontColor }}>
+                        VAN GOGH STORE
+                    </Typography>
+                </Link>
                 {isMobile ? (
                     <NavbarDrawer pages={pagesHeader} />
                 ) : (
                     <div className="links-navbar">
                         {pagesHeader.map(
                             (page) => (
-                                <Link to={page.href}>
-                                    <Typography variant="headerLink">{page.label}</Typography>
+                                <Link to={page.href} key={'navbar-' + page.label}>
+                                    <Typography variant="headerLink" sx={{ color: fontColor }}>{page.label}</Typography>
                                 </Link>
                             )
                         )}

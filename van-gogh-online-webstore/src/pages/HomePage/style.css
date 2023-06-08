@@ -1,0 +1,134 @@
+.main-home {
+    box-sizing: border-box;
+    background-color: white;
+    background-image: linear-gradient(180deg, #D6A324 32.81%, #5F9CA4 43.23%, #609CA3 61.46%, #446CAC 76.04%, #456DAC 100%);
+    height: fit-content;
+    padding: 0 160px;
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+}
+
+.first-section {
+    width: 100%;
+    margin-top: 135px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 160px;
+}
+
+.fs-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.fs-image-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 650px;
+    width: 545px;
+    flex-shrink: 0;
+}
+
+.fs-image-box>img {
+    height: 610px;
+    width: 505px;
+    position: absolute;
+}
+
+.fs-box-margins {
+    height: 650px;
+    width: 545px;
+}
+
+.fs-box-margin {
+    background: #70251852;
+    height: 610px;
+    width: 505px;
+    position: absolute;
+}
+
+.fs-box-margin.bottom {
+    margin-top: 40px;
+    margin-left: 40px;
+}
+
+.explore-title {
+    margin: 80px 0;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.arrow-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.arrow-button>img {
+    width: 40px;
+    height: 10px;
+}
+
+.explore-section {
+    margin: 100px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 140px;
+}
+
+.explore-section.first {
+    margin-top: 20px;
+}
+
+.explore-image-box {
+    width: 640px;
+    height: 410px;
+    display: flex;
+}
+
+.explore-image-box>img {
+    position: absolute;
+    width: 640px;
+    height: 410px;
+    object-fit: cover;
+}
+
+.explore-image-margin {
+    position: relative;
+    width: 640px;
+    height: 410px;
+    bottom: 20px;
+}
+
+.explore-image-margin.left {
+    background: rgba(165, 159, 93, 0.58);
+    right: 20px;
+}
+
+.explore-image-margin.right {
+    background: rgba(39, 38, 64, 0.4);
+    left: 20px;
+}
+
+.row-reverse {
+    flex-direction: row-reverse;
+}
+
+@media only screen and (max-width: 1340px) {
+
+    .first-section,
+    .explore-section {
+        flex-direction: column;
+        gap: 50px;
+    }
+}
