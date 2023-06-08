@@ -1,14 +1,10 @@
 import React from 'react'
 import './style.css'
 
-const Button = ({ children, backgroundcolor, onClick, size, height }) => {
-
-    return <>
-        <button onClick={onClick} className='button' style={{ background: backgroundcolor, fontSize: size, height: height }} >
+export default function Button({ children, onClick, styles }) {
+    return (
+        <button onClick={onClick} className='button' style={styles} >
             {children}
         </button>
-    </>
-
-}
-
-export default Button
+    );
+};  
