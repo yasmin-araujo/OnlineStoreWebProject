@@ -7,9 +7,10 @@ import ProfileMenu from '../../components/ProfileMenu';
 
 import ProfileInformations from '../../components/ProfileInformations';
 import ProfileOrders from '../../components/ProfileOrders';
+import ProfileLogout from '../../components/ProfileLogout';
 
 export default function ProfilePage() {
-	const pages = [<ProfileInformations />, <ProfileOrders />]
+	const pages = [<ProfileInformations />, <ProfileOrders />, <ProfileLogout/>]
 	const [profilePage, setProfilePage] = useState(pages[0])
 	const handleProfileChange = (index) => {
 		setProfilePage(pages[index])

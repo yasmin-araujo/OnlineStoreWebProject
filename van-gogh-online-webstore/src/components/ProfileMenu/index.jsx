@@ -4,9 +4,8 @@ import imagem from './profile-icons/vicent-self-portrait.jpg'
 import './style.css';
 
 
-export default function ProfileMenu({ handleProfileChange }) {
+export default function ProfileMenu({ handleProfileChange, profilePages=['Informations', 'Orders', 'Logout'] }) {
 	let name = 'Van Gogh'
-	let profilePages = ['Informations', 'Orders', 'Logout']
 	const [menuIndex, setMenuIndex] = useState(0);
 	const handleTabChange = (e, tabIndex) => {
 		console.log(tabIndex)
