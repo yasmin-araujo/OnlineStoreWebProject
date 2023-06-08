@@ -27,7 +27,7 @@ export const pages_user = [
 	},
 	{
 		label: 'Account',
-		href: '/',
+		href: '/profile',
 	}
 ];
 export const pages_admin = [

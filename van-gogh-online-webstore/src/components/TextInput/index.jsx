@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 
-const Input = ({placeholder,type,setInputData}) => {
+const Input = ({ placeholder, type, setInputData }) => {
 
 
     const handleInputChange = (e) => {
@@ -10,7 +10,7 @@ const Input = ({placeholder,type,setInputData}) => {
 
     return <>
 
-     <input onChange={handleInputChange} type={type} className="input" placeholder={placeholder}></input>
+        <input onChange={handleInputChange} type={type} className="input" placeholder={placeholder}></input>
     </>
 
 }

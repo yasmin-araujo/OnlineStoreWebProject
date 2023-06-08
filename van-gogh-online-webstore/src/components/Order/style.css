@@ -1,0 +1,15 @@
+.order{
+    border-bottom: 1px solid #DADADA;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.order-info{
+    padding: 10px;
+}
+
+#product-image{
+    height: 200px;
+    width: 200px;
+}
