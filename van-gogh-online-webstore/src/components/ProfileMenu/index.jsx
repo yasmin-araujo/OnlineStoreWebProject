@@ -8,7 +8,6 @@ export default function ProfileMenu({ handleProfileChange, profilePages=['Inform
 	let name = 'Van Gogh'
 	const [menuIndex, setMenuIndex] = useState(0);
 	const handleTabChange = (e, tabIndex) => {
-		console.log(tabIndex)
 		setMenuIndex(tabIndex)
 		handleProfileChange(tabIndex)
 	}

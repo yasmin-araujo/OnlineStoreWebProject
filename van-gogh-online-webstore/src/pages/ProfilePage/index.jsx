@@ -19,7 +19,7 @@ export default function ProfilePage() {
 	return (
 		<>
 			<Navbar bgColor='white'/>
-			<div className='Profile'>
+			<div className='profile'>
 				<ProfileMenu handleProfileChange={handleProfileChange} />
 				{profilePage}
 			</div>
