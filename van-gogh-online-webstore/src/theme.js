@@ -25,6 +25,10 @@ export const theme = createTheme({
             color: 'black',
             fontSize: '18px'
         },
+        profileSectionTitle: {
+            color: 'black',
+            fontSize: '48px'
+        },
         mainTitle: {
             fontSize: '72px',
             lineHeight: '80px'
@@ -57,6 +61,12 @@ export const theme = createTheme({
             lineHeight: '80px',
             letterSpacing: '0px',
             textAlign: 'left',
+        },
+        profileName: {
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '26px'
         }
+
     }
 });

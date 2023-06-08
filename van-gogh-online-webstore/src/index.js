@@ -4,6 +4,7 @@ import './style.css';
 import reportWebVitals from './reportWebVitals';
 
 import HomePage from './pages/HomePage';
+import ProfilePage from './pages/ProfilePage';
 // import ProductsPage from './pages/ProductsPage';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
@@ -24,6 +25,7 @@ root.render(
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<HomePage />} />
+					<Route path="/profile" element={<ProfilePage />} />
 					<Route path="/signup" element={<SignUp />} />
 					<Route path="/signin" element={<SignIn />} />
 					<Route path="/thanks" element={<Thanks />} />
