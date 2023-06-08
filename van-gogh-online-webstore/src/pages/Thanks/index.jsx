@@ -8,7 +8,7 @@ const Thanks = () => {
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
 
     return <>
-        <Navbar /><br /><br /><br />
+        <Navbar />
         <div className='meio-thanks'>
             <div className='text-tks'>
                 <div className='tks'>Thanks for shopping with us!</div>

@@ -4,7 +4,7 @@
     width: 680px;
     border-radius: 87px;
     margin: 0px auto;
-    margin-top: 140px;
+    margin-top: 200px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -82,8 +82,6 @@
     .vangogh-tks {
         font-size: 14px;
     }
-
-    
 
     .meio-thanks {
         height: 264px;

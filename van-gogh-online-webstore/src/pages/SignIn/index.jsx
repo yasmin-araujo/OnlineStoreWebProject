@@ -28,7 +28,7 @@ const SignIn = () => {
     }
 
     return <>
-        <Navbar /><br /><br /><br />
+        <Navbar />
 
         <div>
             <div className='meio-signin'>

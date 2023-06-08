@@ -38,7 +38,7 @@ const EditProduct = () => {
 
     return <>
 
-        <Navbar bgColor='#FFF' /><br /><br /><br />
+        <Navbar bgColor='#FFF' />
         {isMobile ? (<div className='links'>
             <Breadcrumbs color='#D7A324' aria-label="breadcrumb">
                 <Link underline="hover" color="#D7A324" href="http://localhost:3000/">
@@ -70,7 +70,7 @@ const EditProduct = () => {
         <div id='singleproductpage'>
             <img id='image-singleproduct' src={imagem} />
             <div id='productinformations'>
-                <div id='productname'>{informations.name}</div>
+            <Typography variant='productYellowName'>{informations.name}</Typography>
                 <div id='productinfo'>
                     <div className='price'>
                         <div><Typography variant='editProductText'>Price($):</Typography></div>

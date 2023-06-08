@@ -30,7 +30,7 @@ const SingleProduct = () => {
 
     return <>
 
-        <Navbar bgColor='#FFF' /><br /><br /><br />
+        <Navbar bgColor='#FFF' />
 
         {isMobile ? (<div className='links'>
             <Breadcrumbs color='#D7A324' aria-label="breadcrumb">
@@ -64,8 +64,8 @@ const SingleProduct = () => {
         <div id='singleproductpage'>
             <img id='image-singleproduct' src={imagem} />
             <div id='productinformations'>
-                <div id='productname'>{informations.name}</div>
-                <div id='price'>{informations.price}</div>
+                <Typography variant='productYellowName'>{informations.name}</Typography><br/>
+                <Typography variant='editProductText'>{informations.price}</Typography>
                 <div id='quantity'>
                     <Typography variant='editProductText'>Quantity: </Typography>
                     <div id='quantityinput'>

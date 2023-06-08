@@ -1,11 +1,12 @@
 .meio-signin {
     background-color: #FFFFFF;
     width: 700px;
-    margin: 100px auto;
+    margin: 160px auto;
     border-radius: 50px;
     border: none;
     padding: 60px 110px;
     box-sizing: border-box;
+
 }
 
 .signin {

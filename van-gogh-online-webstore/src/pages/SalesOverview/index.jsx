@@ -14,7 +14,7 @@ const SalesOverview = () => {
 
 
     return <>
-        <Navbar bgColor='#FFF' /><br /><br /><br /><br />
+        <Navbar bgColor='#FFF' />
 
         <div className='container-sales'>
             <div className='profile-sales'>
