@@ -1,13 +1,13 @@
 import { React, useState } from 'react'
 import './style.css'
 import { Breadcrumbs, Link, Typography, TextField, useMediaQuery, useTheme } from '@mui/material'
-import imagem from "./img/product.png"
+import imagem from "./img/add.png"
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import NumberTextField from '../../components/NumberTextField'
 
 
-const EditProduct = () => {
+const AddProduct = () => {
 
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
 
@@ -64,7 +64,7 @@ const EditProduct = () => {
                 >
                     Products
                 </Link>
-                <Typography color="#D7A324">{informations.name}</Typography>
+                <Typography color="#D7A324">Add Product</Typography>
             </Breadcrumbs>
         </div>)}
         <div id='singleproductpage'>
@@ -101,4 +101,4 @@ const EditProduct = () => {
 
 }
 
-export default EditProduct
+export default AddProduct
