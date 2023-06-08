@@ -51,9 +51,9 @@ export default function ProfileOrders() {
 		},
 	])
 	return (
-		<div className='OrderSection'>
+		<div className='order-section'>
 			<Typography variant='profileSectionTitle'>Orders</Typography>
-			<div className='Orders'>
+			<div className='orders'>
 				{orders.map((order) => <Order order={order} />)}
 			</div>
 		</div>

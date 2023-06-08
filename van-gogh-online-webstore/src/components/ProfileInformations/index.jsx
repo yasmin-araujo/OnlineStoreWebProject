@@ -24,15 +24,15 @@ export default function ProfileInformations() {
 		}
 	])
 	return (
-		<div className='Informations'>
+		<div className='informations'>
 			<Typography variant='profileSectionTitle'>Informations</Typography>
-			<div className='InformationsFields'>
+			<div className='information-fields'>
 				{profileInformations.map(
 					(info) => <TextField className='TextField' label={info.field} variant='outlined' margin='normal' defaultValue={info.value} />
 				)}
 				<div className='buttons'>
-					<Button backgroundcolor="#C4C4C4">Update profile picture</Button>
-					<Button backgroundcolor="black">Save</Button>
+					<Button backgroundcolor="#C4C4C4" >Update profile picture</Button>
+					<Button backgroundcolor="black" >Save</Button>
 				</div>
 			</div>
 		</div>

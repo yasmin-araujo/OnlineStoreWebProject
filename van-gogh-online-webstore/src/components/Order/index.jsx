@@ -5,10 +5,10 @@ import './style.css';
 export default function Order({ order }) {
 
 	return (
-		<div className='Order'>
+		<div className='order'>
 			{console.log(order)}
-			<img id='productImage' src={order.productImage} />
-			<div className='OrderInfo'>
+			<img id='product-image' src={order.productImage} />
+			<div className='order-info'>
 				<h3>Order: {order.orderId}</h3>
 				<p><strong>{order.productName}</strong></p>
 				<p>$ {order.productPrice}</p>

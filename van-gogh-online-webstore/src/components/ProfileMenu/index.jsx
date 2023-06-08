@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Tab, Tabs } from '@mui/material';
+import { Box, Tab, Tabs, Typography } from '@mui/material';
 import imagem from './profile-icons/vicent-self-portrait.jpg'
 import './style.css';
 
@@ -15,9 +15,9 @@ export default function ProfileMenu({ handleProfileChange }) {
 	}
 
 	return (
-		<div className='profileMenu'>
-			<img id='profileIcon' src={imagem} />
-			<h2 id='profileName'>{name}</h2>
+		<div className='profile-menu'>
+			<img id='profile-icon' src={imagem} />
+			<Typography variant='profileName'>{name}</Typography>
 			<Tabs
 				value={menuIndex}
 				orientation="vertical"

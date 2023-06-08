@@ -45,6 +45,11 @@ export const theme = createTheme({
         mainText: {
             fontSize: '24px',
             lineHeight: '46px',
+        },
+        profileName: {
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '26px'
         }
 	}
 });

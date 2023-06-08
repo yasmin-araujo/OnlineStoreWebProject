@@ -17,7 +17,7 @@ export default function ProfilePage() {
 
 	return (
 		<>
-			<Navbar userStatus={'loggedin'}/>
+			<Navbar bgColor='white'/>
 			<div className='Profile'>
 				<ProfileMenu handleProfileChange={handleProfileChange} />
 				{profilePage}
