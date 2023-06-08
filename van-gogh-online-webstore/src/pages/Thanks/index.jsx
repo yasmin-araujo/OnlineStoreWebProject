@@ -14,10 +14,10 @@ const Thanks = () => {
             </div>
 
             <div className='button-thanks'>
-                <Button backgroundcolor='#D7A324'>BACK TO THE STORE</Button>
+                <Button styles={{ backgroundColor: '#D7A324' }}>BACK TO THE STORE</Button>
             </div>
             <div className='button-thanks2'>
-                <Button size='12px' backgroundcolor='#D7A324'>BACK TO THE STORE</Button>
+                <Button styles={{ backgroundColor: '#D7A324', fontSize: '12px' }}>BACK TO THE STORE</Button>
             </div>
         </div>
     </>

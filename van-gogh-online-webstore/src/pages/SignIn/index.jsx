@@ -27,22 +27,26 @@ const SignIn = () => {
         }))
     }
 
-    return (<>
+    return <>
         <Navbar /><br /><br /><br />
 
         <div>
             <div className='meio-signin'>
+
                 <div className='signin'>
                     <span >Sign In</span>
                 </div>
-                <div>
-                    <Input setInputData={setInputData1} placeholder={"Email"} type={"email"} />
-                    <Input setInputData={setInputData2} placeholder={"Password"} type={"password"} />
+
+                <div className='inputs-signin'>
+                    <TextField variant='outlined' margin='normal' onChange={handleInputChange} label="Email" type="email" />
+                    <TextField variant='outlined' margin='normal' onChange={handleInputChange} label="Password" type="password" />
                 </div><br />
+
                 <Button onClick={onClick} styles={{ backgroundColor: '#44627C' }}>SIGN IN</Button>
+
             </div>
         </div>
-    </>);
+    </>
 }
 
 export default SignIn

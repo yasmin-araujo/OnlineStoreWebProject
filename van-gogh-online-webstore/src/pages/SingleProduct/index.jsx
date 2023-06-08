@@ -65,7 +65,7 @@ const SingleProduct = () => {
                     </div>
                 </div>
                 <div id="button-productpage">
-                    <Button onClick={handleButtonClick} height='30px' backgroundcolor='#D7A324' size='13px'>ADD TO CART</Button>
+                    <Button onClick={handleButtonClick} styles={{height:'30px', backgroundColor:'#D7A324', fontSize:'13px'}}>ADD TO CART</Button>
                 </div>
             </div>
         </div>

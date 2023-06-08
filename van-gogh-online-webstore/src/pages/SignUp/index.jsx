@@ -51,7 +51,7 @@ const SignUp = () => {
 
                 </div><br />
 
-                <Button onClick={onClick} backgroundcolor="#A1C1AA">SIGN UP</Button>
+                <Button onClick={onClick} styles={{ backgroundColor: '#A1C1AA' }}>SIGN UP</Button>
 
 
             </div>
