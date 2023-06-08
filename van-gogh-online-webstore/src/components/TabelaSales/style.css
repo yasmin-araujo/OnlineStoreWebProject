@@ -1,0 +1,109 @@
+.tabela-sales {
+    min-width: 52vw;
+}
+
+.titulo-sales {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 50px;
+    color: #D7A324;
+}
+
+.past-six {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 50px;
+    margin-top: 40px
+}
+
+.line1 {
+    height: 0px;
+    border: 1px solid #DADADA;
+    margin-top: 30px;
+    min-width: 467px;
+}
+
+.line2 {
+    height: 0px;
+    border: 1px solid #DADADA;
+    min-width: 467px;
+
+}
+
+
+.colunas {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 28px;
+
+}
+
+.element-coluna {
+    font-family: 'Plus Jakarta Sans';
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 42px;
+    letter-spacing: 0px;
+    text-align: left;
+    height: 265px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.element-coluna2 {
+    font-family: 'Plus Jakarta Sans';
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 42px;
+    letter-spacing: 0px;
+    text-align: left;
+    display: none;
+    height: 265px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.categories {
+    display: flex;
+    justify-content: space-between;
+}
+
+.element-categorie {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    width: 100px;
+    min-width: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+
+}
+
+.element-categorie-null-ini {
+    width: 112px;
+}
+
+
+@media screen and (max-width :1080px) {
+    .element-coluna2 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .element-coluna {
+        display: none;
+    }
+
+    .element-categorie-null-ini {
+        width: 68px;
+        min-width: 68px;
+    }
+}
