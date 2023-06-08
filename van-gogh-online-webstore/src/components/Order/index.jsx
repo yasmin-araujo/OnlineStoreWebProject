@@ -6,7 +6,6 @@ export default function Order({ order }) {
 
 	return (
 		<div className='order'>
-			{console.log(order)}
 			<img id='product-image' src={order.productImage} />
 			<div className='order-info'>
 				<h3>Order: {order.orderId}</h3>
