@@ -1,11 +1,6 @@
-*{
-    font-family: 'Plus Jakarta Sans', sans-serif;
-}
-
 .Profile{
     display: flex;
     flex-direction: row;
     gap: 10%;
-    padding: 190px 136px;
-    
+    padding: 135px 136px;
 }

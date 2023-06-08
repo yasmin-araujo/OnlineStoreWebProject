@@ -1,15 +1,13 @@
-
 .Informations{
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
+    max-width: 600px;
+    min-width: 322px;
+    width: 100%;
 }
 
 .InformationsFields{
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
-    min-width: 322px;
-    width: 50%;
 }
 
 .buttons{
