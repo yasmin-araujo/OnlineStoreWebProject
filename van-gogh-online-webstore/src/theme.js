@@ -1,21 +1,21 @@
 import { createTheme } from '@mui/material';
 
 export const theme = createTheme({
-	typography: {
-		fontFamily: [
-			'Plus Jakarta Sans',
-			'-apple-system',
-			'BlinkMacSystemFont',
-			'Segoe UI',
-			'Roboto',
-			'Oxygen',
-			'Ubuntu',
-			'Cantarell',
-			'Fira Sans',
-			'Droid Sans',
-			'Helvetica Neue',
-			'sans-serif'
-		].join(','),
+    typography: {
+        fontFamily: [
+            'Plus Jakarta Sans',
+            '-apple-system',
+            'BlinkMacSystemFont',
+            'Segoe UI',
+            'Roboto',
+            'Oxygen',
+            'Ubuntu',
+            'Cantarell',
+            'Fira Sans',
+            'Droid Sans',
+            'Helvetica Neue',
+            'sans-serif'
+        ].join(','),
         headerTitle: {
             fontWeight: '800',
             color: 'black',
@@ -41,6 +41,14 @@ export const theme = createTheme({
         mainText: {
             fontSize: '24px',
             lineHeight: '46px',
+        },
+        editProductText: {
+            fontSize: '23px',
+            fontWeight: '500',
+            lineHeight: '26px',
+            letterSpacing: '0px',
+            textAlign: 'left',
+            marginTop: '8px',
         }
-	}
+    }
 });

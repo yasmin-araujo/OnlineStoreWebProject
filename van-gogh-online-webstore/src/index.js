@@ -10,6 +10,7 @@ import SignIn from './pages/SignIn';
 import Thanks from './pages/Thanks';
 import SalesOverview from './pages/SalesOverview';
 import SingleProduct from './pages/SingleProduct';
+import EditProduct from './pages/EditProduct';
 
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
@@ -28,6 +29,7 @@ root.render(
 					<Route path="/thanks" element={<Thanks />} />
 					<Route path="/salesoverview" element={<SalesOverview />} />
 					<Route path="/singleproduct" element={<SingleProduct />} />
+					<Route path="/editproduct" element={<EditProduct />} />
 				</Routes>
 			</BrowserRouter>
 		</ThemeProvider>
