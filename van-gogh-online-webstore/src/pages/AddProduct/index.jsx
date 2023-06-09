@@ -15,27 +15,15 @@ const AddProduct = () => {
 
     const [informations, setInformations] = useState({ name: "Mug Vincent's flowers", price: "9.00", quantity: 0, collection: "None" })
 
-    const handlePriceChange = (value) => {
+    const handleInformationsChange = (e) => {
         setInformations(informations => ({
             ...informations,
-            price: value
+            [e.target.name]: e.target.value
         }))
     }
 
-    const handleQuantityChange = (value) => {
-        setInformations(informations => ({
-            ...informations,
-            quantity: value
-        }))
-    }
-    const handleCollectionChange = (value) => {
-        setInformations(informations => ({
-            ...informations,
-            collection: value
-        }))
-    }
     const handleButtonClick = (e) => {
-        console.log(informations);
+        console.log(informations)
     }
 
     return <>
@@ -60,19 +48,19 @@ const AddProduct = () => {
                     <div className='price'>
                         <div><Typography variant='editProductText'>Price($):</Typography></div>
                         <div className='price-field'>
-                            <NumberTextField value={informations.price} setValue={handlePriceChange} label="price" />
+                            <NumberTextField onChange={handleInformationsChange} value={informations.price} name='price' label="Price" />
                         </div>
                     </div>
                     <div className='price'>
                         <div><Typography variant='editProductText'>Quantity in stock: </Typography></div>
                         <div className='price-field'>
-                            <NumberTextField value={informations.quantity} setValue={handleQuantityChange} label="quantity" />
+                            <NumberTextField value={informations.quantity} onChange={handleInformationsChange} name='quantity' label="Quantity" />
                         </div>
                     </div>
                     <div className='price'>
                         <div><Typography variant='editProductText'>Collection: </Typography></div>
                         <div className='price-field'>
-                            <TextField onChange={(e) => handleCollectionChange(e.target.value)} size='small' label="collection" />
+                            <TextField onChange={handleInformationsChange} size='small' name='collection' label="Collection" />
                         </div>
                     </div>
                 </div>
