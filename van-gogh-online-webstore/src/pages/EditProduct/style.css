@@ -1,7 +1,7 @@
 #singleproductpage {
     display: flex;
-    padding: 50px 100px;
-    margin-left: 30px;
+    padding: 50px 160px;
+    margin: 0;
     flex-direction: row; 
     align-items: center;
     gap: 120px;
@@ -39,7 +39,7 @@
 
 .links {
     margin-top: 160px;
-    margin-left: 134px;
+    margin-left: 145px;
 }
 
 .productpagelink {

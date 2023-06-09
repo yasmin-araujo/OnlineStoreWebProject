@@ -13,7 +13,7 @@ const AddProduct = () => {
 
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
 
-    const [informations, setInformations] = useState({ name: "Mug Vincent's flowers", price: "9.00", quantity: 0, collection: '' })
+    const [informations, setInformations] = useState({ name: "Product Name", price: "9.00", quantity: 0, collection: '' })
 
     const handleInformationsChange = (e) => {
         setInformations(informations => ({
@@ -37,7 +37,7 @@ const AddProduct = () => {
                 <NavLink underline="hover" style={{ color: "#D7A324" }} to="http://localhost:3000/">
                     Products
                 </NavLink>
-                {isMobile ? ('') : (<Typography color="#D7A324">{informations.name}</Typography>)}
+                {isMobile ? ('') : (<Typography color="#D7A324">Add Product</Typography>)}
             </Breadcrumbs>
         </div>
         <div id='singleproductpage'>
