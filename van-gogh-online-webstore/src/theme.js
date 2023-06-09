@@ -48,7 +48,7 @@ export const theme = createTheme({
         },
         profileName: {
             fontStyle: 'normal',
-            fontWeight: '300',
+            fontWeight: '400',
             fontSize: '26px',
         },
         yellowTitle: {
@@ -64,8 +64,16 @@ export const theme = createTheme({
             fontSize: '20px',
             lineHeight: '46px',
         },
+        textBold: {
+            fontSize: '16px',
+            fontWeight: '600'
+        },
         text: {
-            fontSize: '16px'
-        }
+            fontSize: '16px',
+        },
+        textLight: {
+            fontSize: '16px',
+            fontWeight: '400'
+        },
     }
 });

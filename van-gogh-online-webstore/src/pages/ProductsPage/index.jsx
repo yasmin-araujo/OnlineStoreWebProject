@@ -1,19 +1,18 @@
-import { useState } from 'react';
-
-import './style.css';
-import Navbar from '../../components/Navbar';
 import { Typography } from '@mui/material';
+import Navbar from '../../components/Navbar';
 import Filters from '../../components/Filters';
+import ProductsGrid from '../../components/ProductsGrid';
+import './style.css';
 
 export default function ProductsPage() {
-	return (
+    return (
         <>
-            <Navbar bgColor='white'/>
+            <Navbar bgColor='white' />
             <div className='products'>
                 <Typography variant='yellowTitle'>Products</Typography>
                 <div className='products-components'>
-                <Filters />
-
+                    <Filters />
+                    <ProductsGrid />
                 </div>
             </div>
         </>

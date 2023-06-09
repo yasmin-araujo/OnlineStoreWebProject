@@ -1,10 +1,11 @@
 .filters {
     background-color: #F3F3F3;
-    width: 180px;
+    width: 280px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 30px;
+    padding: 45px;
     border-radius: 5px;
 }
 
