@@ -56,6 +56,16 @@ export const theme = createTheme({
             lineHeight: '80px',
             color: '#D7A324',
         },
+        smallTitle: {
+            fontSize: '24px',
+            fontWeight: '600',
+        },
+        mediumText: {
+            fontSize: '20px',
+            lineHeight: '46px',
+        },
+        text: {
+            fontSize: '16px'
         }
     }
 });
