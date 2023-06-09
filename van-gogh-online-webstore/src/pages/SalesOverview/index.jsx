@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './style.css';
 
 import Navbar from '../../components/Navbar';
-import SalesMenu from '../../components/SalesMenu';
+import ProfileMenu from '../../components/ProfileMenu';
 import TabelaSales from '../../components/TabelaSales';
 import ProfileLogout from '../../components/ProfileLogout';
 
@@ -19,7 +19,7 @@ export default function SalesOverview() {
         <>
             <Navbar bgColor='white' />
             <div className='profile'>
-                <SalesMenu handleProfileChange={handleProfileChange} />
+                <ProfileMenu profilePages={['Sales Overview','Logout']}  handleProfileChange={handleProfileChange} />
                 {profilePage}
             </div>
         </>

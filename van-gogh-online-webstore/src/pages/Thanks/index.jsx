@@ -6,6 +6,9 @@ import { useMediaQuery, useTheme } from '@mui/material';
 
 const Thanks = () => {
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
+    let size = '';
+    isMobile ? (size = '12px') : (size = '14px')
+    
 
     return <>
         <Navbar />
@@ -14,12 +17,9 @@ const Thanks = () => {
                 <div className='tks'>Thanks for shopping with us!</div>
                 <div className='vangogh-tks'>VAN GOGH STORE</div>
             </div>
-            {isMobile ? (<div className='button-thanks'>
-                <Button styles={{ backgroundColor: '#D7A324', fontSize: '12px' }}>BACK TO THE STORE</Button>
-            </div>) : (<div className='button-thanks'>
-                <Button styles={{ backgroundColor: '#D7A324' }}>BACK TO THE STORE</Button>
-            </div>)}
-
+            <div className='button-thanks'>
+                <Button styles={{ backgroundColor: '#D7A324', fontSize: size }}>BACK TO THE STORE</Button>
+            </div>
         </div>
     </>
 
