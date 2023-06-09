@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import './style.css'
 
 import { NavLink } from 'react-router-dom'
-import { Breadcrumbs, Typography, TextField, useMediaQuery, useTheme } from '@mui/material'
+import { Breadcrumbs, Typography, TextField, useMediaQuery, useTheme,MenuItem } from '@mui/material'
 import imagem from "./img/product.png"
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
@@ -13,7 +13,7 @@ const EditProduct = () => {
 
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
 
-    const [informations, setInformations] = useState({ name: "Mug Vincent's flowers", price: "9.00", quantity: 0, collection: "None" })
+    const [informations, setInformations] = useState({ name: "Mug Vincent's flowers", price: "9.00", quantity: 0, collection: "" })
 
     const handleInformationsChange = (e) => {
         setInformations(informations => ({
@@ -60,7 +60,20 @@ const EditProduct = () => {
                     <div className='price'>
                         <div><Typography variant='editProductText'>Collection: </Typography></div>
                         <div className='price-field'>
-                            <TextField onChange={handleInformationsChange} size='small' name='collection' label="Collection" />
+                        <TextField
+                                name='collection'
+                                size='small'
+                                select
+                                label="Selecione uma opção"
+                                value={informations.collection}
+                                onChange={handleInformationsChange}
+                                sx={{width:'160px'}}
+                            >
+                                <MenuItem value="">Selecione...</MenuItem>
+                                <MenuItem value="opcao1">Opção 1</MenuItem>
+                                <MenuItem value="opcao2">Opção 2</MenuItem>
+                                <MenuItem value="opcao3">Opção 3</MenuItem>
+                            </TextField>
                         </div>
                     </div>
                 </div>
