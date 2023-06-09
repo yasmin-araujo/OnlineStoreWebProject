@@ -39,7 +39,7 @@ const AddProduct = () => {
     return <>
 
         <Navbar bgColor='#FFF' />
-        {isMobile ? (<div className='links'>
+        <div className='links'>
             <Breadcrumbs color='#D7A324' aria-label="breadcrumb">
                 <Link underline="hover" color="#D7A324" href="http://localhost:3000/">
                     Home
@@ -51,26 +51,13 @@ const AddProduct = () => {
                 >
                     Products
                 </Link>
+                {isMobile ? ('') : (<Typography color="#D7A324">{informations.name}</Typography>)}
             </Breadcrumbs>
-        </div>) : (<div className='links'>
-            <Breadcrumbs color='#D7A324' aria-label="breadcrumb">
-                <Link underline="hover" color="#D7A324" href="http://localhost:3000/">
-                    Home
-                </Link>
-                <Link
-                    underline="hover"
-                    color="#D7A324"
-                    href="http://localhost:3000/"
-                >
-                    Products
-                </Link>
-                <Typography color="#D7A324">Add Product</Typography>
-            </Breadcrumbs>
-        </div>)}
+        </div>
         <div id='singleproductpage'>
             <img id='image-singleproduct' src={imagem} />
             <div id='productinformations'>
-            <Typography variant='productYellowName'>{informations.name}</Typography>
+                <Typography variant='productYellowName'>{informations.name}</Typography>
                 <div id='productinfo'>
                     <div className='price'>
                         <div><Typography variant='editProductText'>Price($):</Typography></div>

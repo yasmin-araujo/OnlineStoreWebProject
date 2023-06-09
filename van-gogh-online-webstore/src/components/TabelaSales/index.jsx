@@ -9,6 +9,29 @@ const TabelaSales = () => {
     const [amountSales, setAmountSales] = useState(['1200', '2500', '456', '1423', '2100', '1266']);
     const [avgTicket, setAvgTicket] = useState(['$ 209.00', '$ 390.00', '$ 750.00', '$ 248.00', '$ 659.00', '$ 129.00']);
     const [qtyProducts, setQtyProducts] = useState(['100', '250', '100', '250', '250', '160']);
+    const [currentMonth, setCurrentMonth] = useState(7);
+    const [currentYear, setCurrentYear] = useState(23);
+    const months = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    const months2 = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+
+    let pastSix = [];
+    for (let i = currentMonth - 6; i <= currentMonth - 1; i++) {
+        if (i <= 0) {
+            pastSix.push(months[i + 12] + ' ' + (currentYear - 1))
+        }
+        else
+            pastSix.push(months[i] + ' ' + currentYear)
+    }
+
+    let pastSix2 = [];
+    for (let i = currentMonth - 6; i <= currentMonth - 1; i++) {
+        if (i <= 0) {
+            pastSix2.push(months2[i + 12] + (currentYear - 1))
+        }
+        else
+            pastSix2.push(months2[i] + currentYear)
+    }
+
 
 
     return <>
@@ -31,20 +54,15 @@ const TabelaSales = () => {
                     <div className='line2'></div>
                     <div className='colunas'>
                         <div className='element-coluna'>
-                            <div>January 23</div>
-                            <div>February 23</div>
-                            <div>March 23</div>
-                            <div>April 23</div>
-                            <div>May 23</div>
-                            <div>June 23</div>
+                            {pastSix.map((valor) => (
+                                <div>{valor}</div>
+                            ))}
+
                         </div>
                         <div className='element-coluna2'>
-                            <div>Jan23</div>
-                            <div>Feb23</div>
-                            <div>Mar23</div>
-                            <div>Apr23</div>
-                            <div>May23</div>
-                            <div>June23</div>
+                            {pastSix2.map((valor) => (
+                                <div>{valor}</div>
+                            ))}
                         </div>
                         <Coluna valores={totalIncome} />
                         <Coluna valores={amountSales} />
