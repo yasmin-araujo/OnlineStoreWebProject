@@ -1,6 +1,31 @@
 export const products = [{
-    name: 'Product', 
+    name: 'Product',
     price: 8.00,
     qtd: 50,
-    collection: null
+    collection: null,
+    img: 'mug-vincents-flowers.jpg'
+}, {
+    name: 'Product',
+    price: 8.00,
+    qtd: 50,
+    collection: null,
+    img: 'mug-vincents-flowers.jpg'
+}, {
+    name: 'Product',
+    price: 8.00,
+    qtd: 50,
+    collection: null,
+    img: 'mug-vincents-flowers.jpg'
+}, {
+    name: 'Product',
+    price: 8.00,
+    qtd: 50,
+    collection: null,
+    img: 'mug-vincents-flowers.jpg'
+}, {
+    name: 'Product',
+    price: 8.00,
+    qtd: 50,
+    collection: null,
+    img: 'mug-vincents-flowers.jpg'
 }];
