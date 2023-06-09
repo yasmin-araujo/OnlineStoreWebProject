@@ -11,13 +11,13 @@ export default function ProfileLogout() {
 
 	let handleNavigation = (e) => {
 		e.preventDefault();
-        navigate('/');
+		navigate('/');
 	}
 	return (
 		<div className='logout'>
 			<Typography variant='profileSectionTitle'>Logout</Typography>
 			<Typography variant='mainSubtitle'>Are you sure you want to logout?</Typography>
-			<Button onClick={(e) => handleNavigation(e)} styles={{ backgroundColor: 'black'}}>Logout</Button>
+			<Button onClick={(e) => handleNavigation(e)} styles={{ backgroundColor: 'black' }}>Logout</Button>
 		</div>
 	);
 }

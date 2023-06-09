@@ -1,6 +1,8 @@
 import { React, useState } from 'react'
 import './style.css'
-import { Breadcrumbs, Link, Typography, TextField, useMediaQuery, useTheme } from '@mui/material'
+
+import { NavLink } from 'react-router-dom'
+import { Breadcrumbs, Typography, TextField, useMediaQuery, useTheme } from '@mui/material'
 import imagem from "./img/add.png"
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
@@ -41,16 +43,12 @@ const AddProduct = () => {
         <Navbar bgColor='#FFF' />
         <div className='links'>
             <Breadcrumbs color='#D7A324' aria-label="breadcrumb">
-                <Link underline="hover" color="#D7A324" href="http://localhost:3000/">
+                <NavLink underline="hover" style={{ color: "#D7A324" }} to="http://localhost:3000/">
                     Home
-                </Link>
-                <Link
-                    underline="hover"
-                    color="#D7A324"
-                    href="http://localhost:3000/"
-                >
+                </NavLink>
+                <NavLink underline="hover" style={{ color: "#D7A324" }} to="http://localhost:3000/">
                     Products
-                </Link>
+                </NavLink>
                 {isMobile ? ('') : (<Typography color="#D7A324">{informations.name}</Typography>)}
             </Breadcrumbs>
         </div>
