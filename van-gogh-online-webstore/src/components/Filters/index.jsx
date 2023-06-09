@@ -5,7 +5,7 @@ import NumberTextField from '../NumberTextField';
 import './style.css';
 
 export default function Filters() {
-    const [priceFilter, setPriceFilter] = React.useState({ min: null, max: null });
+    const [priceFilter, setPriceFilter] = React.useState({ min: undefined, max: undefined });
     const collections = ['Almond Blossom', 'Sunflowers', 'Starry Night', 'Self Portraits'];
 
     return (
@@ -23,8 +23,9 @@ export default function Filters() {
             <div>
                 <Typography variant='mediumText'>Collection</Typography>
                 <div className='filter-checkbox'>
-                    {collections.map((label) => (
+                    {collections.map((label, index) => (
                         <FormControlLabel
+                            key={'collection-checkbox-' + index}
                             value="top"
                             control={<Checkbox sx={{
                                 color: '#D6A324',

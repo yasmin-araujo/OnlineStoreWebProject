@@ -6,7 +6,7 @@ import Product from "../Product";
 export default function ProductsGrid() {
     return (
         <div className="products-grid">
-            {products.map((product) => <Product product={product} />)}
+            {products.map((product, index) => <Product product={product} key={'product-' + index} />)}
         </div>
     );
 }
