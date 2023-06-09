@@ -2,12 +2,9 @@
     display: flex;
     padding: 50px 100px;
     margin-left: 30px;
-}
-
-#productinformations {
-    margin-left: 90px;
-    margin-top: 40px;
-    transition: 1s;
+    flex-direction: row; 
+    align-items: center;
+    gap: 120px;
 }
 
 #productinfo {

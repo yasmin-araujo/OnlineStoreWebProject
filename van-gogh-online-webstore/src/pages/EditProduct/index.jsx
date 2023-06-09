@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import './style.css'
 
 import { NavLink } from 'react-router-dom'
-import { Breadcrumbs, Typography, TextField, useMediaQuery, useTheme,MenuItem } from '@mui/material'
+import { Breadcrumbs, Typography, TextField, useMediaQuery, useTheme, MenuItem } from '@mui/material'
 import imagem from "./img/product.png"
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
@@ -60,14 +60,14 @@ const EditProduct = () => {
                     <div className='price'>
                         <div><Typography variant='editProductText'>Collection: </Typography></div>
                         <div className='price-field'>
-                        <TextField
+                            <TextField
                                 name='collection'
                                 size='small'
                                 select
                                 label="Selecione uma opção"
                                 value={informations.collection}
                                 onChange={handleInformationsChange}
-                                sx={{width:'160px'}}
+                                sx={{ width: '160px' }}
                             >
                                 <MenuItem value="">Selecione...</MenuItem>
                                 <MenuItem value="opcao1">Opção 1</MenuItem>

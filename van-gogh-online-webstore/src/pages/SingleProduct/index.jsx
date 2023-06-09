@@ -1,6 +1,7 @@
 import { React, useState } from 'react'
 import './style.css'
-import { Breadcrumbs, Link, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { Breadcrumbs, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { NavLink } from 'react-router-dom'
 import imagem from "./img/asd.png"
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
@@ -32,39 +33,22 @@ const SingleProduct = () => {
 
         <Navbar bgColor='#FFF' />
 
-        {isMobile ? (<div className='links'>
+        <div className='links'>
             <Breadcrumbs color='#D7A324' aria-label="breadcrumb">
-                <Link underline="hover" color="#D7A324" href="http://localhost:3000/">
+                <NavLink underline="hover" style={{ color: "#D7A324" }} to="http://localhost:3000/">
                     Home
-                </Link>
-                <Link
-                    underline="hover"
-                    color="#D7A324"
-                    href="http://localhost:3000/"
-                >
+                </NavLink>
+                <NavLink underline="hover" style={{ color: "#D7A324" }} to="http://localhost:3000/">
                     Products
-                </Link>
+                </NavLink>
+                {isMobile ? ('') : (<Typography color="#D7A324">{informations.name}</Typography>)}
             </Breadcrumbs>
-        </div>) : (<div className='links'>
-            <Breadcrumbs color='#D7A324' aria-label="breadcrumb">
-                <Link underline="hover" color="#D7A324" href="http://localhost:3000/">
-                    Home
-                </Link>
-                <Link
-                    underline="hover"
-                    color="#D7A324"
-                    href="http://localhost:3000/"
-                >
-                    Products
-                </Link>
-                <Typography color="#D7A324">{informations.name}</Typography>
-            </Breadcrumbs>
-        </div>)}
+        </div>
 
         <div id='singleproductpage'>
             <img id='image-singleproduct' src={imagem} />
             <div id='productinformations'>
-                <Typography variant='productYellowName'>{informations.name}</Typography><br/>
+                <Typography variant='productYellowName'>{informations.name}</Typography><br />
                 <Typography variant='editProductText'>{informations.price}</Typography>
                 <div id='quantity'>
                     <Typography variant='editProductText'>Quantity: </Typography>

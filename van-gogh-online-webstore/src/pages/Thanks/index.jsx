@@ -6,9 +6,8 @@ import { useMediaQuery, useTheme } from '@mui/material';
 
 const Thanks = () => {
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
-    let size = '';
-    isMobile ? (size = '12px') : (size = '14px')
-    
+    const size = isMobile ? '12px' : '14px';
+
 
     return <>
         <Navbar />

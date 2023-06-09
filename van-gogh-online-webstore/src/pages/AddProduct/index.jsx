@@ -67,7 +67,7 @@ const AddProduct = () => {
                                 label="Selecione uma opção"
                                 value={informations.collection}
                                 onChange={handleInformationsChange}
-                                sx={{width:'160px'}}
+                                sx={{ width: '160px' }}
                             >
                                 <MenuItem value="">Selecione...</MenuItem>
                                 <MenuItem value="opcao1">Opção 1</MenuItem>
