@@ -1,7 +1,7 @@
 export const pages = [
 	{
 		label: 'All Products',
-		href: '/'
+		href: '/products'
 	},
 	{
 		label: 'Cart',
@@ -19,7 +19,7 @@ export const pages = [
 export const pages_user = [
 	{
 		label: 'All Products',
-		href: '/'
+		href: '/products'
 	},
 	{
 		label: 'Cart',
@@ -33,7 +33,7 @@ export const pages_user = [
 export const pages_admin = [
 	{
 		label: 'All Products',
-		href: '/'
+		href: '/products'
 	},
 	{
 		label: 'Overview',

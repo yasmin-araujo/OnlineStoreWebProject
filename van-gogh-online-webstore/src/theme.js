@@ -1,21 +1,21 @@
 import { createTheme } from '@mui/material';
 
 export const theme = createTheme({
-	typography: {
-		fontFamily: [
-			'Plus Jakarta Sans',
-			'-apple-system',
-			'BlinkMacSystemFont',
-			'Segoe UI',
-			'Roboto',
-			'Oxygen',
-			'Ubuntu',
-			'Cantarell',
-			'Fira Sans',
-			'Droid Sans',
-			'Helvetica Neue',
-			'sans-serif'
-		].join(','),
+    typography: {
+        fontFamily: [
+            'Plus Jakarta Sans',
+            '-apple-system',
+            'BlinkMacSystemFont',
+            'Segoe UI',
+            'Roboto',
+            'Oxygen',
+            'Ubuntu',
+            'Cantarell',
+            'Fira Sans',
+            'Droid Sans',
+            'Helvetica Neue',
+            'sans-serif'
+        ].join(','),
         headerTitle: {
             fontWeight: '800',
             color: 'black',
@@ -25,10 +25,10 @@ export const theme = createTheme({
             color: 'black',
             fontSize: '18px'
         },
-		profileSectionTitle: {
-			color: 'black',
-			fontSize: '48px'
-		},
+        profileSectionTitle: {
+            color: 'black',
+            fontSize: '48px'
+        },
         mainTitle: {
             fontSize: '72px',
             lineHeight: '80px'
@@ -49,7 +49,13 @@ export const theme = createTheme({
         profileName: {
             fontStyle: 'normal',
             fontWeight: '300',
-            fontSize: '26px'
+            fontSize: '26px',
+        },
+        yellowTitle: {
+            fontSize: '42px',
+            lineHeight: '80px',
+            color: '#D7A324',
+        },
         }
-	}
+    }
 });

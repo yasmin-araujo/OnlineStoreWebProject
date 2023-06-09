@@ -1,0 +1,10 @@
+.products {
+    background-color: white;
+    height: 100vh;
+    padding: 135px 160px 0;
+}
+
+.products-components {
+    margin: 50px 0 0 0;
+    flex-direction: row;
+}

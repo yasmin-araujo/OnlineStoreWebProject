@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
-// import ProductsPage from './pages/ProductsPage';
+import ProductsPage from './pages/ProductsPage';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 
@@ -16,18 +16,19 @@ import { theme } from './theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-	<StrictMode>
-		<ThemeProvider theme={theme}>
-				<BrowserRouter>
-					<Routes>
-						<Route path="/" element={<HomePage />} />
-						<Route path="/profile" element={<ProfilePage />} />
-						<Route path="/signup" element={<SignUp />} />
-						<Route path="/signin" element={<SignIn />} />
-					</Routes>
-				</BrowserRouter>
-		</ThemeProvider>
-	</StrictMode>
+    <StrictMode>
+        <ThemeProvider theme={theme}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/products" element={<ProductsPage />} />
+                    <Route path="/profile" element={<ProfilePage />} />
+                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/signin" element={<SignIn />} />
+                </Routes>
+            </BrowserRouter>
+        </ThemeProvider>
+    </StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
