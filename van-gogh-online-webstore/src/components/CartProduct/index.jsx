@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './style.css';
 import NumberTextField from '../NumberTextField';
 
 
-export default function CartProduct({ product, handleProductDeletion }) {
+export default function CartProduct({ product, handleProductDeletion, handleProductAmount }) {
+	const [productAmount, setProductAmount] = useState(product.amount) 
 
-	const [priceFilter, setPriceFilter] = React.useState({ min: undefined, max: undefined });
-
-	const handleEvent = () => {
-		handleProductDeletion(product.productId)
+	const handleDeletionEvent = () => {
+		handleProductDeletion(product.id)
 	}
+
+	useEffect(
+        () => {
+            handleProductAmount(product.id, parseInt(productAmount))
+        },
+        [productAmount]
+    );
 
 	return (
 		<div className='product'>
@@ -19,8 +25,8 @@ export default function CartProduct({ product, handleProductDeletion }) {
 				<p><strong>{product.name}</strong></p>
 				<p>$ {product.price}</p>
 			</div>
-			<NumberTextField label={'Qty'} value={product.amount} style={{ width: '80px', minWidth: '55px' }} />
-			<button onClick={handleEvent}><DeleteIcon/></button>
+			<NumberTextField label={'Qty'} value={productAmount} setValue={(value) => {setProductAmount(value)}} style={{ width: '80px', minWidth: '55px' }} min={1} max={10}/>
+			<button onClick={handleDeletionEvent}><DeleteIcon/></button>
 		</div>
 	);
 }

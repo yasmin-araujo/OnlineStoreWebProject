@@ -65,10 +65,6 @@ export const theme = createTheme({
             fontSize: '20px',
             lineHeight: '46px',
         },
-        yellowTitle: {
-            fontSize: '48px',
-            color: '#D7A324'
-        },
         cardDetails: {
             fontSize: '24px',
             fontWeight: 'bold',
@@ -76,8 +72,7 @@ export const theme = createTheme({
         },
         addressCart: {
             fontSize: '14px',
-            color: 'gray'
-            
+            color: 'gray'  
         },
         paymentInformationText: {
             fontSize: '15px',

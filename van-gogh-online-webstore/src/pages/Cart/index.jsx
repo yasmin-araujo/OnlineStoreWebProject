@@ -11,21 +11,21 @@ import CartProduct from '../../components/CartProduct';
 export default function Cart() {
 	const [products, setProducts] = useState([
 		{
-			productId: 1,
+			id: 1,
 			image: image,
 			name: "Mug Vicent's flowers",
 			price: 9.00,
 			amount: 2
 		},
 		{
-			productId: 2,
+			id: 2,
 			image: image,
 			name: "Mug Vicent's flowers",
 			price: 9.00,
 			amount: 2
 		},
 		{
-			productId: 3,
+			id: 3,
 			image: image,
 			name: "Mug Vicent's flowers",
 			price: 9.00,
@@ -36,11 +36,18 @@ export default function Cart() {
 	
 	const [isEmpty, setIsEmpty] = useState(false)
 	const [subtotalPrice, setSubtotalPrice] = useState(products.reduce( (sum, product) => {return sum + (product.price*product.amount)}, 0))
-	const address = "Street 10, 430, Zundert - Netherlands"
-	const shippingPrice = 4
+	const [shipping, setShipping] = useState({
+		address: "Street 10, 430, Zundert - Netherlands",
+	 	price: 4
+	})
 
-	const handleProductDeletion = (productId) => {
-		const newProducts = products.filter(product => product.productId !== productId)
+	const handleProductAmount = (id, amount) => {
+		let newProducts = products.map(product => product.id === id ? {...product, amount: amount} : product)
+		setProducts(newProducts)
+	}
+
+	const handleProductDeletion = (id) => {
+		const newProducts = products.filter(product => product.id !== id)
 		if(newProducts.length === 0){
 			setIsEmpty(true)
 		}
@@ -61,10 +68,10 @@ export default function Cart() {
 			<div className='cart'>
 				<div className='cart-content'>
 					<Typography variant='yellowTitle'>Cart</Typography>
-					{products.map((product) => <CartProduct product={product} handleProductDeletion={handleProductDeletion} />)}
+					{products.map((product) => <CartProduct product={product} handleProductDeletion={handleProductDeletion} handleProductAmount={handleProductAmount}/>)}
 					{isEmpty ? <Typography variant='mainSubtitle'>Your cart is empty</Typography> : undefined}
 				</div>
-				<PaymentInformations address={address} subtotalPrice={subtotalPrice} shippingPrice={shippingPrice}/>
+				<PaymentInformations shipping={shipping} subtotalPrice={subtotalPrice}/>
 			</div>
 		</>
 	);

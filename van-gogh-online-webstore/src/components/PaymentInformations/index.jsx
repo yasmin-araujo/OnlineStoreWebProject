@@ -4,7 +4,7 @@ import { TextField, Typography } from '@mui/material';
 
 import './style.css';
 
-export default function PaymentInformations({ address, subtotalPrice, shippingPrice }) {
+export default function PaymentInformations({ shipping, subtotalPrice }) {
 	const [cards, setCards] = useState([
 		'https://purepng.com/public/uploads/large/purepng.com-mastercard-logologobrand-logoiconslogos-251519938372dnf77.png',
 		'https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png',
@@ -27,19 +27,19 @@ export default function PaymentInformations({ address, subtotalPrice, shippingPr
 			</div>
 			<Typography variant='paymentInformationText'>Shipping address</Typography>
 			<div className='address'>
-				<Typography variant='addressCart'>{address}</Typography><br/>
+				<Typography variant='addressCart'>{shipping.address}</Typography><br/>
 			</div>
 			<div className='price'>
-				<Typography variant='paymentInformationText'>subtotal</Typography>
+				<Typography variant='paymentInformationText'>Subtotal</Typography>
 				<Typography variant='paymentInformationText'>${subtotalPrice}</Typography>
 			</div>
 			<div className='price'>
-				<Typography variant='paymentInformationText'>shipping</Typography>
-				<Typography variant='paymentInformationText'>${shippingPrice}</Typography>
+				<Typography variant='paymentInformationText'>Shipping</Typography>
+				<Typography variant='paymentInformationText'>${shipping.price}</Typography>
 			</div>
 			<div className='price'>
-				<Typography variant='paymentInformationText'>total (tax Incl)</Typography>
-				<Typography variant='paymentInformationText'>${subtotalPrice + shippingPrice}</Typography>
+				<Typography variant='paymentInformationText'>Total (tax Incl)</Typography>
+				<Typography variant='paymentInformationText'>${subtotalPrice + shipping.price}</Typography>
 			</div>
 			<Button styles={{backgroundColor: '#D7A324'}}> COMPLETE YOUR PURCHASE</Button>
 		</div>
