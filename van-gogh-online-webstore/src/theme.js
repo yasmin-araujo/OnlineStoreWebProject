@@ -72,7 +72,7 @@ export const theme = createTheme({
         },
         addressCart: {
             fontSize: '14px',
-            color: 'gray'  
+            color: 'gray'
         },
         paymentInformationText: {
             fontSize: '15px',

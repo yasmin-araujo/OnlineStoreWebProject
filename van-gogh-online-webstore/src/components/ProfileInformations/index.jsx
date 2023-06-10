@@ -31,8 +31,8 @@ export default function ProfileInformations() {
 					(info) => <TextField className='TextField' label={info.field} variant='outlined' margin='normal' defaultValue={info.value} />
 				)}
 				<div className='buttons'>
-					<Button styles={{backgroundColor: "#C4C4C4"}} >Update profile picture</Button>
-					<Button styles={{backgroundColor: "black"}} >Save</Button>
+					<Button styles={{ backgroundColor: "#C4C4C4" }} >Update profile picture</Button>
+					<Button styles={{ backgroundColor: "black" }} >Save</Button>
 				</div>
 			</div>
 		</div>

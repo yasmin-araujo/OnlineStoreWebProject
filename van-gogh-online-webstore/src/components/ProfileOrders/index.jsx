@@ -49,7 +49,8 @@ export default function ProfileOrders() {
 			productPrice: 9.00,
 			productAmount: 2
 		},
-	])
+	]);
+
 	return (
 		<div className='order-section'>
 			<Typography variant='profileSectionTitle'>Orders</Typography>

@@ -31,47 +31,45 @@ export default function Cart() {
 			price: 9.00,
 			amount: 2
 		}
-	])
+	]);
 
-	
-	const [isEmpty, setIsEmpty] = useState(false)
-	const [subtotalPrice, setSubtotalPrice] = useState(products.reduce( (sum, product) => {return sum + (product.price*product.amount)}, 0))
+	const [isEmpty, setIsEmpty] = useState(false);
+	const [subtotalPrice, setSubtotalPrice] = useState(products.reduce((sum, product) => { return sum + (product.price * product.amount) }, 0));
 	const [shipping, setShipping] = useState({
 		address: "Street 10, 430, Zundert - Netherlands",
-	 	price: 4
-	})
+		price: 4
+	});
 
 	const handleProductAmount = (id, amount) => {
-		let newProducts = products.map(product => product.id === id ? {...product, amount: amount} : product)
+		let newProducts = products.map(product => product.id === id ? { ...product, amount: amount } : product)
 		setProducts(newProducts)
-	}
+	};
 
 	const handleProductDeletion = (id) => {
 		const newProducts = products.filter(product => product.id !== id)
-		if(newProducts.length === 0){
+		if (newProducts.length === 0) {
 			setIsEmpty(true)
 		}
 		setProducts(newProducts)
-	}
-
+	};
 
 	useEffect(
-        () => {
-            setSubtotalPrice(products.reduce( (sum, product) => {return sum + (product.price*product.amount)}, 0));
-        },
-        [products]
-    );
-	
+		() => {
+			setSubtotalPrice(products.reduce((sum, product) => { return sum + (product.price * product.amount) }, 0));
+		},
+		[products]
+	);
+
 	return (
 		<>
-			<Navbar bgColor='white'/>
+			<Navbar bgColor='white' />
 			<div className='cart'>
 				<div className='cart-content'>
 					<Typography variant='yellowTitle'>Cart</Typography>
-					{products.map((product) => <CartProduct product={product} handleProductDeletion={handleProductDeletion} handleProductAmount={handleProductAmount}/>)}
+					{products.map((product) => <CartProduct product={product} handleProductDeletion={handleProductDeletion} handleProductAmount={handleProductAmount} />)}
 					{isEmpty ? <Typography variant='mainSubtitle'>Your cart is empty</Typography> : undefined}
 				</div>
-				<PaymentInformations shipping={shipping} subtotalPrice={subtotalPrice}/>
+				<PaymentInformations shipping={shipping} subtotalPrice={subtotalPrice} />
 			</div>
 		</>
 	);

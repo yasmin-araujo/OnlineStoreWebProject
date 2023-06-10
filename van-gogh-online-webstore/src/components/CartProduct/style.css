@@ -1,4 +1,4 @@
-.product{
+.product {
     border-bottom: 1px solid #DADADA;
     display: flex;
     flex-direction: row;
@@ -8,12 +8,12 @@
 }
 
 
-#product-image{
+#product-image {
     height: 200px;
     width: 200px;
 }
 
-button{
+button {
     background-color: transparent;
     border: none;
     cursor: pointer;

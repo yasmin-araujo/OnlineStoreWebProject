@@ -10,15 +10,15 @@ import ProfileOrders from '../../components/ProfileOrders';
 import ProfileLogout from '../../components/ProfileLogout';
 
 export default function ProfilePage() {
-	const pages = [<ProfileInformations />, <ProfileOrders />, <ProfileLogout/>]
-	const [profilePage, setProfilePage] = useState(pages[0])
+	const pages = [<ProfileInformations />, <ProfileOrders />, <ProfileLogout />];
+	const [profilePage, setProfilePage] = useState(pages[0]);
 	const handleProfileChange = (index) => {
 		setProfilePage(pages[index])
-	}
+	};
 
 	return (
 		<>
-			<Navbar bgColor='white'/>
+			<Navbar bgColor='white' />
 			<div className='profile'>
 				<ProfileMenu handleProfileChange={handleProfileChange} />
 				{profilePage}

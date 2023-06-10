@@ -1,18 +1,18 @@
-.payment-informations{
+.payment-informations {
     display: flex;
     flex-direction: column;
     max-width: 350px;
     margin-top: 25px;
 }
 
-.card-row{
+.card-row {
     display: flex;
     flex-direction: row;
     gap: 10px;
     margin-bottom: 5px;
 }
 
-.card-image{
+.card-image {
     height: 30px;
     width: 55px;
     border: 2px solid #ada4a4;
@@ -20,23 +20,23 @@
     padding: 5px;
 }
 
-.address{
+.address {
     border-bottom: 1px solid #DADADA;
     padding-bottom: 15px;
 }
 
-.price{
+.price {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-button{
+button {
     margin-top: 15px;
 }
 
 @media only screen and (max-width: 1000px) {
-    .payment-informations{
+    .payment-informations {
         max-width: 1000px;
     }
 }

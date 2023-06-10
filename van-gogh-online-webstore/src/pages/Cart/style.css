@@ -1,4 +1,4 @@
-.cart{
+.cart {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -6,7 +6,7 @@
     padding: 135px 160px;
 }
 
-.cart-content{
+.cart-content {
     display: flex;
     flex-direction: column;
     max-width: 800px;
