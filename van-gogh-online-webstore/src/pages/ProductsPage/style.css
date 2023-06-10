@@ -7,7 +7,6 @@
 .products-components {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     gap: 80px;
     margin: 50px 0 0 0;
 }
