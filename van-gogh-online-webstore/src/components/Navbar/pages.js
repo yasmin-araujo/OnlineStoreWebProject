@@ -5,7 +5,7 @@ export const pages = [
 	},
 	{
 		label: 'Cart',
-		href: '/'
+		href: '/cart'
 	},
 	{
 		label: 'Sign In',
