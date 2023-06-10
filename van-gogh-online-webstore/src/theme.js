@@ -2,21 +2,21 @@ import { createTheme } from '@mui/material';
 import { light } from '@mui/material/styles/createPalette';
 
 export const theme = createTheme({
-	typography: {
-		fontFamily: [
-			'Plus Jakarta Sans',
-			'-apple-system',
-			'BlinkMacSystemFont',
-			'Segoe UI',
-			'Roboto',
-			'Oxygen',
-			'Ubuntu',
-			'Cantarell',
-			'Fira Sans',
-			'Droid Sans',
-			'Helvetica Neue',
-			'sans-serif'
-		].join(','),
+    typography: {
+        fontFamily: [
+            'Plus Jakarta Sans',
+            '-apple-system',
+            'BlinkMacSystemFont',
+            'Segoe UI',
+            'Roboto',
+            'Oxygen',
+            'Ubuntu',
+            'Cantarell',
+            'Fira Sans',
+            'Droid Sans',
+            'Helvetica Neue',
+            'sans-serif'
+        ].join(','),
         headerTitle: {
             fontWeight: '800',
             color: 'black',
@@ -26,10 +26,10 @@ export const theme = createTheme({
             color: 'black',
             fontSize: '18px'
         },
-		profileSectionTitle: {
-			color: 'black',
-			fontSize: '48px'
-		},
+        profileSectionTitle: {
+            color: 'black',
+            fontSize: '48px'
+        },
         mainTitle: {
             fontSize: '72px',
             lineHeight: '80px'
@@ -49,8 +49,21 @@ export const theme = createTheme({
         },
         profileName: {
             fontStyle: 'normal',
-            fontWeight: '300',
-            fontSize: '26px'
+            fontWeight: '400',
+            fontSize: '26px',
+        },
+        yellowTitle: {
+            fontSize: '42px',
+            lineHeight: '80px',
+            color: '#D7A324',
+        },
+        smallTitle: {
+            fontSize: '24px',
+            fontWeight: '600',
+        },
+        mediumText: {
+            fontSize: '20px',
+            lineHeight: '46px',
         },
         yellowTitle: {
             fontSize: '48px',
@@ -70,6 +83,17 @@ export const theme = createTheme({
             fontSize: '15px',
             lineHeight: '35px',
             fontWeight: '400'
-        }
-	}
+        },
+        textBold: {
+            fontSize: '16px',
+            fontWeight: '600'
+        },
+        text: {
+            fontSize: '16px',
+        },
+        textLight: {
+            fontSize: '16px',
+            fontWeight: '400'
+        },
+    }
 });

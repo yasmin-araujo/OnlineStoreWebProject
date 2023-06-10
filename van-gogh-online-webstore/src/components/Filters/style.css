@@ -1,0 +1,23 @@
+.filters {
+    background-color: #F3F3F3;
+    width: 280px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 45px;
+    border-radius: 5px;
+}
+
+.price-filter {
+    display: flex;
+    width: 170px;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.filter-checkbox {
+    display: flex;
+    flex-direction: column;
+}
