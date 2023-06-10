@@ -59,11 +59,17 @@ export const theme = createTheme({
         cardDetails: {
             fontSize: '24px',
             fontWeight: 'bold',
-            paddingBottom: '30px'
+            paddingBottom: '25px'
         },
         addressCart: {
             fontSize: '14px',
-            fontWeight: '50'
+            color: 'gray'
+            
+        },
+        paymentInformationText: {
+            fontSize: '15px',
+            lineHeight: '35px',
+            fontWeight: '400'
         }
 	}
 });

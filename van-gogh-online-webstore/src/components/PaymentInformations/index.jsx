@@ -4,7 +4,7 @@ import { TextField, Typography } from '@mui/material';
 
 import './style.css';
 
-export default function PaymentInformations({ adress }) {
+export default function PaymentInformations({ address, subtotalPrice, shippingPrice }) {
 	const [cards, setCards] = useState([
 		'https://purepng.com/public/uploads/large/purepng.com-mastercard-logologobrand-logoiconslogos-251519938372dnf77.png',
 		'https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png',
@@ -14,8 +14,8 @@ export default function PaymentInformations({ adress }) {
 
 	return (
 		<div className='payment-informations'>
-			<Typography variant='cardDetails'>Card Details </Typography>
-			<p>Accepted cards</p>
+			<Typography variant='cardDetails'>Card Details</Typography>
+			<Typography variant='paymentInformationText'>Accepted cards</Typography>
 			<div className='card-row'>
 				{cards.map((card) => <img className='card-image' src={card}/>)}
 			</div>
@@ -25,15 +25,22 @@ export default function PaymentInformations({ adress }) {
 				<TextField label={'Expiration date'} variant='outlined' margin='normal' size='small' defaultValue={'mm/yy'} />
 				<TextField label={'CVV'} variant='outlined' margin='normal' size='small' defaultValue={'123'} />
 			</div>
-			<p>Shipping address</p>
+			<Typography variant='paymentInformationText'>Shipping address</Typography>
 			<div className='address'>
-				<Typography variant='addressCart'>Street 10, 430, Zundert - Netherlands</Typography>
-				
-				<Typography variant='addressCart'>Shipping Price 4$</Typography>
+				<Typography variant='addressCart'>{address}</Typography><br/>
 			</div>
-			<p>subtotal</p>
-			<p>shipping</p>
-			<p>total tax Incl</p>
+			<div className='price'>
+				<Typography variant='paymentInformationText'>subtotal</Typography>
+				<Typography variant='paymentInformationText'>${subtotalPrice}</Typography>
+			</div>
+			<div className='price'>
+				<Typography variant='paymentInformationText'>shipping</Typography>
+				<Typography variant='paymentInformationText'>${shippingPrice}</Typography>
+			</div>
+			<div className='price'>
+				<Typography variant='paymentInformationText'>total (tax Incl)</Typography>
+				<Typography variant='paymentInformationText'>${subtotalPrice + shippingPrice}</Typography>
+			</div>
 			<Button styles={{backgroundColor: '#D7A324'}}> COMPLETE YOUR PURCHASE</Button>
 		</div>
 	);

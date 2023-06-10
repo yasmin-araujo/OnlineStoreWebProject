@@ -2,17 +2,17 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 30px;
+    gap: 40px;
     padding: 135px 160px;
-    transition: 3s;
 }
 
 .cart-content{
     display: flex;
     flex-direction: column;
-    max-width: 700px;
+    max-width: 800px;
     width: 100%;
     gap: 30px;
+    transition: all .5s ease-in;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -20,8 +20,5 @@
     .cart {
         flex-direction: column;
         gap: 50px;
-    }
-    .payment-informations{
-        max-width: 1000px;
     }
 }

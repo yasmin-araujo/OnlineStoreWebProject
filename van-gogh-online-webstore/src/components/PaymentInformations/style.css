@@ -2,15 +2,14 @@
     display: flex;
     flex-direction: column;
     max-width: 350px;
-    margin-top: 30px;
-    line-height : 15px;
+    margin-top: 25px;
 }
 
 .card-row{
     display: flex;
     flex-direction: row;
     gap: 10px;
-    margin-bottom: 7px;
+    margin-bottom: 5px;
 }
 
 .card-image{
@@ -23,7 +22,17 @@
 
 .address{
     border-bottom: 1px solid #DADADA;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
+}
+
+.price{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+button{
+    margin-top: 15px;
 }
 
 @media only screen and (max-width: 1000px) {
