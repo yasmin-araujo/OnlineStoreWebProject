@@ -13,23 +13,23 @@ export default function Cart() {
 		{
 			id: 1,
 			image: image,
-			name: "Mug Vicent's flowers",
+			name: "TESTE 1 ",
 			price: 9.00,
-			amount: 2
+			amount: 1
 		},
 		{
 			id: 2,
 			image: image,
-			name: "Mug Vicent's flowers",
+			name: "TESTE 2",
 			price: 9.00,
 			amount: 2
 		},
 		{
 			id: 3,
 			image: image,
-			name: "Mug Vicent's flowers",
+			name: "NOSSA EU N SEI",
 			price: 9.00,
-			amount: 2
+			amount: 3
 		}
 	]);
 
@@ -46,7 +46,7 @@ export default function Cart() {
 	};
 
 	const handleProductDeletion = (id) => {
-		const newProducts = products.filter(product => product.id !== id)
+		let newProducts = products.filter(product => product.id !== id)
 		if (newProducts.length === 0) {
 			setIsEmpty(true)
 		}
@@ -66,6 +66,7 @@ export default function Cart() {
 			<div className='cart'>
 				<div className='cart-content'>
 					<Typography variant='yellowTitle'>Cart</Typography>
+					{console.log(products)}
 					{products.map((product) => <CartProduct product={product} handleProductDeletion={handleProductDeletion} handleProductAmount={handleProductAmount} />)}
 					{isEmpty ? <Typography variant='mainSubtitle'>Your cart is empty</Typography> : undefined}
 				</div>
