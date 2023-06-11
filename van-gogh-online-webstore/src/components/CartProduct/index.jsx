@@ -27,7 +27,7 @@ export default function CartProduct({ product, handleProductDeletion, handleProd
 					<p>$ {product.price}</p>
 				</div>
 			</div>
-			<NumberTextField label={'Qty'} value={product.amount} setValue={(value) => { setProductAmount(value) }} style={{ width: '80px', minWidth: '55px' }} min={1} max={10} />
+			<NumberTextField label={'Qty'} value={product.amount} setValue={(value) => { setProductAmount(value) }} style={{ width: '80px', minWidth: '55px' }} min={1} max={30}/>
 			<button className='cart-delete-button' onClick={handleDeletionEvent}><DeleteIcon /></button>
 		</div>
 	);

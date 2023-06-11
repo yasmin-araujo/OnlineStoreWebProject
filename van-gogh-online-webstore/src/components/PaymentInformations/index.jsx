@@ -22,7 +22,7 @@ export default function PaymentInformations({ shipping, subtotalPrice }) {
 	])
 
 	const checkNumeric = (e) => {
-		return !/^\d*$/.test(e.key) && e.keyCode != 8 && e.keyCode != 37 && e.keyCode != 39 ? true : false 
+		return !/^\d*$/.test(e.key) && e.keyCode != 8 && e.keyCode != 37 && e.keyCode != 39 ? true : false
 	}
 
 	const handleCvvChange = (e) => {
@@ -63,11 +63,11 @@ export default function PaymentInformations({ shipping, subtotalPrice }) {
 			<div className='card-row'>
 				{cards.map((card) => <img className='card-image' src={card} alt='available card' />)}
 			</div>
-			<TextField required label={'Name on card'} variant='outlined' margin='normal' size='small' defaultValue={'Name'} inputProps={{ maxLength: 40 }} />
-			<TextField required label={'Card number'} onKeyDown={handleCardCodeChange} variant='outlined' margin='normal' size='small' inputProps={{ maxLength: 19 }} defaultValue={'1111 2222 3333 4444'} />
+			<TextField required label={'Name on card'} variant='outlined' margin='normal' size='small' placeholder={'Name'} inputProps={{ maxLength: 40 }} />
+			<TextField required label={'Card number'} onKeyDown={handleCardCodeChange} variant='outlined' margin='normal' size='small' placeholder={'1111 2222 3333 4444'} inputProps={{ maxLength: 19 }} />
 			<div className='card-row'>
-				<TextField required label={'Expiration date'} onKeyDown={handleExpireChange} variant='outlined' margin='normal' size='small' defaultValue={'mm/yy'} inputProps={{ maxLength: 5 }} sx={{ width: '100%' }} />
-				<TextField required label={'CVV'} onKeyDown={handleCvvChange} variant='outlined' margin='normal' size='small' defaultValue={123} inputProps={{ maxLength: 3 }} sx={{ width: '100%' }} />
+				<TextField required label={'Expiration date'} onKeyDown={handleExpireChange} variant='outlined' margin='normal' size='small' placeholder={'mm/yy'} inputProps={{ maxLength: 5 }} sx={{ width: '100%' }} />
+				<TextField required label={'CVV'} onKeyDown={handleCvvChange} variant='outlined' margin='normal' size='small' placeholder={123} inputProps={{ maxLength: 3 }} sx={{ width: '100%' }} />
 			</div>
 			<Typography variant='paymentInformationText'>Shipping address</Typography>
 			<div className='address'>
