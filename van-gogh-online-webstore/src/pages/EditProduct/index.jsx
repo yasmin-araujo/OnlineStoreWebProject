@@ -75,8 +75,16 @@ const EditProduct = () => {
             <img id='image-singleproduct' alt='' src={imagem} />
             <div id='productinformations'>
                 <div className='editproductname'>
-                    {modoEdicao ? (<TextField size='small' value={informations.name} label='Product Name' name='name' onChange={handleInformationsChange} onKeyDown={handleEnterKey} />)
-                        : (<Typography variant='productYellowName'>{informations.name}</Typography>)}
+                    {modoEdicao ? (<div className='yellowname-editproducts'><input type='text' style={{
+                        fontFamily: 'Plus Jakarta Sans',
+                        color: '#D7A324',
+                        fontSize: '32px',
+                        fontWeight: '500',
+                        lineHeight: '80px',
+                        letterSpacing: '0px',
+                        textAlign: 'left',
+                    }} value={informations.name} name='name' onChange={handleInformationsChange} onKeyDown={handleEnterKey} /></div>)
+                        : (<div className='yellowname-editproducts'><Typography variant='productYellowName'>{informations.name}</Typography></div>)}
                     <img id='addvector' alt='' src={vetor} onClick={handleVectorClick} />
                 </div>
                 <div id='productinfo'>
