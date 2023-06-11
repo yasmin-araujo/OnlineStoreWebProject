@@ -19,16 +19,16 @@ export default function CartProduct({ product, handleProductDeletion, handleProd
 	);
 
 	return (
-		<div className='product'>
-			<div className='product-info'>
-				<img id='product-image' src={product.image} />
+		<div className='cart-product'>
+			<div className='cart-product-info'>
+				<img id='cart-product-image' src={product.image} />
 				<div>
 					<p><strong>{product.name}</strong></p>
 					<p>$ {product.price}</p>
 				</div>
 			</div>
 			<NumberTextField label={'Qty'} value={product.amount} setValue={(value) => { setProductAmount(value) }} style={{ width: '80px', minWidth: '55px' }} min={1} max={10} />
-			<button onClick={handleDeletionEvent}><DeleteIcon /></button>
+			<button className='cart-delete-button' onClick={handleDeletionEvent}><DeleteIcon /></button>
 		</div>
 	);
 }
