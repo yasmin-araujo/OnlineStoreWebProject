@@ -72,7 +72,7 @@ const EditProduct = () => {
             </Breadcrumbs>
         </div>
         <div id='editproductpage'>
-            <img id='image-editproduct' alt='' src={imagem} />
+            <img id='image-editproduct' alt={informations.name} src={imagem} />
             <div id='productinformations-editproduct'>
                 <div className='editproductname'>
                     {modoEdicao ? (<div className='yellowname-editproducts'><input type='text' style={{
@@ -85,7 +85,7 @@ const EditProduct = () => {
                         textAlign: 'left',
                     }} value={informations.name} name='name' onChange={handleInformationsChange} onKeyDown={handleEnterKey} /></div>)
                         : (<div className='yellowname-editproducts'><Typography variant='productYellowName'>{informations.name}</Typography></div>)}
-                    <img id='addvector' alt='' src={vetor} onClick={handleVectorClick} />
+                    <img id='addvector' alt='Editar Produto' src={vetor} onClick={handleVectorClick} />
                 </div>
                 <div id='productinfo-editproduct'>
                     <div className='price-editproduct'>

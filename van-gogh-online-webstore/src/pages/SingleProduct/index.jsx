@@ -46,7 +46,7 @@ const SingleProduct = () => {
         </div>
 
         <div id='singleproductpage'>
-            <img id='image-singleproduct' alt='' src={imagem} />
+            <img id='image-singleproduct' alt={informations.name} src={imagem} />
             <div id='singleproductinformations'>
                 <Typography variant='productYellowName'>{informations.name}</Typography><br />
                 <Typography variant='editProductText'>{informations.price}</Typography>

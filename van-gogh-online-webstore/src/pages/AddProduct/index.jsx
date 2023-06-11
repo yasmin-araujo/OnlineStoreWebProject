@@ -44,7 +44,7 @@ const AddProduct = () => {
             </Breadcrumbs>
         </div>
         <div id='addproductpage'>
-            <img id='image-addproduct' alt='' src={imagem} />
+            <img id='image-addproduct' alt='Imagem do Produto' src={imagem} />
             <div id='productinformations-addproduct'>
             <Typography variant='productYellowName'>Add Product</Typography>
                 <div id='productinfo-addproduct'>
