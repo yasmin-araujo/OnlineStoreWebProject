@@ -3,22 +3,22 @@ import './style.css'
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import { TextField } from '@mui/material';
+import { useNavigate } from 'react-router';
 
 const SignIn = () => {
+
+    const navigate = useNavigate();
+
+    let handleNavigation = (e) => {
+        e.preventDefault();
+        navigate('/');
+    }
 
     useEffect(() => {
         document.body.style.backgroundColor = '#44627C'
     }, [])
 
     const [signIn, setSignIn] = useState({ email: '', password: '' });
-
-
-    const onClick = () => {
-
-        console.log(signIn.email);
-        console.log(signIn.password);
-
-    }
 
     const handleInputChange = (e) => {
         setSignIn(signIn => ({
@@ -42,7 +42,7 @@ const SignIn = () => {
                     <TextField variant='outlined' margin='normal' onChange={handleInputChange} label="Password" type="password" />
                 </div><br />
 
-                <Button onClick={onClick} styles={{ backgroundColor: '#44627C' }}>SIGN IN</Button>
+                <Button onClick={handleNavigation} styles={{ backgroundColor: '#44627C' }}>SIGN IN</Button>
 
             </div>
         </div>

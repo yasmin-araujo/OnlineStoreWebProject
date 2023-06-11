@@ -2,12 +2,20 @@ import React from 'react'
 import './style.css'
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
+import { useNavigate } from 'react-router';
 import { useMediaQuery, useTheme } from '@mui/material';
 
 const Thanks = () => {
+
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
     const size = isMobile ? '12px' : '14px';
 
+    const navigate = useNavigate();
+
+    let handleNavigation = (e) => {
+        e.preventDefault();
+        navigate('/');
+    }
 
     return <>
         <Navbar />
@@ -17,7 +25,7 @@ const Thanks = () => {
                 <div className='vangogh-tks'>VAN GOGH STORE</div>
             </div>
             <div className='button-thanks'>
-                <Button styles={{ backgroundColor: '#D7A324', fontSize: size }}>BACK TO THE STORE</Button>
+                <Button onClick={handleNavigation} styles={{ backgroundColor: '#D7A324', fontSize: size }}>BACK TO THE STORE</Button>
             </div>
         </div>
     </>

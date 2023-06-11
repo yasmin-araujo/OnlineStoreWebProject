@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import './style.css'
 import Navbar from '../../components/Navbar'
-import { TextField } from '@mui/material';
 import Button from '../../components/Button'
+import { TextField } from '@mui/material';
+import { useNavigate } from 'react-router';
 
 
 
 const SignUp = () => {
+
+    const navigate = useNavigate();
+
+    let handleNavigation = (e) => {
+        e.preventDefault();
+        navigate('/');
+    }
 
     useEffect(() => {
         document.body.style.backgroundColor = '#A1C1AA'
@@ -19,17 +27,6 @@ const SignUp = () => {
             ...signUp,
             [e.target.name]: e.target.value
         }))
-    }
-
-    const onClick = () => {
-
-        console.log(signUp.name);
-        console.log(signUp.email);
-        console.log(signUp.adress);
-        console.log(signUp.telephone);
-        console.log(signUp.password);
-        console.log(signUp.confirmpass);
-
     }
 
     return <>
@@ -51,8 +48,7 @@ const SignUp = () => {
 
                 </div><br />
 
-                <Button onClick={onClick} styles={{ backgroundColor: '#A1C1AA' }}>SIGN UP</Button>
-
+                <Button onClick={handleNavigation} styles={{ backgroundColor: '#A1C1AA' }}>SIGN UP</Button>
 
             </div>
         </div>
