@@ -3,34 +3,34 @@ export const products = [{
     name: 'Product',
     price: 8.00,
     qtd: 50,
-    collection: null,
+    collection: 0,
     img: 'mug-vincents-flowers.jpg'
 }, {
     id: 2,
-    name: 'Product',
-    price: 8.00,
-    qtd: 50,
-    collection: null,
+    name: 'Unavailable Product',
+    price: 19.00,
+    qtd: 0,
+    collection: 0,
     img: 'mug-vincents-flowers.jpg'
 }, {
     id: 3,
     name: 'Product',
-    price: 8.00,
+    price: 88.00,
     qtd: 50,
-    collection: null,
+    collection: 0,
     img: 'mug-vincents-flowers.jpg'
 }, {
     id: 4,
-    name: 'Product',
-    price: 8.00,
+    name: 'Product Sunflowers Collection',
+    price: 18.00,
     qtd: 50,
-    collection: null,
+    collection: 2,
     img: 'mug-vincents-flowers.jpg'
 }, {
     id: 5,
     name: 'Product',
-    price: 8.00,
+    price: 56.00,
     qtd: 50,
-    collection: null,
+    collection: 0,
     img: 'mug-vincents-flowers.jpg'
 }];

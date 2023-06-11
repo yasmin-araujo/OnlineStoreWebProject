@@ -4,9 +4,12 @@ import './style.css';
 
 export default function Product({ product }) {
     const navigate = useNavigate();
+    const isAdmin = false;
+
     const handleNavigation = (e) => {
         e.preventDefault();
-        navigate('/product/' + product.id);
+        isAdmin ? navigate('/editproduct/' + product.id)
+            : navigate('/product/' + product.id);
     }
 
     return (
