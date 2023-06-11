@@ -8,7 +8,46 @@
 
 .gallery-pictures {
     background-color: #F3F3F3;
+    box-sizing: border-box;
     height: 300px;
+    padding: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 25px;
+    overflow: scroll;
+}
+
+.profile-pic {
+    height: 170px;
+    width: 170px;
+    border-radius: 100%;
+    display: block;
+}
+
+.profile-pic-img {
+    box-sizing: border-box;
+    position: relative;
+    object-fit: cover;
+    cursor: pointer;
+    height: 170px;
+    width: 170px;
+    border-radius: 100%;
+    border-width: 3px;
+    border-style: solid;
+    transition: 0.2s;
+}
+
+.blocked-pic {
+    position: relative;
+    top: -174px;
+    width: 164px;
+    height: 164px;
+    border-radius: 100%;
+    background-color: #7b7b7b96;
+    cursor: initial;
+    border: solid 3px transparent;
 }
 
 .gallery-buttons {

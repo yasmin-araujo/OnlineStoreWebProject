@@ -1,13 +1,13 @@
 export const profilePictures = [{
-    href: 'mug-vincents-flowers.jpg',
+    href: 'vangogh-portrait.png',
     active: true,
 }, {
-    href: 'mug-vincents-flowers.jpg',
+    href: 'almond-blossom.png',
     active: true,
 }, {
-    href: 'mug-vincents-flowers.jpg',
-    active: true,
+    href: 'sunflowers.png',
+    active: false,
 }, {
-    href: 'mug-vincents-flowers.jpg',
+    href: 'starry-night.png',
     active: false,
 }];
