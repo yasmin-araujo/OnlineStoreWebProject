@@ -27,7 +27,7 @@ const EditProduct = () => {
         console.log(informations);
     }
 
-    const [modoEdicao, setModoEdicao] = useState(true);
+    const [modoEdicao, setModoEdicao] = useState(false);
 
     const inputRef = useRef(null);
 
