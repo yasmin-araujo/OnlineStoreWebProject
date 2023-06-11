@@ -1,7 +1,7 @@
 import { React, useState } from 'react'
 import './style.css'
 import { Breadcrumbs, Typography, useMediaQuery, useTheme } from '@mui/material'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import imagem from "./img/asd.png"
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
@@ -35,12 +35,12 @@ const SingleProduct = () => {
 
         <div className='links'>
             <Breadcrumbs color='#D7A324' aria-label="breadcrumb">
-                <NavLink underline="hover" style={{ color: "#D7A324" }} to="/">
+                <Link underline="hover" style={{ color: "#D7A324" }} to="/">
                     Home
-                </NavLink>
-                <NavLink underline="hover" style={{ color: "#D7A324" }} to="/products">
+                </Link>
+                <Link underline="hover" style={{ color: "#D7A324" }} to="/products">
                     Products
-                </NavLink>
+                </Link>
                 {isMobile ? ('') : (<Typography color="#D7A324">{informations.name}</Typography>)}
             </Breadcrumbs>
         </div>
