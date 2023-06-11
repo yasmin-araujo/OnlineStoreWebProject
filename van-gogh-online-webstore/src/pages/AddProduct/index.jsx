@@ -66,7 +66,7 @@ const AddProduct = () => {
                 <NavLink underline="hover" style={{ color: "#D7A324" }} to="/">
                     Home
                 </NavLink>
-                <NavLink underline="hover" style={{ color: "#D7A324" }} to="/">
+                <NavLink underline="hover" style={{ color: "#D7A324" }} to="/products">
                     Products
                 </NavLink>
                 {isMobile ? ('') : (<Typography color="#D7A324">Add Product</Typography>)}
