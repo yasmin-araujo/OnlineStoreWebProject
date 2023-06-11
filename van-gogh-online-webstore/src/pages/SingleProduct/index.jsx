@@ -33,7 +33,7 @@ const SingleProduct = () => {
 
         <Navbar bgColor='#FFF' />
 
-        <div className='links'>
+        <div className='links-singleproduct'>
             <Breadcrumbs color='#D7A324' aria-label="breadcrumb">
                 <Link underline="hover" style={{ color: "#D7A324" }} to="/">
                     Home
@@ -45,18 +45,18 @@ const SingleProduct = () => {
             </Breadcrumbs>
         </div>
 
-        <div id='singleproductpage-singleproduct'>
+        <div id='singleproductpage'>
             <img id='image-singleproduct' alt='' src={imagem} />
-            <div id='productinformations-singleproduct'>
+            <div id='singleproductinformations'>
                 <Typography variant='productYellowName'>{informations.name}</Typography><br />
                 <Typography variant='editProductText'>{informations.price}</Typography>
-                <div id='quantity'>
+                <div id='quantity-singleproduct'>
                     <Typography variant='editProductText'>Quantity: </Typography>
-                    <div id='quantityinput'>
+                    <div id='quantityinput-singleproduct'>
                         <NumberTextField value={informations.quantity} setValue={handleQuantityChange} label="Qty." />
                     </div>
                 </div>
-                <div id="button-productpage">
+                <div id="button-singleproductpage">
                     <Button onClick={handleButtonClick} styles={{ height: '30px', backgroundColor: '#D7A324', fontSize: '13px' }}>ADD TO CART</Button>
                 </div>
             </div>

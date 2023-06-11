@@ -60,7 +60,7 @@ const EditProduct = () => {
     return <>
 
         <Navbar bgColor='#FFF' />
-        <div className='links'>
+        <div className='links-editproduct'>
             <Breadcrumbs color='#D7A324' aria-label="breadcrumb">
                 <Link underline="hover" style={{ color: "#D7A324" }} to="/">
                     Home
@@ -71,9 +71,9 @@ const EditProduct = () => {
                 {isMobile ? ('') : (<Typography color="#D7A324">{informations.name}</Typography>)}
             </Breadcrumbs>
         </div>
-        <div id='singleproductpage'>
-            <img id='image-singleproduct' alt='' src={imagem} />
-            <div id='productinformations'>
+        <div id='editproductpage'>
+            <img id='image-editproduct' alt='' src={imagem} />
+            <div id='productinformations-editproduct'>
                 <div className='editproductname'>
                     {modoEdicao ? (<div className='yellowname-editproducts'><input type='text' style={{
                         fontFamily: 'Plus Jakarta Sans',
@@ -87,22 +87,22 @@ const EditProduct = () => {
                         : (<div className='yellowname-editproducts'><Typography variant='productYellowName'>{informations.name}</Typography></div>)}
                     <img id='addvector' alt='' src={vetor} onClick={handleVectorClick} />
                 </div>
-                <div id='productinfo'>
-                    <div className='price'>
+                <div id='productinfo-editproduct'>
+                    <div className='price-editproduct'>
                         <div><Typography variant='editProductText'>Price($):</Typography></div>
-                        <div className='price-field'>
+                        <div className='price-field-editproduct'>
                             <NumberTextField style={{ width: '160px' }} value={informations.price} onChange={handleInformationsChange} name='price' label="Price" />
                         </div>
                     </div>
-                    <div className='price'>
+                    <div className='price-editproduct'>
                         <div><Typography variant='editProductText'>Quantity in stock: </Typography></div>
-                        <div className='price-field'>
+                        <div className='price-field-editproduct'>
                             <NumberTextField style={{ width: '160px' }} value={informations.quantity} onChange={handleInformationsChange} name='quantity' label="Quantity" />
                         </div>
                     </div>
-                    <div className='price'>
+                    <div className='price-editproduct'>
                         <div><Typography variant='editProductText'>Collection: </Typography></div>
-                        <div className='price-field'>
+                        <div className='price-field-editproduct'>
                             <TextField
                                 name='collection'
                                 size='small'
@@ -120,7 +120,7 @@ const EditProduct = () => {
                         </div>
                     </div>
                 </div>
-                <div id="button-productpage">
+                <div id="button-productpage-editproduct">
                     <Button onClick={handleButtonClick} styles={{ height: '30px', backgroundColor: '#D7A324', fontSize: '13px' }}>SAVE</Button>
                 </div>
             </div>
