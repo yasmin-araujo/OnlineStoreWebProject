@@ -46,7 +46,8 @@ const AddProduct = () => {
         <div id='singleproductpage'>
             <img id='image-singleproduct' alt='' src={imagem} />
             <div id='productinformations'>
-                <div id='productinfo'>
+            <Typography variant='productYellowName'>Add Product</Typography>
+                <div id='productinfo-addproduct'>
                     <div className='price'>
                         <div><Typography variant='editProductText'>Name:</Typography></div>
                         <div className='price-field'>

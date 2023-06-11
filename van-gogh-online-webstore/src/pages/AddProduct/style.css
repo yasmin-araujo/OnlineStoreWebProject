@@ -9,7 +9,7 @@
     margin: 0;
 }
 
-#productinfo {
+#productinfo-addproduct {
     height: 200px;
     display: flex;
     flex-direction: column;
