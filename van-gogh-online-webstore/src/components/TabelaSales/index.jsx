@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './style.css'
 import Navbar from '../Navbar'
 import Coluna from '../Coluna-salesoverview'
 
 const TabelaSales = () => {
 
-    const [totalIncome, setTotalIncome] = useState(['$ 4009.00', '$ 5689.00', '$ 5568.00', '$ 3207.00', '$ 6522.00', '$ 4859.00']);
-    const [amountSales, setAmountSales] = useState(['1200', '2500', '456', '1423', '2100', '1266']);
-    const [avgTicket, setAvgTicket] = useState(['$ 209.00', '$ 390.00', '$ 750.00', '$ 248.00', '$ 659.00', '$ 129.00']);
-    const [qtyProducts, setQtyProducts] = useState(['100', '250', '100', '250', '250', '160']);
-    const [currentMonth, setCurrentMonth] = useState(7);
-    const [currentYear, setCurrentYear] = useState(23);
+    const totalIncome = ['$ 4009.00', '$ 5689.00', '$ 5568.00', '$ 3207.00', '$ 6522.00', '$ 4859.00'];
+    const amountSales = ['1200', '2500', '456', '1423', '2100', '1266'];
+    const avgTicket = ['$ 209.00', '$ 390.00', '$ 750.00', '$ 248.00', '$ 659.00', '$ 129.00'];
+    const qtyProducts = ['100', '250', '100', '250', '250', '160'];
+    const currentMonth = 7;
+    const currentYear= 23;
     const months = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     const months2 = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
 

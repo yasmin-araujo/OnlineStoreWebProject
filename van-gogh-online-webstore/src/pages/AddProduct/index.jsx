@@ -4,6 +4,7 @@ import './style.css'
 import { NavLink } from 'react-router-dom'
 import { Breadcrumbs, Typography, TextField, useMediaQuery, useTheme, MenuItem } from '@mui/material'
 import imagem from "./img/add.png"
+import vetor from "./img/vector.png"
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import NumberTextField from '../../components/NumberTextField'
@@ -13,7 +14,7 @@ const AddProduct = () => {
 
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
 
-    const [informations, setInformations] = useState({ name: "Product Name", price: "9.00", quantity: 0, collection: '' })
+    const [informations, setInformations] = useState({ name: "Product Name", price: "", quantity: 0, collection: '' })
 
     const handleInformationsChange = (e) => {
         setInformations(informations => ({
@@ -26,35 +27,72 @@ const AddProduct = () => {
         console.log(informations)
     }
 
+    const [modoEdicao, setModoEdicao] = useState(false);
+
+    const handleVectorClick = (e) => {
+        modoEdicao ? setModoEdicao(false) : setModoEdicao(true);
+        if (informations.name === 'Product Name') {
+            setInformations(informations => ({
+                ...informations,
+                name: ''
+            }))
+        }
+        if (informations.name === '') {
+            setInformations(informations => ({
+                ...informations,
+                name: 'Product Name'
+            }))
+        }
+    }
+
+    const handleEnterKey = (e) => {
+        if (e.key === 'Enter') {
+            if (informations.name === '') {
+                setInformations(informations => ({
+                    ...informations,
+                    name: 'Product Name'
+                }))
+            }
+            setModoEdicao(false)
+        }
+    }
+
+
     return <>
 
         <Navbar bgColor='#FFF' />
         <div className='links'>
             <Breadcrumbs color='#D7A324' aria-label="breadcrumb">
-                <NavLink underline="hover" style={{ color: "#D7A324" }} to="http://localhost:3000/">
+                <NavLink underline="hover" style={{ color: "#D7A324" }} to="/">
                     Home
                 </NavLink>
-                <NavLink underline="hover" style={{ color: "#D7A324" }} to="http://localhost:3000/">
+                <NavLink underline="hover" style={{ color: "#D7A324" }} to="/">
                     Products
                 </NavLink>
                 {isMobile ? ('') : (<Typography color="#D7A324">Add Product</Typography>)}
             </Breadcrumbs>
         </div>
         <div id='singleproductpage'>
-            <img id='image-singleproduct' src={imagem} />
+            <img id='image-singleproduct' alt='' src={imagem} />
             <div id='productinformations'>
-                <Typography variant='productYellowName'>{informations.name}</Typography>
+                <div className='addproductname'>
+                    {modoEdicao ? (<TextField label='Product Name' size='small' onKeyDown={handleEnterKey} name='name' value={informations.name} onChange={handleInformationsChange} />)
+                        : (<Typography variant='productYellowName'>{informations.name}</Typography>)}
+                    <img id='addvector' alt='' src={vetor} onClick={handleVectorClick} />
+                </div>
+
+
                 <div id='productinfo'>
                     <div className='price'>
                         <div><Typography variant='editProductText'>Price($):</Typography></div>
                         <div className='price-field'>
-                            <NumberTextField onChange={handleInformationsChange} value={informations.price} name='price' label="Price" />
+                            <NumberTextField style={{ width: '160px' }} onChange={handleInformationsChange} value={informations.price} name='price' label="Price" />
                         </div>
                     </div>
                     <div className='price'>
                         <div><Typography variant='editProductText'>Quantity in stock: </Typography></div>
                         <div className='price-field'>
-                            <NumberTextField value={informations.quantity} onChange={handleInformationsChange} name='quantity' label="Quantity" />
+                            <NumberTextField style={{ width: '160px' }} value={informations.quantity} onChange={handleInformationsChange} name='quantity' label="Quantity" />
                         </div>
                     </div>
                     <div className='price'>

@@ -2,7 +2,7 @@
     display: flex;
     padding: 50px 160px;
     margin: 0;
-    flex-direction: row; 
+    flex-direction: row;
     align-items: center;
     gap: 120px;
     padding: 50px 160px;
@@ -16,6 +16,7 @@
     justify-content: space-between;
     margin-bottom: 20px;
     margin-top: 20px;
+    min-width: 400px;
 }
 
 .price {
@@ -49,13 +50,26 @@
     color: #D7A324
 }
 
+.addproductname {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+#addvector {
+    height: 20px;
+    margin-top: 4px;
+    margin-left: 30px;
+}
+
 @media screen and (max-width:1000px) {
     #productinformations {
         margin-top: 0px;
     }
 }
 
-@media screen and (max-width:900px) {
+@media screen and (max-width:1000px) {
     #singleproductpage {
         flex-direction: column;
     }

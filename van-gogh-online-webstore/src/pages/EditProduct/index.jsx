@@ -4,6 +4,7 @@ import './style.css'
 import { NavLink } from 'react-router-dom'
 import { Breadcrumbs, Typography, TextField, useMediaQuery, useTheme, MenuItem } from '@mui/material'
 import imagem from "./img/product.png"
+import vetor from "./img/vector.png"
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import NumberTextField from '../../components/NumberTextField'
@@ -26,35 +27,69 @@ const EditProduct = () => {
         console.log(informations);
     }
 
+    const [modoEdicao, setModoEdicao] = useState(false);
+
+    const handleVectorClick = (e) => {
+        modoEdicao ? setModoEdicao(false) : setModoEdicao(true);
+        if (informations.name === 'Product Name') {
+            setInformations(informations => ({
+                ...informations,
+                name: ''
+            }))
+        }
+        if (informations.name === '') {
+            setInformations(informations => ({
+                ...informations,
+                name: 'Product Name'
+            }))
+        }
+    }
+
+    const handleEnterKey = (e) => {
+        if (e.key === 'Enter') {
+            setModoEdicao(false);
+            if (informations.name === '') {
+                setInformations(informations => ({
+                    ...informations,
+                    name: 'Product Name'
+                }))
+            }
+        }
+    }
+
     return <>
 
         <Navbar bgColor='#FFF' />
         <div className='links'>
             <Breadcrumbs color='#D7A324' aria-label="breadcrumb">
-                <NavLink underline="hover" style={{ color: "#D7A324" }} to="http://localhost:3000/">
+                <NavLink underline="hover" style={{ color: "#D7A324" }} to="/">
                     Home
                 </NavLink>
-                <NavLink underline="hover" style={{ color: "#D7A324" }} to="http://localhost:3000/">
+                <NavLink underline="hover" style={{ color: "#D7A324" }} to="/">
                     Products
                 </NavLink>
                 {isMobile ? ('') : (<Typography color="#D7A324">{informations.name}</Typography>)}
             </Breadcrumbs>
         </div>
         <div id='singleproductpage'>
-            <img id='image-singleproduct' src={imagem} />
+            <img id='image-singleproduct' alt='' src={imagem} />
             <div id='productinformations'>
-                <Typography variant='productYellowName'>{informations.name}</Typography>
+                <div className='editproductname'>
+                    {modoEdicao ? (<TextField size='small' value={informations.name} label='Product Name' name='name' onChange={handleInformationsChange} onKeyDown={handleEnterKey} />)
+                        : (<Typography variant='productYellowName'>{informations.name}</Typography>)}
+                    <img id='addvector' alt='' src={vetor} onClick={handleVectorClick} />
+                </div>
                 <div id='productinfo'>
                     <div className='price'>
                         <div><Typography variant='editProductText'>Price($):</Typography></div>
                         <div className='price-field'>
-                            <NumberTextField value={informations.price} onChange={handleInformationsChange} name='price' label="Price" />
+                            <NumberTextField style={{ width: '160px' }} value={informations.price} onChange={handleInformationsChange} name='price' label="Price" />
                         </div>
                     </div>
                     <div className='price'>
                         <div><Typography variant='editProductText'>Quantity in stock: </Typography></div>
                         <div className='price-field'>
-                            <NumberTextField value={informations.quantity} onChange={handleInformationsChange} name='quantity' label="Quantity" />
+                            <NumberTextField style={{ width: '160px' }} value={informations.quantity} onChange={handleInformationsChange} name='quantity' label="Quantity" />
                         </div>
                     </div>
                     <div className='price'>

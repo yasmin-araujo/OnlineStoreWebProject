@@ -35,10 +35,10 @@ const SingleProduct = () => {
 
         <div className='links'>
             <Breadcrumbs color='#D7A324' aria-label="breadcrumb">
-                <NavLink underline="hover" style={{ color: "#D7A324" }} to="http://localhost:3000/">
+                <NavLink underline="hover" style={{ color: "#D7A324" }} to="/">
                     Home
                 </NavLink>
-                <NavLink underline="hover" style={{ color: "#D7A324" }} to="http://localhost:3000/">
+                <NavLink underline="hover" style={{ color: "#D7A324" }} to="/">
                     Products
                 </NavLink>
                 {isMobile ? ('') : (<Typography color="#D7A324">{informations.name}</Typography>)}
@@ -46,7 +46,7 @@ const SingleProduct = () => {
         </div>
 
         <div id='singleproductpage'>
-            <img id='image-singleproduct' src={imagem} />
+            <img id='image-singleproduct' alt='' src={imagem} />
             <div id='productinformations'>
                 <Typography variant='productYellowName'>{informations.name}</Typography><br />
                 <Typography variant='editProductText'>{informations.price}</Typography>
