@@ -4,7 +4,6 @@ import './style.css'
 import { NavLink } from 'react-router-dom'
 import { Breadcrumbs, Typography, TextField, useMediaQuery, useTheme, MenuItem } from '@mui/material'
 import imagem from "./img/add.png"
-import vetor from "./img/vector.png"
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import NumberTextField from '../../components/NumberTextField'
@@ -14,7 +13,7 @@ const AddProduct = () => {
 
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
 
-    const [informations, setInformations] = useState({ name: "Product Name", price: "", quantity: 0, collection: '' })
+    const [informations, setInformations] = useState({ name: "", price: "", quantity: '', collection: '' })
 
     const handleInformationsChange = (e) => {
         setInformations(informations => ({
@@ -27,35 +26,7 @@ const AddProduct = () => {
         console.log(informations)
     }
 
-    const [modoEdicao, setModoEdicao] = useState(false);
-
-    const handleVectorClick = (e) => {
-        setModoEdicao(!modoEdicao);
-        if (informations.name === 'Product Name') {
-            setInformations(informations => ({
-                ...informations,
-                name: ''
-            }))
-        }
-        if (informations.name === '') {
-            setInformations(informations => ({
-                ...informations,
-                name: 'Product Name'
-            }))
-        }
-    }
-
-    const handleEnterKey = (e) => {
-        if (e.key === 'Enter') {
-            if (informations.name === '') {
-                setInformations(informations => ({
-                    ...informations,
-                    name: 'Product Name'
-                }))
-            }
-            setModoEdicao(false)
-        }
-    }
+    
 
 
     return <>
@@ -75,14 +46,13 @@ const AddProduct = () => {
         <div id='singleproductpage'>
             <img id='image-singleproduct' alt='' src={imagem} />
             <div id='productinformations'>
-                <div className='addproductname'>
-                    {modoEdicao ? (<TextField label='Product Name' size='small' onKeyDown={handleEnterKey} name='name' value={informations.name} onChange={handleInformationsChange} />)
-                        : (<Typography variant='productYellowName'>{informations.name}</Typography>)}
-                    <img id='addvector' alt='' src={vetor} onClick={handleVectorClick} />
-                </div>
-
-
                 <div id='productinfo'>
+                    <div className='price'>
+                        <div><Typography variant='editProductText'>Name:</Typography></div>
+                        <div className='price-field'>
+                            <TextField size='small' style={{ width: '160px' }} onChange={handleInformationsChange} value={informations.name} name='name' label="Name" />
+                        </div>
+                    </div>
                     <div className='price'>
                         <div><Typography variant='editProductText'>Price($):</Typography></div>
                         <div className='price-field'>
