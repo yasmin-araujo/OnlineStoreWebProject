@@ -7,9 +7,9 @@ import './style.css';
 
 export default function ProfileLogout() {
 
-	const navigate = useNavigate();
+    const navigate = useNavigate();
 
-	let handleNavigation = (e) => {
+	const handleNavigation = (e) => {
 		localStorage.removeItem('session');
 		localStorage.setItem('cart', []);
 		e.preventDefault();
@@ -20,7 +20,7 @@ export default function ProfileLogout() {
 		<div className='logout'>
 			<Typography variant='profileSectionTitle'>Logout</Typography>
 			<Typography variant='mainSubtitle'>Are you sure you want to logout?</Typography>
-			<Button onClick={(e) => handleNavigation(e)} styles={{ backgroundColor: 'black' }}>Logout</Button>
+			<Button onClick={handleNavigation} styles={{ backgroundColor: 'black' }}>Logout</Button>
 		</div>
 	);
 }

@@ -106,5 +106,9 @@ export const theme = createTheme({
             fontSize: '16px',
             fontWeight: '400'
         },
+        textSpaced: {
+            fontSize: '18px',
+            lineHeight: '40px',
+        },
     }
 });

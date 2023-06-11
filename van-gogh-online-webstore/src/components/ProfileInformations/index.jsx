@@ -4,7 +4,7 @@ import { TextField, Typography, useMediaQuery, useTheme } from '@mui/material';
 import './style.css';
 import { isNumber } from '../../utils/isNumber';
 
-export default function ProfileInformations() {
+export default function ProfileInformations({ setShowGallery }) {
 	
 	const getSession = JSON.parse(localStorage.getItem('session'));
 	const getProfile = JSON.parse(localStorage.getItem(getSession));
@@ -43,7 +43,7 @@ export default function ProfileInformations() {
 					<TextField onKeyDown={handleNumberChange} onChange={handleInputChange} className='TextField' name='telephone' label='Telephone' variant='outlined' margin='normal' defaultValue={profileInformations.telephone} type='tel' inputProps={{ maxLength: 14 }} />
 
 					<div className='buttons'>
-						<Button styles={{ backgroundColor: "#C4C4C4" }} >Update profile picture</Button>
+						<Button onClick={() => setShowGallery(true)} styles={{ backgroundColor: "#C4C4C4" }} >Update profile picture</Button>
 						<Button isSubmitForm={true} styles={{ backgroundColor: "black" }} name={'Save'}/>
 					</div>
 				</div>
