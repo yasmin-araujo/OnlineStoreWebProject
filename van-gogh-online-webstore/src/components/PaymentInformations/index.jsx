@@ -21,6 +21,41 @@ export default function PaymentInformations({ shipping, subtotalPrice }) {
 		'https://selectra.net.br/sites/selectra.net.br/files/styles/article_hero/public/images/paypal-825.png?itok=Kglm1b9o'
 	])
 
+	const checkNumeric = (e) => {
+		return !/^\d*$/.test(e.key) && e.keyCode != 8 && e.keyCode != 37 && e.keyCode != 39 ? true : false 
+	}
+
+	const handleCvvChange = (e) => {
+		if (checkNumeric(e)) {
+			e.preventDefault();
+		}
+	}
+
+	const handleExpireChange = (e) => {
+		if (e.target.value.length == 2) {
+			if (e.keyCode == 8) {
+				return;
+			}
+			e.target.value = e.target.value + '/';
+		}
+		if (checkNumeric(e)) {
+			e.preventDefault();
+		}
+	}
+
+	const handleCardCodeChange = (e) => {
+		let length = e.target.value.length
+		if (length == 4 || length == 9 || length == 14) {
+			if (e.keyCode == 8) {
+				return;
+			}
+			e.target.value = e.target.value + ' ';
+		}
+		if (checkNumeric(e)) {
+			e.preventDefault();
+		}
+	}
+
 	return (
 		<div className='payment-informations'>
 			<Typography variant='cardDetails'>Card Details</Typography>
@@ -28,11 +63,11 @@ export default function PaymentInformations({ shipping, subtotalPrice }) {
 			<div className='card-row'>
 				{cards.map((card) => <img className='card-image' src={card} alt='available card' />)}
 			</div>
-			<TextField label={'Name on card'} variant='outlined' margin='normal' size='small' defaultValue={'Name'} />
-			<TextField label={'Card number'} variant='outlined' margin='normal' size='small' defaultValue={'1111 2222 3333 4444'} />
+			<TextField required label={'Name on card'} variant='outlined' margin='normal' size='small' defaultValue={'Name'} inputProps={{ maxLength: 40 }} />
+			<TextField required label={'Card number'} onKeyDown={handleCardCodeChange} variant='outlined' margin='normal' size='small' inputProps={{ maxLength: 19 }} defaultValue={'1111 2222 3333 4444'} />
 			<div className='card-row'>
-				<TextField label={'Expiration date'} type='date' variant='outlined' margin='normal' size='small' InputLabelProps={{ shrink: true }} />
-				<TextField label={'CVV'} variant='outlined' margin='normal' size='small' defaultValue={'123'} inputProps={{ maxLength: 3 }} />
+				<TextField required label={'Expiration date'} onKeyDown={handleExpireChange} variant='outlined' margin='normal' size='small' defaultValue={'mm/yy'} inputProps={{ maxLength: 5 }} sx={{ width: '100%' }} />
+				<TextField required label={'CVV'} onKeyDown={handleCvvChange} variant='outlined' margin='normal' size='small' defaultValue={123} inputProps={{ maxLength: 3 }} sx={{ width: '100%' }} />
 			</div>
 			<Typography variant='paymentInformationText'>Shipping address</Typography>
 			<div className='address'>
