@@ -1,8 +1,7 @@
-import { React, useState,useRef,useEffect } from 'react'
+import { React, useState, useRef, useEffect } from 'react'
 import './style.css'
-
 import { Link } from 'react-router-dom'
-import { Breadcrumbs, Typography, TextField, useMediaQuery, useTheme, MenuItem } from '@mui/material'
+import { Breadcrumbs, Typography, useMediaQuery, useTheme, MenuItem, InputLabel, FormControl, Select } from '@mui/material'
 import imagem from "./img/product.png"
 import vetor from "./img/vector.png"
 import Navbar from '../../components/Navbar'
@@ -31,11 +30,11 @@ const EditProduct = () => {
 
     const inputRef = useRef(null);
 
-    useEffect(()=>{
-        if(modoEdicao){
+    useEffect(() => {
+        if (modoEdicao) {
             inputRef.current.focus();
         }
-    },[modoEdicao])
+    }, [modoEdicao])
 
 
     const handleVectorClick = (e) => {
@@ -52,7 +51,7 @@ const EditProduct = () => {
                 name: 'Product Name'
             }))
         }
-        
+
     }
 
     const handleEnterKey = (e) => {
@@ -86,7 +85,7 @@ const EditProduct = () => {
             <img id='image-editproduct' alt={informations.name} src={imagem} />
             <div id='productinformations-editproduct'>
                 <div className='editproductname'>
-                    {modoEdicao ? (<div className='yellowname-editproducts'><input ref={inputRef} type='text' style={{
+                    {modoEdicao ? (<div className='yellowname-editproducts'><input autoComplete='off' ref={inputRef} type='text' style={{
                         fontFamily: 'Plus Jakarta Sans',
                         color: '#D7A324',
                         fontSize: '32px',
@@ -114,20 +113,22 @@ const EditProduct = () => {
                     <div className='price-editproduct'>
                         <div><Typography variant='editProductText'>Collection: </Typography></div>
                         <div className='price-field-editproduct'>
-                            <TextField
-                                name='collection'
-                                size='small'
-                                select
-                                label="Selecione uma opção"
-                                value={informations.collection}
-                                onChange={handleInformationsChange}
-                                sx={{ width: '160px' }}
-                            >
-                                <MenuItem value="">Selecione...</MenuItem>
-                                <MenuItem value="opcao1">Opção 1</MenuItem>
-                                <MenuItem value="opcao2">Opção 2</MenuItem>
-                                <MenuItem value="opcao3">Opção 3</MenuItem>
-                            </TextField>
+                            <FormControl sx={{ width: '160px' }} size='small'>
+                                <InputLabel id="collection-selector-label">Selecione uma opção</InputLabel>
+                                <Select
+                                    labelId='collection-selector-label'
+                                    id="collection-selector"
+                                    name='collection'
+                                    label="Selecione uma opção"
+                                    value={informations.collection}
+                                    onChange={handleInformationsChange}
+                                >
+                                    <MenuItem value="">Selecione...</MenuItem>
+                                    <MenuItem value="opcao1">Opção 1</MenuItem>
+                                    <MenuItem value="opcao2">Opção 2</MenuItem>
+                                    <MenuItem value="opcao3">Opção 3</MenuItem>
+                                </Select>
+                            </FormControl>
                         </div>
                     </div>
                 </div>

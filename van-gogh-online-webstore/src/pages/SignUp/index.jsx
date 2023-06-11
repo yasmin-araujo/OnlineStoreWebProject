@@ -40,10 +40,10 @@ const SignUp = () => {
                 </div>
                 <div className='inputs-signup'>
 
-                    <TextField variant='outlined' margin='normal' onChange={handleInputChange} name="name" label="Name" type="text" />
-                    <TextField variant='outlined' margin='normal' onChange={handleInputChange} name="email" label="Email" type={"email"} />
+                    <TextField autoComplete="name" variant='outlined' margin='normal' onChange={handleInputChange} name="name" label="Name" type="text" />
+                    <TextField autoComplete="email" variant='outlined' margin='normal' onChange={handleInputChange} name="email" label="Email" type={"email"} />
                     <TextField variant='outlined' margin='normal' onChange={handleInputChange} name="adress" label="Adress" type={"text"} />
-                    <TextField variant='outlined' margin='normal' onChange={handleInputChange} name="telephone" label="Telephone" type={"tel"} />
+                    <TextField autoComplete="tel" variant='outlined' margin='normal' onChange={handleInputChange} name="telephone" label="Telephone" type={"tel"} />
                     <TextField variant='outlined' margin='normal' onChange={handleInputChange} name="password" label="Password" type={"password"} />
                     <TextField variant='outlined' margin='normal' onChange={handleInputChange} name="confirmpass" label="Confirm Password" type={"password"} />
 

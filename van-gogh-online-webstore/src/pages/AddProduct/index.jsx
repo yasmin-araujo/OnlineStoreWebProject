@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import './style.css'
 
 import { Link } from 'react-router-dom'
-import { Breadcrumbs, Typography, TextField, useMediaQuery, useTheme, MenuItem } from '@mui/material'
+import { Breadcrumbs, Typography, useMediaQuery, useTheme, MenuItem, InputLabel, FormControl, Select, TextField } from '@mui/material'
 import imagem from "./img/add.png"
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
@@ -26,7 +26,7 @@ const AddProduct = () => {
         console.log(informations)
     }
 
-    
+
 
 
     return <>
@@ -46,12 +46,12 @@ const AddProduct = () => {
         <div id='addproductpage'>
             <img id='image-addproduct' alt='Imagem do Produto' src={imagem} />
             <div id='productinformations-addproduct'>
-            <Typography variant='productYellowName'>Add Product</Typography>
+                <Typography variant='productYellowName'>Add Product</Typography>
                 <div id='productinfo-addproduct'>
                     <div className='price-addproduct'>
                         <div><Typography variant='editProductText'>Name:</Typography></div>
                         <div className='price-field-addproduct'>
-                            <TextField size='small' style={{ width: '160px' }} onChange={handleInformationsChange} value={informations.name} name='name' label="Name" />
+                            <TextField autoComplete='off' size='small' style={{ width: '160px' }} onChange={handleInformationsChange} value={informations.name} name='name' label="Name" />
                         </div>
                     </div>
                     <div className='price-addproduct'>
@@ -69,20 +69,22 @@ const AddProduct = () => {
                     <div className='price-addproduct'>
                         <div><Typography variant='editProductText'>Collection: </Typography></div>
                         <div className='price-field-addproduct'>
-                            <TextField
-                                name='collection'
-                                size='small'
-                                select
-                                label="Selecione uma opção"
-                                value={informations.collection}
-                                onChange={handleInformationsChange}
-                                sx={{ width: '160px' }}
-                            >
-                                <MenuItem value="">Selecione...</MenuItem>
-                                <MenuItem value="opcao1">Opção 1</MenuItem>
-                                <MenuItem value="opcao2">Opção 2</MenuItem>
-                                <MenuItem value="opcao3">Opção 3</MenuItem>
-                            </TextField>
+                            <FormControl sx={{ width: '160px' }} size='small'>
+                                <InputLabel id="collection-selector-label">Selecione uma opção</InputLabel>
+                                <Select
+                                    labelId='collection-selector-label'
+                                    id="collection-selector"
+                                    name='collection'
+                                    label="Selecione uma opção"
+                                    value={informations.collection}
+                                    onChange={handleInformationsChange}
+                                >
+                                    <MenuItem value="">Selecione...</MenuItem>
+                                    <MenuItem value="opcao1">Opção 1</MenuItem>
+                                    <MenuItem value="opcao2">Opção 2</MenuItem>
+                                    <MenuItem value="opcao3">Opção 3</MenuItem>
+                                </Select>
+                            </FormControl>
                         </div>
                     </div>
                 </div>

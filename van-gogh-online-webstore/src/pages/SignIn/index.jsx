@@ -39,7 +39,7 @@ const SignIn = () => {
                 </div>
 
                 <div className='inputs-signin'>
-                    <TextField variant='outlined' margin='normal' onChange={handleInputChange} label="Email" type="email" />
+                    <TextField autoComplete="email" variant='outlined' margin='normal' onChange={handleInputChange} label="Email" type="email" />
                     <TextField variant='outlined' margin='normal' onChange={handleInputChange} label="Password" type="password" />
                 </div><br />
 
