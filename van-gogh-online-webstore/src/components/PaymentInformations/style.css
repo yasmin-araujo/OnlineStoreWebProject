@@ -32,7 +32,7 @@
     justify-content: space-between;
 }
 
-button {
+.payment-informations>button {
     margin-top: 15px;
 }
 
