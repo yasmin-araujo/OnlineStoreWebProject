@@ -1,0 +1,90 @@
+.meio-thanks {
+    background-color: rgba(217, 217, 217, 0.3);
+    height: 300px;
+    width: 680px;
+    border-radius: 87px;
+    margin: 0px auto;
+    margin-top: 200px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+}
+
+.text-tks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.tks {
+    font-family: Plus Jakarta Sans;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 80px;
+    letter-spacing: 0px;
+    text-align: center;
+    height: 82px;
+    width: 645px;
+    left: 432px;
+    top: 420px;
+    border-radius: nullpx;
+    transition: 1s;
+}
+
+.vangogh-tks {
+    font-family: Plus Jakarta Sans;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 30px;
+    letter-spacing: 3px;
+    text-align: center;
+    height: 31px;
+    width: 266px;
+    border-radius: nullpx;
+    transition: 1s;
+}
+
+.button-thanks {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 30px;
+    transition: 1s;
+}
+
+@media screen and (max-width:740px) {
+
+    .meio-thanks {
+        margin-left: 40px;
+        margin-right: 40px;
+        width: auto;
+        border-radius: 80px;
+    }
+
+    .tks {
+        font-size: 30px;
+    }
+
+    .vangogh-tks {
+        font-size: 15px;
+    }
+
+}
+
+@media screen and (max-width:600px) {
+    .tks {
+        font-size: 24px;
+    }
+
+    .vangogh-tks {
+        font-size: 14px;
+    }
+
+    .meio-thanks {
+        height: 264px;
+        border-radius: 70px;
+    }
+}
