@@ -10,6 +10,7 @@ const SignIn = () => {
     const navigate = useNavigate();
 
     let handleNavigation = (e) => {
+        console.log(signIn);
         e.preventDefault();
         navigate('/');
     }

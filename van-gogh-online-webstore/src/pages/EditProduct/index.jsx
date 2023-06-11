@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState,useRef,useEffect } from 'react'
 import './style.css'
 
 import { Link } from 'react-router-dom'
@@ -27,7 +27,16 @@ const EditProduct = () => {
         console.log(informations);
     }
 
-    const [modoEdicao, setModoEdicao] = useState(false);
+    const [modoEdicao, setModoEdicao] = useState(true);
+
+    const inputRef = useRef(null);
+
+    useEffect(()=>{
+        if(modoEdicao){
+            inputRef.current.focus();
+        }
+    },[modoEdicao])
+
 
     const handleVectorClick = (e) => {
         setModoEdicao(!modoEdicao);
@@ -43,6 +52,7 @@ const EditProduct = () => {
                 name: 'Product Name'
             }))
         }
+        
     }
 
     const handleEnterKey = (e) => {
@@ -56,6 +66,7 @@ const EditProduct = () => {
             }
         }
     }
+
 
     return <>
 
@@ -75,7 +86,7 @@ const EditProduct = () => {
             <img id='image-editproduct' alt={informations.name} src={imagem} />
             <div id='productinformations-editproduct'>
                 <div className='editproductname'>
-                    {modoEdicao ? (<div className='yellowname-editproducts'><input type='text' style={{
+                    {modoEdicao ? (<div className='yellowname-editproducts'><input ref={inputRef} type='text' style={{
                         fontFamily: 'Plus Jakarta Sans',
                         color: '#D7A324',
                         fontSize: '32px',
