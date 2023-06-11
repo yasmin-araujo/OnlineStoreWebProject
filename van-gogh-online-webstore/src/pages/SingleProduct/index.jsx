@@ -45,9 +45,9 @@ const SingleProduct = () => {
             </Breadcrumbs>
         </div>
 
-        <div id='singleproductpage'>
+        <div id='singleproductpage-singleproduct'>
             <img id='image-singleproduct' alt='' src={imagem} />
-            <div id='productinformations'>
+            <div id='productinformations-singleproduct'>
                 <Typography variant='productYellowName'>{informations.name}</Typography><br />
                 <Typography variant='editProductText'>{informations.price}</Typography>
                 <div id='quantity'>

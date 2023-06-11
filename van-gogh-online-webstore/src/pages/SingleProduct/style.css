@@ -1,7 +1,6 @@
-#singleproductpage {
+#singleproductpage-singleproduct {
     display: flex;
     padding: 50px 160px;
-    margin: 0;
     flex-direction: row;
     align-items: center;
     gap: 120px;
@@ -38,18 +37,18 @@
     width: 40%;
 }
 
-@media screen and (max-width:1000px) {
-    #productinformations {
+@media screen and (max-width:1100px) {
+    #productinformations-singleproduct {
         margin-top: 0px;
     }
 }
 
-@media screen and (max-width:900px) {
-    #singleproductpage {
+@media screen and (max-width:1100px) {
+    #singleproductpage-singleproduct {
         flex-direction: column;
     }
 
-    #productinformations {
+    #productinformations-singleproduct {
         margin-left: 0px;
         width: auto;
         max-width: 340px;
