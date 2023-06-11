@@ -1,0 +1,23 @@
+.product {
+    display: flex;
+    flex-direction: column;
+}
+
+.product>button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+}
+
+.product-img>img {
+    height: 265px;
+    width: 250px;
+    border: 2px #F3F3F3 solid;
+    object-fit: contain;  
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+}

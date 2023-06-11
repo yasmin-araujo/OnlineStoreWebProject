@@ -64,9 +64,32 @@ export const theme = createTheme({
         },
         profileName: {
             fontStyle: 'normal',
-            fontWeight: '300',
-            fontSize: '26px'
-        }
-
+            fontWeight: '400',
+            fontSize: '26px',
+        },
+        yellowTitle: {
+            fontSize: '42px',
+            lineHeight: '80px',
+            color: '#D7A324',
+        },
+        smallTitle: {
+            fontSize: '24px',
+            fontWeight: '600',
+        },
+        mediumText: {
+            fontSize: '20px',
+            lineHeight: '46px',
+        },
+        textBold: {
+            fontSize: '16px',
+            fontWeight: '600'
+        },
+        text: {
+            fontSize: '16px',
+        },
+        textLight: {
+            fontSize: '16px',
+            fontWeight: '400'
+        },
     }
 });
