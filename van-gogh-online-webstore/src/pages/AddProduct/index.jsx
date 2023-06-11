@@ -30,7 +30,7 @@ const AddProduct = () => {
     const [modoEdicao, setModoEdicao] = useState(false);
 
     const handleVectorClick = (e) => {
-        modoEdicao ? setModoEdicao(false) : setModoEdicao(true);
+        setModoEdicao(!modoEdicao);
         if (informations.name === 'Product Name') {
             setInformations(informations => ({
                 ...informations,
