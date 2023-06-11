@@ -66,7 +66,6 @@ export default function Cart() {
 			<div className='cart'>
 				<div className='cart-content'>
 					<Typography variant='yellowTitle'>Cart</Typography>
-					{console.log(products)}
 					{products.map((product) => <CartProduct product={product} handleProductDeletion={handleProductDeletion} handleProductAmount={handleProductAmount} />)}
 					{isEmpty ? <Typography variant='mainSubtitle'>Your cart is empty</Typography> : undefined}
 				</div>
