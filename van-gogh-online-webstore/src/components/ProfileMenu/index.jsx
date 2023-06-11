@@ -14,7 +14,7 @@ export default function ProfileMenu({ handleProfileChange, profilePages = ['Info
 
 	return (
 		<div className='profile-menu'>
-			<img id='profile-icon' src={imagem} />
+			<img id='profile-icon' src={require('../../images/paintings/vangogh-portrait.png')} alt='Profile Icon' />
 			<Typography variant='profileName'>{name}</Typography>
 			<Tabs
 				value={menuIndex}
