@@ -11,7 +11,7 @@ export default function PaymentInformations({ shipping, subtotalPrice }) {
 
 	let handleNavigation = (e) => {
 		e.preventDefault();
-		navigate('/');
+		navigate('/thanks');
 	}
 
 	const [cards, setCards] = useState([
