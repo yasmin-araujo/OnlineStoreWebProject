@@ -21,6 +21,10 @@
 
 }
 
+.single-product {
+    background-color: white;
+}
+
 #button-singleproductpage {
     width: 100%
 }

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import './style.css';
 import image from './product-images/caneca-vangogh.png';
 import Navbar from '../../components/Navbar';
@@ -9,34 +8,16 @@ import CartProduct from '../../components/CartProduct';
 
 
 export default function Cart() {
-	const [products, setProducts] = useState([
-		{
-			id: 1,
-			image: image,
-			name: "TESTE 1 ",
-			price: 9.00,
-			amount: 1
-		},
-		{
-			id: 2,
-			image: image,
-			name: "TESTE 2",
-			price: 9.00,
-			amount: 2
-		},
-		{
-			id: 3,
-			image: image,
-			name: "NOSSA EU N SEI",
-			price: 9.00,
-			amount: 3
-		}
-	]);
+	let getProducts = localStorage.getItem('cart') != null ? JSON.parse(localStorage.getItem('cart')) : []
+	const [products, setProducts] = useState(getProducts);
 
-	const [isEmpty, setIsEmpty] = useState(false);
+	const getSession = JSON.parse(localStorage.getItem('session'));
+	const getProfile = JSON.parse(localStorage.getItem(getSession));
+
+	const [isEmpty, setIsEmpty] = useState(true);
 	const [subtotalPrice, setSubtotalPrice] = useState(products.reduce((sum, product) => { return sum + (product.price * product.amount) }, 0));
 	const [shipping, setShipping] = useState({
-		address: "Street 10, 430, Zundert - Netherlands",
+		address: getProfile.adress,
 		price: 4
 	});
 

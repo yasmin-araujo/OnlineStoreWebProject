@@ -6,13 +6,14 @@ import { AppBar, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/mater
 import NavbarDrawer from '../NavbarDrawer';
 import { pages, pages_admin, pages_user } from './pages';
 
-export default function Navbar({ bgColor = 'none', fontColor = 'black', userStatus }) {
+export default function Navbar({ bgColor = 'none', fontColor = 'black'}) {
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
     const [pagesHeader, setPagesHeader] = useState(pages);
 
+    let userStatus = localStorage.getItem('session');
     useEffect(
         () => {
-            setPagesHeader(userStatus === 'loggedin' ? pages_user : userStatus === 'admin' ? pages_admin : pages);
+            setPagesHeader(userStatus !== null ? pages_user : userStatus === 'admin' ? pages_admin : pages);
         },
         [userStatus]
     );

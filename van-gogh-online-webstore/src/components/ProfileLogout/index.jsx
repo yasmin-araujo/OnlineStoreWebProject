@@ -10,6 +10,8 @@ export default function ProfileLogout() {
 	const navigate = useNavigate();
 
 	let handleNavigation = (e) => {
+		localStorage.removeItem('session');
+		localStorage.setItem('cart', []);
 		e.preventDefault();
 		navigate('/');
 	}
