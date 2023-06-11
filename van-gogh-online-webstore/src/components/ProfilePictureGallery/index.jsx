@@ -19,7 +19,7 @@ export default function ProfilePictureGallery({ setShowGallery }) {
             <div className='gallery-pictures'>
                 {profilePictures.map((pic, index) => {
                     return (
-                        <div className='profile-pic'>
+                        <div className='profile-pic' key={'profile-icon-' + index}>
                             <img name={index} onClick={handleImgClick} className={'profile-pic-img'}
                                 style={{ borderColor: selected === index ? '#D6A324' : 'transparent' }}
                                 src={require('../../images/paintings/' + pic.href)} alt='Profile Icon' />

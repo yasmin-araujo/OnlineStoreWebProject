@@ -10,7 +10,7 @@ import ProfileLogout from '../../components/ProfileLogout';
 import ProfilePictureGallery from '../../components/ProfilePictureGallery';
 
 export default function ProfilePage() {
-    const [showGallery, setShowGallery] = useState(true);
+    const [showGallery, setShowGallery] = useState(false);
     const pages = [<ProfileInformations setShowGallery={setShowGallery} />,
     <ProfileOrders />, <ProfileLogout />];
     const [profilePage, setProfilePage] = useState(pages[0]);
