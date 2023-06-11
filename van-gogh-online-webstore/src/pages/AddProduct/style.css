@@ -5,8 +5,7 @@
     flex-direction: row;
     align-items: center;
     gap: 120px;
-    padding: 50px 160px;
-    margin: 0;
+    justify-content: center;
 }
 
 #productinfo-addproduct {
