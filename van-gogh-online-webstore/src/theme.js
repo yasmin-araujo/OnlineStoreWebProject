@@ -46,6 +46,22 @@ export const theme = createTheme({
             fontSize: '24px',
             lineHeight: '46px',
         },
+        editProductText: {
+            fontSize: '23px',
+            fontWeight: '500',
+            lineHeight: '26px',
+            letterSpacing: '0px',
+            textAlign: 'left',
+            marginTop: '8px',
+        },
+        productYellowName: {
+            color: '#D7A324',
+            fontSize: '32px',
+            fontWeight: '500',
+            lineHeight: '80px',
+            letterSpacing: '0px',
+            textAlign: 'left',
+        },
         profileName: {
             fontStyle: 'normal',
             fontWeight: '400',
