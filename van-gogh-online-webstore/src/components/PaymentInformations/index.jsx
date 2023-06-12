@@ -5,9 +5,9 @@ import { TextField, Typography } from '@mui/material';
 
 import './style.css';
 import { isNumber } from '../../utils/isNumber';
-import { products } from '../../utils/products';
 
 export default function PaymentInformations({ shipping, subtotalPrice, handleCompleteOrder, cartProducts }) {
+	let products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
 	let productsOutStock = [];
 	let haveStock = true;
 	const setHaveStock = () => {
@@ -26,6 +26,7 @@ export default function PaymentInformations({ shipping, subtotalPrice, handleCom
 		cartProducts.map(y =>{
 			products.find(element=>element.id===y.id).qtd-=y.quantity;
 		})
+		localStorage.setItem('products', JSON.stringify(products))
 	}
 
 	const navigate = useNavigate();

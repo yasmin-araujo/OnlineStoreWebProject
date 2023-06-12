@@ -15,13 +15,21 @@ import SingleProduct from './pages/SingleProduct';
 import EditProduct from './pages/EditProduct';
 import AddProduct from './pages/AddProduct';
 
+import { products } from './utils/products';
+
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-let id = undefined
+let id = undefined;
+
+if (!localStorage.getItem('products')) {
+	localStorage.setItem('products', JSON.stringify(products));
+  }
+  
+
 root.render(
 	<StrictMode>
 		<ThemeProvider theme={theme}>

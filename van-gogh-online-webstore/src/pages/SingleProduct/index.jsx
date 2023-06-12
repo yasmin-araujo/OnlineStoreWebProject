@@ -6,16 +6,17 @@ import { Link } from 'react-router-dom'
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import NumberTextField from '../../components/NumberTextField'
-import { products } from "../../utils/products";
 import { useNavigate } from 'react-router';
 
 
 const SingleProduct = () => {
 
+    let products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
+    
     useEffect(() => {
         document.body.style.backgroundColor = '#FFF'
     }, [])
-    
+
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
     let params = useParams()
     const navigate = useNavigate();
