@@ -6,9 +6,10 @@ import { TextField, Typography } from '@mui/material';
 import './style.css';
 import { isNumber } from '../../utils/isNumber';
 
-export default function PaymentInformations({ shipping, subtotalPrice }) {
+export default function PaymentInformations({ shipping, subtotalPrice, handleCompleteOrder }) {
 
 	const navigate = useNavigate();
+	const loggedIn = localStorage.getItem('session') ? true : false;
 	
     const [cards, setCards] = useState([
         'https://purepng.com/public/uploads/large/purepng.com-mastercard-logologobrand-logoiconslogos-251519938372dnf77.png',
@@ -45,13 +46,18 @@ export default function PaymentInformations({ shipping, subtotalPrice }) {
 	}
 
 	const handleSubmit = (e) => {
+		if(!loggedIn){
+			alert('Sign in to complete your purchase')
+			e.preventDefault();
+			return false;
+		}
 		if(subtotalPrice == 0){
 			alert('Your cart is empty')
 			e.preventDefault();
 			return false;
 		}
 		localStorage.removeItem('cart');
-		localStorage.setItem('orders');
+		handleCompleteOrder();
 		e.preventDefault();
 		navigate('/thanks');
 	}
