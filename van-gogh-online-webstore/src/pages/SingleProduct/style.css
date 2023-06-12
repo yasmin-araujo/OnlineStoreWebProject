@@ -18,6 +18,8 @@
 #image-singleproduct {
     max-height: 400px;
     max-width: 340px;
+    border: 2px solid #f3f3f3;
+    object-fit: contain;  
 }
 
 #button-singleproductpage {
@@ -35,6 +37,11 @@
 
 #quantityinput-singleproduct {
     width: 40%;
+}
+
+#singleproductinformations {
+    display: flex;
+    flex-direction: column;
 }
 
 @media screen and (max-width:1100px) {

@@ -10,14 +10,12 @@ export default function PaymentInformations({ shipping, subtotalPrice }) {
 
 	const navigate = useNavigate();
 	
-	const date = new Date();
-
-	const [cards, setCards] = useState([
-		'https://purepng.com/public/uploads/large/purepng.com-mastercard-logologobrand-logoiconslogos-251519938372dnf77.png',
-		'https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png',
-		'https://logodownload.org/wp-content/uploads/2017/04/elo-logo-1-1.png',
-		'https://selectra.net.br/sites/selectra.net.br/files/styles/article_hero/public/images/paypal-825.png?itok=Kglm1b9o'
-	])
+    const [cards, setCards] = useState([
+        'https://purepng.com/public/uploads/large/purepng.com-mastercard-logologobrand-logoiconslogos-251519938372dnf77.png',
+        'https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png',
+        'https://logodownload.org/wp-content/uploads/2017/04/elo-logo-1-1.png',
+        'https://selectra.net.br/sites/selectra.net.br/files/styles/article_hero/public/images/paypal-825.png?itok=Kglm1b9o'
+    ])
 
 	const [paymentInformations, setPaymentInfomations] = useState({ name: '', cardNumber: '', expireDate: '', cvv: ''})
 

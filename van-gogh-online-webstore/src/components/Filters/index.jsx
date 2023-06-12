@@ -40,9 +40,9 @@ export default function Filters({ filter, setFilter }) {
             <div>
                 <Typography variant='mediumText'>Price</Typography>
                 <div className='price-filter'>
-                    <NumberTextField name='min' label={'Min.'} value={filter.price.min} setValue={() => { }}
+                    <NumberTextField name='min' label={'Min.'} value={filter.price.min} setValue={setFilter}
                         onChange={handlePriceFieldUpdate} style={{ width: '80px' }} />
-                    <NumberTextField name='max' label={'Max.'} value={filter.price.max} setValue={() => { }}
+                    <NumberTextField name='max' label={'Max.'} value={filter.price.max} setValue={setFilter}
                         onChange={handlePriceFieldUpdate} style={{ width: '80px' }} />
                 </div>
             </div>

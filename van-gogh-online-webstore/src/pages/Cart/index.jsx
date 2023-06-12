@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
-import image from './product-images/caneca-vangogh.png';
 import Navbar from '../../components/Navbar';
 import { Typography } from '@mui/material';
 import PaymentInformations from '../../components/PaymentInformations';
@@ -53,17 +52,18 @@ export default function Cart() {
 		[products]
 	);
 
-	return (
-		<>
-			<Navbar bgColor='white' />
-			<div className='cart'>
-				<div className='cart-content'>
-					<Typography variant='yellowTitle'>Cart</Typography>
-					{products.map((product) => <CartProduct product={product} handleProductDeletion={handleProductDeletion} handleProductAmount={handleProductAmount} />)}
-					{isEmpty ? <Typography variant='mainSubtitle'>Your cart is empty</Typography> : undefined}
-				</div>
-				<PaymentInformations shipping={shipping} subtotalPrice={subtotalPrice} />
-			</div>
-		</>
-	);
+    return (
+        <>
+            <Navbar bgColor='white' />
+            <div className='cart'>
+                <div className='cart-content'>
+                    <Typography variant='yellowTitle'>Cart</Typography>
+                    {products.map((product, index) => <CartProduct key={'cart-item-' + index} product={product}
+                        handleProductDeletion={handleProductDeletion} handleProductAmount={handleProductAmount} />)}
+                    {isEmpty ? <Typography variant='mainSubtitle'>Your cart is empty</Typography> : undefined}
+                </div>
+                <PaymentInformations shipping={shipping} subtotalPrice={subtotalPrice} />
+            </div>
+        </>
+    );
 }

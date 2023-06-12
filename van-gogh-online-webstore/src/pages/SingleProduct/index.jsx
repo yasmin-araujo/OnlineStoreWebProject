@@ -3,7 +3,6 @@ import { useParams } from 'react-router';
 import './style.css'
 import { Breadcrumbs, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { Link } from 'react-router-dom'
-import imagem from "./img/asd.png"
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import NumberTextField from '../../components/NumberTextField'
@@ -56,10 +55,11 @@ const SingleProduct = () => {
                 <div id='singleproductinformations'>
                     <Typography variant='productYellowName'>{product.name}</Typography><br />
                     <Typography variant='editProductText'>${product.price}.00</Typography>
+                    <Typography variant='editProductText'>In stock: {informations.available}</Typography>
                     <div id='quantity-singleproduct'>
                         <Typography variant='editProductText'>Quantity: </Typography>
                         <div id='quantityinput-singleproduct'>
-                            <NumberTextField value={product.quantity} setValue={handleQuantityChange} label="Qty." min={1} max={30} style={{width: '70px', marginLeft: '5px'}}/>
+                            <NumberTextField value={product.quantity} setValue={handleQuantityChange} label="Qty." min={1} maxLenght={3} style={{width: '70px', marginLeft: '5px'}}/>
                         </div>
                     </div>
                     <div id="button-singleproductpage">

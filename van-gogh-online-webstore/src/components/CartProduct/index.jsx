@@ -7,16 +7,19 @@ import NumberTextField from '../NumberTextField';
 export default function CartProduct({ product, handleProductDeletion, handleProductAmount }) {
 	const [productAmount, setProductAmount] = useState(product.quantity)
 
-	const handleDeletionEvent = () => {
-		handleProductDeletion(product.id)
-	}
+    const handleDeletionEvent = () => {
+        handleProductDeletion(product.id);
+    }
 
-	useEffect(
-		() => {
-			handleProductAmount(product.id, parseInt(productAmount))
-		},
-		[productAmount]
-	);
+    useEffect(() => {
+        if (productAmount === '') {
+            handleProductAmount(product.id, 1);
+            setProductAmount('1');
+        }
+        else {
+            handleProductAmount(product.id, parseInt(productAmount));
+        }
+    }, [productAmount]);
 
 	return (
 		<div className='cart-product'>
