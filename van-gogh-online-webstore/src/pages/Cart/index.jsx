@@ -45,6 +45,13 @@ export default function Cart() {
 		setProducts(newProducts)
 	};
 
+	const handleCompleteOrder = () => {
+		let newOrder = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : []
+		console.log(newOrder)
+		newOrder = newOrder.concat(products)
+		localStorage.setItem('order', JSON.stringify(newOrder))
+	}
+
 	useEffect(
 		() => {
 			setSubtotalPrice(products.reduce((sum, product) => { return sum + (product.price * product.quantity) }, 0));
@@ -62,7 +69,7 @@ export default function Cart() {
                         handleProductDeletion={handleProductDeletion} handleProductAmount={handleProductAmount} />)}
                     {isEmpty ? <Typography variant='mainSubtitle'>Your cart is empty</Typography> : undefined}
                 </div>
-                <PaymentInformations shipping={shipping} subtotalPrice={subtotalPrice} />
+                <PaymentInformations shipping={shipping} subtotalPrice={subtotalPrice} handleCompleteOrder={handleCompleteOrder}/>
             </div>
         </>
     );
