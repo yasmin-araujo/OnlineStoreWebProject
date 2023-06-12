@@ -3,6 +3,8 @@ import './style.css'
 
 import { Link } from 'react-router-dom'
 import { Breadcrumbs, Typography, useMediaQuery, useTheme, MenuItem, InputLabel, FormControl, Select, TextField } from '@mui/material'
+import { collectionsEnum } from '../../utils/collectionsEnum';
+
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import NumberTextField from '../../components/NumberTextField'
@@ -76,11 +78,10 @@ const AddProduct = () => {
                                     value={informations.collection}
                                     onChange={handleInformationsChange}
                                 >
-                                    <MenuItem value="">Selecione...</MenuItem>
-                                    <MenuItem value="opcao1">Almond Blossom</MenuItem>
-                                    <MenuItem value="opcao2">Sunflowers</MenuItem>
-                                    <MenuItem value="opcao3">Starry Night</MenuItem>
-                                    <MenuItem value="opcao4">Self Portraits</MenuItem>
+                                    {Object.values(collectionsEnum).map((elemento) => {
+                                        return <MenuItem value={elemento.id}>{elemento.name}</MenuItem>
+                                    })}
+
                                 </Select>
                             </FormControl>
                         </div>
