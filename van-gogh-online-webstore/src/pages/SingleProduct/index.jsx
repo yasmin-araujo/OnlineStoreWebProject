@@ -21,16 +21,18 @@ const SingleProduct = () => {
     const handleQuantityChange = (value) => {
         setproduct(product => ({
             ...product,
-            quantity: value
+            quantity: parseInt(value)
         }))
     }
 
     let haveStock = true;
     const setHaveStock = () => {
+        let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+        let cartQtd= cart.find(element=>element.id===product.id)!==undefined ?  cart.find(element=>element.id===product.id).quantity : 0;
         haveStock = true;
         const element = product;
         const x = products.find((y) => y.id === element.id)
-        if (x.qtd < element.quantity) {
+        if (x.qtd < element.quantity + cartQtd) {
             haveStock = false;
         }
 
@@ -39,13 +41,13 @@ const SingleProduct = () => {
     const handleSubmit = (e) => {
         setHaveStock();
         if(!haveStock){
-            alert("We don't have this amount in stock")
+            alert("Your cart will exceed the stock limit")
             e.preventDefault();
             return false;
         }
         let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-        if(cart.find(element=>element.id===product.id)!=undefined){
-            cart.find(element=>element.id===product.id).quantity+=parseInt(product.quantity);
+        if(cart.find(element=>element.id===product.id)!==undefined){
+            cart.find(element=>element.id===product.id).quantity+=product.quantity;
         }
         else
         cart.push(product);
