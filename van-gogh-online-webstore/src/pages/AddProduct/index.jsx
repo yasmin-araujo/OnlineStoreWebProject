@@ -77,9 +77,10 @@ const AddProduct = () => {
                                     onChange={handleInformationsChange}
                                 >
                                     <MenuItem value="">Selecione...</MenuItem>
-                                    <MenuItem value="opcao1">Opção 1</MenuItem>
-                                    <MenuItem value="opcao2">Opção 2</MenuItem>
-                                    <MenuItem value="opcao3">Opção 3</MenuItem>
+                                    <MenuItem value="opcao1">Almond Blossom</MenuItem>
+                                    <MenuItem value="opcao2">Sunflowers</MenuItem>
+                                    <MenuItem value="opcao3">Starry Night</MenuItem>
+                                    <MenuItem value="opcao4">Self Portraits</MenuItem>
                                 </Select>
                             </FormControl>
                         </div>
