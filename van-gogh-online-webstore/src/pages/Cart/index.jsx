@@ -47,8 +47,8 @@ export default function Cart() {
 
 	const handleCompleteOrder = () => {
 		let newOrder = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : []
-		newOrder.concat(products)
 		console.log(newOrder)
+		newOrder = newOrder.concat(products)
 		localStorage.setItem('order', JSON.stringify(newOrder))
 	}
 
