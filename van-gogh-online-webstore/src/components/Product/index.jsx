@@ -15,7 +15,7 @@ export default function Product({ product }) {
     return (
         <div className="product">
             <button className="product-img" onClick={handleNavigation}>
-                <img src={require('../../pages/ProductsPage/products-images/' + product.img)} alt={product.name + ' picture'} />
+                <img src={require('../../images/products/' + product.img)} alt={product.name + ' picture'} />
             </button>
             <button className="product-details" onClick={handleNavigation}>
                 <Typography variant="textBold">{product.name}</Typography>

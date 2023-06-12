@@ -1,14 +1,10 @@
-import { React, useState,useRef,useEffect } from 'react'
-import './style.css'
-
+import { React, useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Breadcrumbs, Typography, TextField, useMediaQuery, useTheme, MenuItem } from '@mui/material'
-import imagem from "./img/product.png"
-import vetor from "./img/vector.png"
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import NumberTextField from '../../components/NumberTextField'
-
+import './style.css'
 
 const EditProduct = () => {
 
@@ -28,15 +24,13 @@ const EditProduct = () => {
     }
 
     const [modoEdicao, setModoEdicao] = useState(false);
-
     const inputRef = useRef(null);
 
-    useEffect(()=>{
-        if(modoEdicao){
+    useEffect(() => {
+        if (modoEdicao) {
             inputRef.current.focus();
         }
-    },[modoEdicao])
-
+    }, [modoEdicao])
 
     const handleVectorClick = (e) => {
         setModoEdicao(!modoEdicao);
@@ -52,7 +46,7 @@ const EditProduct = () => {
                 name: 'Product Name'
             }))
         }
-        
+
     }
 
     const handleEnterKey = (e) => {
@@ -83,20 +77,17 @@ const EditProduct = () => {
             </Breadcrumbs>
         </div>
         <div id='editproductpage'>
-            <img id='image-editproduct' alt={informations.name} src={imagem} />
+            <img id='image-editproduct' alt={informations.name} src={require('../../images/products/mug-vincents-flowers.jpg')} />
             <div id='productinformations-editproduct'>
                 <div className='editproductname'>
-                    {modoEdicao ? (<div className='yellowname-editproducts'><input ref={inputRef} type='text' style={{
-                        fontFamily: 'Plus Jakarta Sans',
-                        color: '#D7A324',
-                        fontSize: '32px',
-                        fontWeight: '500',
-                        lineHeight: '80px',
-                        letterSpacing: '0px',
-                        textAlign: 'left',
-                    }} value={informations.name} name='name' onChange={handleInformationsChange} onKeyDown={handleEnterKey} /></div>)
-                        : (<div className='yellowname-editproducts'><Typography variant='productYellowName'>{informations.name}</Typography></div>)}
-                    <img id='addvector' alt='Editar Produto' src={vetor} onClick={handleVectorClick} />
+                    {modoEdicao
+                        ? (<div className='yellowname-editproducts'>
+                            <input ref={inputRef} type='text' value={informations.name} name='name'
+                                onChange={handleInformationsChange} onKeyDown={handleEnterKey} /> </div>)
+                        : (<div className='yellowname-editproducts'>
+                            <Typography variant='productYellowName'>{informations.name}</Typography>
+                        </div>)}
+                    <img id='addvector' alt='Editar Produto' src={require('../../images/icons/pencil.png')} onClick={handleVectorClick} />
                 </div>
                 <div id='productinfo-editproduct'>
                     <div className='price-editproduct'>
