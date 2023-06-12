@@ -4,19 +4,23 @@ import './style.css';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
 import NavbarDrawer from '../NavbarDrawer';
-import { pages, pages_admin, pages_user } from './pages';
+import { pages, pages_user, pages_admin } from './pages';
 
-export default function Navbar({ bgColor = 'none', fontColor = 'black'}) {
+export default function Navbar({ bgColor = 'none', fontColor = 'black' }) {
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
     const [pagesHeader, setPagesHeader] = useState(pages);
 
-    let userStatus = localStorage.getItem('session');
-    useEffect(
-        () => {
-            setPagesHeader(userStatus !== null ? pages_user : userStatus === 'admin' ? pages_admin : pages);
-        },
-        [userStatus]
-    );
+    const userStatus = localStorage.getItem('session');
+    const isAdmin = localStorage.getItem('isAdmin');
+
+    useEffect(() => {
+        if(isAdmin) {
+            setPagesHeader(pages_admin);
+        }
+        else {
+            setPagesHeader(userStatus !== null ? pages_user : pages);
+        }
+    }, [userStatus, isAdmin]);
 
     return (
         <AppBar sx={{ background: bgColor, boxShadow: 'none', padding: '10px 136px', transition: '0.4s' }}>

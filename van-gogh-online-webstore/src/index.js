@@ -21,7 +21,7 @@ import { ThemeProvider } from '@mui/material';
 import { theme } from './theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-let id = undefined
+
 root.render(
 	<StrictMode>
 		<ThemeProvider theme={theme}>
@@ -36,7 +36,7 @@ root.render(
 					<Route path="/thanks" element={<Thanks />} />
 					<Route path="/salesoverview" element={<SalesOverview />} />
 					<Route path={"/product/:productId"} element={<SingleProduct />} />
-					<Route path="/editproduct" element={<EditProduct />} />
+					<Route path="/editproduct/:productId" element={<EditProduct />} />
 					<Route path="/addproduct" element={<AddProduct />} />
 				</Routes>
 			</BrowserRouter>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './style.css';
 
@@ -10,6 +10,10 @@ import ProfileLogout from '../../components/ProfileLogout';
 import ProfilePictureGallery from '../../components/ProfilePictureGallery';
 
 export default function ProfilePage() {
+    useEffect(() => {
+        document.body.style.backgroundColor = 'white';
+    }, []);
+
     const [showGallery, setShowGallery] = useState(false);
     const pages = [<ProfileInformations setShowGallery={setShowGallery} />,
     <ProfileOrders />, <ProfileLogout />];

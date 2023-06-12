@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import { useParams } from 'react-router';
 import './style.css'
 import { Breadcrumbs, Typography, useMediaQuery, useTheme } from '@mui/material'
@@ -11,12 +11,16 @@ import { useNavigate } from 'react-router';
 
 
 const SingleProduct = () => {
+    useEffect(() => {
+        document.body.style.backgroundColor = 'white';
+    }, []);
+
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
     let params = useParams()
     const navigate = useNavigate();
 
     let getProduct = products.filter(product => product.id == params.productId)
-    const [product, setproduct] = useState({id: getProduct[0].id, name: getProduct[0].name, price: getProduct[0].price, quantity: 1, collection: getProduct[0].collection, img: getProduct[0].img, stock: getProduct[0].qtd})
+    const [product, setproduct] = useState({ id: getProduct[0].id, name: getProduct[0].name, price: getProduct[0].price, quantity: 1, collection: getProduct[0].collection, img: getProduct[0].img, stock: getProduct[0].qtd })
 
     const handleQuantityChange = (value) => {
         setproduct(product => ({
@@ -51,7 +55,7 @@ const SingleProduct = () => {
 
         <form onSubmit={handleSubmit}>
             <div id='singleproductpage'>
-                <img id='image-singleproduct' src={require('../../pages/ProductsPage/products-images/' + product.img)} alt={product.name + ' picture'} />
+                <img id='image-singleproduct' src={require('../../images/products/' + product.img)} alt={product.name + ' picture'} />
                 <div id='singleproductinformations'>
                     <Typography variant='productYellowName'>{product.name}</Typography><br />
                     <Typography variant='editProductText'>${product.price}.00</Typography>
@@ -59,7 +63,7 @@ const SingleProduct = () => {
                     <div id='quantity-singleproduct'>
                         <Typography variant='editProductText'>Quantity: </Typography>
                         <div id='quantityinput-singleproduct'>
-                            <NumberTextField value={product.quantity} setValue={handleQuantityChange} label="Qty." min={1} maxLenght={3} style={{width: '70px', marginLeft: '5px'}}/>
+                            <NumberTextField value={product.quantity} setValue={handleQuantityChange} label="Qty." min={1} maxLenght={3} style={{ width: '70px', marginLeft: '5px' }} />
                         </div>
                     </div>
                     <div id="button-singleproductpage">

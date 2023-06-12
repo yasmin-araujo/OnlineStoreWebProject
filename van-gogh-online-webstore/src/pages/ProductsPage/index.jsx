@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Typography } from '@mui/material';
 
@@ -10,7 +10,11 @@ import './style.css';
 
 export default function ProductsPage() {
     const navigate = useNavigate();
-    const isAdmin = false;
+    const isAdmin = localStorage.getItem('isAdmin');
+
+    useEffect(() => {
+        document.body.style.backgroundColor = 'white';
+    }, []);
 
     const handleNavigation = (e) => {
         e.preventDefault();

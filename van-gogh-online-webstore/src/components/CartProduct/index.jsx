@@ -24,7 +24,7 @@ export default function CartProduct({ product, handleProductDeletion, handleProd
 	return (
 		<div className='cart-product'>
 			<div className='cart-product-info'>
-			<img id='cart-product-image' src={require('../../pages/ProductsPage/products-images/' + product.img)} alt={product.name + ' picture'} />
+			<img id='cart-product-image' src={require('../../images/products/' + product.img)} alt={product.name + ' picture'} />
 				<div>
 					<p><strong>{product.name}</strong></p>
 					<p>$ {product.price}</p>

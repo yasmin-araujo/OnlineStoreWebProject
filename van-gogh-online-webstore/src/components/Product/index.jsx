@@ -4,7 +4,7 @@ import './style.css';
 
 export default function Product({ product }) {
     const navigate = useNavigate();
-    const isAdmin = false;
+    const isAdmin = localStorage.getItem('isAdmin');
 
     const handleNavigation = (e) => {
         e.preventDefault();

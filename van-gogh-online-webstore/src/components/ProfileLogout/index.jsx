@@ -12,6 +12,7 @@ export default function ProfileLogout() {
 	const handleNavigation = (e) => {
 		localStorage.removeItem('session');
 		localStorage.removeItem('cart');
+		localStorage.removeItem('isAdmin');
 		e.preventDefault();
 		navigate('/');
 	}

@@ -1,17 +1,22 @@
 import { React, useState, useRef, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Breadcrumbs, Typography, useMediaQuery, useTheme, MenuItem, InputLabel, FormControl, Select } from '@mui/material'
 import { collectionsEnum } from '../../utils/collectionsEnum';
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import NumberTextField from '../../components/NumberTextField'
 import './style.css'
+import { products } from '../../utils/products'
 
 const EditProduct = () => {
 
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
+    const { productId } = useParams();
+    const [informations, setInformations] = useState(products.find((p) => p.id == productId))
 
-    const [informations, setInformations] = useState({ name: "Mug Vincent's flowers", price: "9.00", quantity: 0, collection: "" })
+    useEffect(() => {
+        document.body.style.backgroundColor = 'white';
+    }, []);
 
     const handleInformationsChange = (e) => {
         setInformations(informations => ({
@@ -100,7 +105,7 @@ const EditProduct = () => {
                     <div className='price-editproduct'>
                         <div><Typography variant='editProductText'>Quantity in stock: </Typography></div>
                         <div className='price-field-editproduct'>
-                            <NumberTextField style={{ width: '160px' }} value={informations.quantity} onChange={handleInformationsChange} name='quantity' label="Quantity" maxLenght={3} />
+                            <NumberTextField style={{ width: '160px' }} value={informations.qtd} onChange={handleInformationsChange} name='quantity' label="Quantity" maxLenght={3} />
                         </div>
                     </div>
                     <div className='price-editproduct'>

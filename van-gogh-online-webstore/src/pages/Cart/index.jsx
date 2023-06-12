@@ -7,6 +7,10 @@ import CartProduct from '../../components/CartProduct';
 
 
 export default function Cart() {
+    useEffect(() => {
+        document.body.style.backgroundColor = 'white';
+    }, []);
+    
 	let getProducts = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
 	const [products, setProducts] = useState(getProducts);
 
