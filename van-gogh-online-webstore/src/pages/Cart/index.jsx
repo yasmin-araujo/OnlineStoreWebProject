@@ -8,21 +8,32 @@ import CartProduct from '../../components/CartProduct';
 
 
 export default function Cart() {
-	let getProducts = localStorage.getItem('cart') != null ? JSON.parse(localStorage.getItem('cart')) : []
+	let getProducts = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
 	const [products, setProducts] = useState(getProducts);
 
-	const getSession = JSON.parse(localStorage.getItem('session'));
-	const getProfile = JSON.parse(localStorage.getItem(getSession));
+	const loggedIn = localStorage.getItem('session') ? true : false;
+	let getSession, getProfile, adress, price;
 
-	const [isEmpty, setIsEmpty] = useState(true);
-	const [subtotalPrice, setSubtotalPrice] = useState(products.reduce((sum, product) => { return sum + (product.price * product.amount) }, 0));
+	if(loggedIn){
+		getSession = JSON.parse(localStorage.getItem('session'));
+		getProfile = JSON.parse(localStorage.getItem(getSession));
+		adress = getProfile.adress;
+		price = 0;
+	}else{
+		adress = "Log in to set your adress"
+		price = 0
+	}
+
+	const [isEmpty, setIsEmpty] = useState(getProducts.length > 0 ? false : true);
+	const [subtotalPrice, setSubtotalPrice] = useState(products.reduce((sum, product) => { return sum + (product.price * product.quantity) }, 0));
 	const [shipping, setShipping] = useState({
-		address: getProfile.adress,
-		price: 4
+		address: adress,
+		price: price
 	});
 
-	const handleProductAmount = (id, amount) => {
-		let newProducts = products.map(product => product.id === id ? { ...product, amount: amount } : product)
+	const handleProductAmount = (id, quantity) => {
+		let newProducts = products.map(product => product.id === id ? { ...product, quantity: quantity} : product)
+		localStorage.setItem('cart', JSON.stringify(newProducts))
 		setProducts(newProducts)
 	};
 
@@ -31,12 +42,13 @@ export default function Cart() {
 		if (newProducts.length === 0) {
 			setIsEmpty(true)
 		}
+		localStorage.setItem('cart', JSON.stringify(newProducts))
 		setProducts(newProducts)
 	};
 
 	useEffect(
 		() => {
-			setSubtotalPrice(products.reduce((sum, product) => { return sum + (product.price * product.amount) }, 0));
+			setSubtotalPrice(products.reduce((sum, product) => { return sum + (product.price * product.quantity) }, 0));
 		},
 		[products]
 	);

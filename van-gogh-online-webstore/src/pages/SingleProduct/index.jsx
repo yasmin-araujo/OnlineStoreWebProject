@@ -17,7 +17,7 @@ const SingleProduct = () => {
     const navigate = useNavigate();
 
     let getProduct = products.filter(product => product.id == params.productId)
-    const [product, setproduct] = useState({name: getProduct[0].name, price: getProduct[0].price, quantity: 1, collection: getProduct[0].collection})
+    const [product, setproduct] = useState({id: getProduct[0].id, name: getProduct[0].name, price: getProduct[0].price, quantity: 1, collection: getProduct[0].collection, img: getProduct[0].img})
 
     const handleQuantityChange = (value) => {
         setproduct(product => ({
@@ -27,7 +27,7 @@ const SingleProduct = () => {
     }
 
     const handleSubmit = (e) => {
-        let cart = localStorage.getItem('cart') || [];
+        let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
         cart.push(product);
         localStorage.setItem('cart', JSON.stringify(cart));
         e.preventDefault();
