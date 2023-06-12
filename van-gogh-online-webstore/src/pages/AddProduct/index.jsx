@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState,useEffect } from 'react'
 import './style.css'
 
 import { Link } from 'react-router-dom'
@@ -9,6 +9,10 @@ import NumberTextField from '../../components/NumberTextField'
 
 
 const AddProduct = () => {
+
+    useEffect(() => {
+        document.body.style.backgroundColor = '#FFF'
+    }, [])
 
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
 

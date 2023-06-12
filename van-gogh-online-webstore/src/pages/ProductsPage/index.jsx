@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { Typography } from '@mui/material';
 
@@ -9,6 +9,9 @@ import ProductsGrid from '../../components/ProductsGrid';
 import './style.css';
 
 export default function ProductsPage() {
+    useEffect(() => {
+        document.body.style.backgroundColor = '#FFF'
+    }, [])
     const navigate = useNavigate();
     const isAdmin = false;
 

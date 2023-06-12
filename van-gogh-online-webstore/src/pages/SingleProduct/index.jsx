@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState,useEffect } from 'react'
 import { useParams } from 'react-router';
 import './style.css'
 import { Breadcrumbs, Typography, useMediaQuery, useTheme } from '@mui/material'
@@ -11,6 +11,11 @@ import { useNavigate } from 'react-router';
 
 
 const SingleProduct = () => {
+
+    useEffect(() => {
+        document.body.style.backgroundColor = '#FFF'
+    }, [])
+    
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
     let params = useParams()
     const navigate = useNavigate();

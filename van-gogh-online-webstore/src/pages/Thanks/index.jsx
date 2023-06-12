@@ -1,4 +1,4 @@
-import React from 'react'
+import {React,useEffect} from 'react'
 import './style.css'
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
@@ -6,6 +6,11 @@ import { useNavigate } from 'react-router';
 import { useMediaQuery, useTheme } from '@mui/material';
 
 const Thanks = () => {
+
+    useEffect(() => {
+        document.body.style.backgroundColor = '#FFF'
+    }, [])
+
 
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
     const size = isMobile ? '12px' : '14px';

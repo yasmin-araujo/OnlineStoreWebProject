@@ -8,6 +8,10 @@ import './style.css'
 
 const EditProduct = () => {
 
+    useEffect(() => {
+        document.body.style.backgroundColor = '#FFF'
+    }, [])
+
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
 
     const [informations, setInformations] = useState({ name: "Mug Vincent's flowers", price: "9.00", quantity: 0, collection: "" })
