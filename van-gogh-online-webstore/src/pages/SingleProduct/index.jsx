@@ -16,7 +16,7 @@ const SingleProduct = () => {
     const navigate = useNavigate();
 
     let getProduct = products.filter(product => product.id == params.productId)
-    const [product, setproduct] = useState({id: getProduct[0].id, name: getProduct[0].name, price: getProduct[0].price, quantity: 1, collection: getProduct[0].collection, img: getProduct[0].img})
+    const [product, setproduct] = useState({id: getProduct[0].id, name: getProduct[0].name, price: getProduct[0].price, quantity: 1, collection: getProduct[0].collection, img: getProduct[0].img, stock: getProduct[0].qtd})
 
     const handleQuantityChange = (value) => {
         setproduct(product => ({
@@ -51,11 +51,11 @@ const SingleProduct = () => {
 
         <form onSubmit={handleSubmit}>
             <div id='singleproductpage'>
-                <img id='image-singleproduct' alt={product.name} src={imagem} />
+                <img id='image-singleproduct' src={require('../../pages/ProductsPage/products-images/' + product.img)} alt={product.name + ' picture'} />
                 <div id='singleproductinformations'>
                     <Typography variant='productYellowName'>{product.name}</Typography><br />
                     <Typography variant='editProductText'>${product.price}.00</Typography>
-                    <Typography variant='editProductText'>In stock: {informations.available}</Typography>
+                    <Typography variant='editProductText'>In stock: {product.stock}</Typography>
                     <div id='quantity-singleproduct'>
                         <Typography variant='editProductText'>Quantity: </Typography>
                         <div id='quantityinput-singleproduct'>
