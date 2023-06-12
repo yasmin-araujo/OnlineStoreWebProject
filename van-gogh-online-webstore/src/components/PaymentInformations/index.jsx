@@ -4,16 +4,13 @@ import Button from '../Button'
 import { TextField, Typography } from '@mui/material';
 
 import './style.css';
+import { isNumber } from '../../utils/isNumber';
 
-export default function PaymentInformations({ shipping, subtotalPrice }) {
+export default function PaymentInformations({ shipping, subtotalPrice, handleCompleteOrder }) {
 
-    const navigate = useNavigate();
-
-    let handleNavigation = (e) => {
-        e.preventDefault();
-        navigate('/thanks');
-    }
-
+	const navigate = useNavigate();
+	const loggedIn = localStorage.getItem('session') ? true : false;
+	
     const [cards, setCards] = useState([
         'https://purepng.com/public/uploads/large/purepng.com-mastercard-logologobrand-logoiconslogos-251519938372dnf77.png',
         'https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png',
@@ -21,80 +18,82 @@ export default function PaymentInformations({ shipping, subtotalPrice }) {
         'https://selectra.net.br/sites/selectra.net.br/files/styles/article_hero/public/images/paypal-825.png?itok=Kglm1b9o'
     ])
 
-    const checkNumeric = (e) => {
-        return !/^\d*$/.test(e.key) && e.keyCode != 8 && e.keyCode != 37 && e.keyCode != 39 ? true : false
+	const [paymentInformations, setPaymentInfomations] = useState({ name: '', cardNumber: '', expireDate: '', cvv: ''})
+
+    const handleInputChange = (e) => {
+        setPaymentInfomations(paymentInformations => ({
+            ...paymentInformations,
+            [e.target.name]: e.target.value
+        }))
     }
 
-    const handleCvvChange = (e) => {
-        if (checkNumeric(e)) {
-            e.preventDefault();
-        }
-    }
+	const handleNumberChange = (e) => {
+		if (!isNumber(e)) {
+			e.preventDefault();
+		}
+	}
 
-    const handleExpireChange = (e) => {
-        if (e.target.value.length == 2) {
-            if (e.keyCode == 8) {
-                return;
-            }
-            e.target.value = e.target.value + '/';
-        }
-        if (checkNumeric(e)) {
-            e.preventDefault();
-        }
-    }
+	const handleExpireChange = (e) => {
+		if (!isNumber(e)) {
+			if (e.keyCode == 8) {
+				return;
+			}
+			e.target.value = e.target.value + '/';
+		}
+		if (!isNumber(e)) {
+			e.preventDefault();
+		}
+	}
 
-    const handleCardCodeChange = (e) => {
-        let length = e.target.value.length;
-        if (length == 4 || length == 9 || length == 14) {
-            if (e.keyCode == 8) {
-                return;
-            }
-            e.target.value = e.target.value + ' ';
-        }
-        if (checkNumeric(e)) {
-            e.preventDefault();
-        }
-    }
+	const handleSubmit = (e) => {
+		if(!loggedIn){
+			alert('Sign in to complete your purchase')
+			e.preventDefault();
+			return false;
+		}
+		if(subtotalPrice == 0){
+			alert('Your cart is empty')
+			e.preventDefault();
+			return false;
+		}
+		localStorage.removeItem('cart');
+		handleCompleteOrder();
+		e.preventDefault();
+		navigate('/thanks');
+	}
 
-    return (
-        <div className='payment-informations'>
-            <Typography variant='cardDetails'>Card Details</Typography>
-            <Typography variant='paymentInformationText'>Accepted cards</Typography>
-            <div className='card-row'>
-                {cards.map((card, index) => <img key={'card-icon' + index} className='card-image' src={card} alt='available card' />)}
-            </div>
-
-            <TextField required label={'Name on card'} variant='outlined' margin='normal' size='small'
-                placeholder={'Name'} inputProps={{ maxLength: 40 }} />
-
-            <TextField required label={'Card number'} onKeyDown={handleCardCodeChange} variant='outlined'
-                margin='normal' size='small' placeholder={'1111 2222 3333 4444'} inputProps={{ maxLength: 19 }} />
-
-            <div className='card-row'>
-                <TextField required label={'Expiration date'} onKeyDown={handleExpireChange} variant='outlined'
-                    margin='normal' size='small' placeholder={'mm/yy'} inputProps={{ maxLength: 5 }} sx={{ width: '100%' }} />
-                <TextField required label={'CVV'} onKeyDown={handleCvvChange} variant='outlined' margin='normal'
-                    size='small' placeholder={'123'} inputProps={{ maxLength: 3 }} sx={{ width: '100%' }} />
-            </div>
-
-            <Typography variant='paymentInformationText'>Shipping address</Typography>
-            <div className='address'>
-                <Typography variant='addressCart'>{shipping.address}</Typography><br />
-            </div>
-            <div className='price'>
-                <Typography variant='paymentInformationText'>Subtotal</Typography>
-                <Typography variant='paymentInformationText'>${subtotalPrice}</Typography>
-            </div>
-            <div className='price'>
-                <Typography variant='paymentInformationText'>Shipping</Typography>
-                <Typography variant='paymentInformationText'>${shipping.price}</Typography>
-            </div>
-            <div className='price'>
-                <Typography variant='paymentInformationText'>Total (tax Incl)</Typography>
-                <Typography variant='paymentInformationText'>${subtotalPrice + shipping.price}</Typography>
-            </div>
-
-            <Button onClick={(e) => handleNavigation(e)} styles={{ backgroundColor: '#D7A324' }}>COMPLETE YOUR PURCHASE</Button>
-        </div>
-    );
+	return (
+		<form onSubmit={handleSubmit}>
+			<div className='payment-informations'>
+				<Typography variant='cardDetails'>Card Details</Typography>
+				<Typography variant='paymentInformationText'>Accepted cards</Typography>
+				<div className='card-row'>
+					{cards.map((card) => <img className='card-image' src={card} alt='available card' />)}
+				</div>
+				<TextField required label={'Name on card'} name='name' onChange={handleInputChange} variant='outlined' margin='normal' size='small' placeholder={'Name'} inputProps={{ maxLength: 40 }} />
+				<TextField required label={'Card number'} name='cardNumber' onChange={handleInputChange} onKeyDown={handleNumberChange} variant='outlined' margin='normal' size='small' placeholder={'1111 2222 3333 4444'} inputProps={{ maxLength: 16 }} />
+				<div className='card-row'>
+					<TextField required label={'Expiration date'} name='expireDate' onChange={handleInputChange} onKeyDown={handleExpireChange} variant='outlined' margin='normal' size='small' placeholder={'mm/yy'} inputProps={{ maxLength: 5 }} sx={{ width: '100%' }} type='month' InputLabelProps={{ shrink: true }} />
+					<TextField required label={'CVV'} name='cvv' onChange={handleInputChange} onKeyDown={handleNumberChange} variant='outlined' margin='normal' size='small' placeholder={123} inputProps={{ maxLength: 3 }} sx={{ width: '100%' }} />
+				</div>
+				<Typography variant='paymentInformationText'>Shipping address</Typography>
+				<div className='address'>
+					<Typography variant='addressCart'>{shipping.address}</Typography><br />
+				</div>
+				<div className='price'>
+					<Typography variant='paymentInformationText'>Subtotal</Typography>
+					<Typography variant='paymentInformationText'>${subtotalPrice}</Typography>
+				</div>
+				<div className='price'>
+					<Typography variant='paymentInformationText'>Shipping</Typography>
+					<Typography variant='paymentInformationText'>${shipping.price}</Typography>
+				</div>
+				<div className='price'>
+					<Typography variant='paymentInformationText'>Total (tax Incl)</Typography>
+					<Typography variant='paymentInformationText'>${subtotalPrice + shipping.price}</Typography>
+				</div>
+				<Button isSubmitForm={true} styles={{ backgroundColor: '#D7A324', marginTop: '10px'}} name={'COMPLETE YOUR PURCHASE'} ></Button>
+			</div>
+		</form>
+	);
 }

@@ -9,12 +9,6 @@ const SignIn = () => {
 
     const navigate = useNavigate();
 
-    let handleNavigation = (e) => {
-        console.log(signIn);
-        e.preventDefault();
-        navigate('/');
-    }
-
     useEffect(() => {
         document.body.style.backgroundColor = '#44627C'
     }, [])
@@ -28,6 +22,26 @@ const SignIn = () => {
         }))
     }
 
+    const handleSubmit = (e) => {
+        let checkProfile = localStorage.getItem(signIn.email)
+        if(checkProfile === null){
+            alert('Incorrect email or password')
+            e.preventDefault();
+            return false
+        }
+        checkProfile = JSON.parse(checkProfile);
+        if(checkProfile.password !== signIn.password){
+            alert('Incorrect email or password')
+            e.preventDefault();
+            return false
+        }
+
+        localStorage.setItem('session', JSON.stringify(signIn.email))
+        e.preventDefault();
+        navigate('/');
+    }
+
+
     return <>
         <Navbar />
 
@@ -37,14 +51,14 @@ const SignIn = () => {
                 <div className='signin'>
                     <span >Sign In</span>
                 </div>
+                <form onSubmit={handleSubmit}>
+                    <div className='inputs-signin'>
+                        <TextField required variant='outlined' margin='normal' onChange={handleInputChange} label="Email" type="email" />
+                        <TextField required variant='outlined' margin='normal' onChange={handleInputChange} label="Password" type="password" />
+                    </div><br />
 
-                <div className='inputs-signin'>
-                    <TextField autoComplete="email" variant='outlined' margin='normal' onChange={handleInputChange} label="Email" type="email" />
-                    <TextField variant='outlined' margin='normal' onChange={handleInputChange} label="Password" type="password" />
-                </div><br />
-
-                <Button onClick={handleNavigation} styles={{ backgroundColor: '#44627C' }}>SIGN IN</Button>
-
+                    <Button isSubmitForm={true} styles={{ backgroundColor: '#44627C' }} name={'SIGN IN'}/>
+                </form>
             </div>
         </div>
     </>

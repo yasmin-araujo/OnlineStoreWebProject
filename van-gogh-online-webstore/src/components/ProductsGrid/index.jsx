@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import './style.css';
-
-import { products } from "../../pages/ProductsPage/products";
+import { products } from "../../utils/products";
 import Product from "../Product";
 
 export default function ProductsGrid({ filter }) {

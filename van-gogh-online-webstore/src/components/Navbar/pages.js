@@ -23,7 +23,7 @@ export const pages_user = [
 	},
 	{
 		label: 'Cart',
-		href: '/'
+		href: '/cart'
 	},
 	{
 		label: 'Account',

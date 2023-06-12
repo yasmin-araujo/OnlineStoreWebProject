@@ -9,16 +9,18 @@ export default function ProfileLogout() {
 
     const navigate = useNavigate();
 
-    const handleNavigation = (e) => {
-        e.preventDefault();
-        navigate('/');
-    }
+	const handleNavigation = (e) => {
+		localStorage.removeItem('session');
+		localStorage.removeItem('cart');
+		e.preventDefault();
+		navigate('/');
+	}
 
-    return (
-        <div className='logout'>
-            <Typography variant='profileSectionTitle'>Logout</Typography>
-            <Typography variant='mainSubtitle'>Are you sure you want to logout?</Typography>
-            <Button onClick={handleNavigation} styles={{ backgroundColor: 'black' }}>Logout</Button>
-        </div>
-    );
+	return (
+		<div className='logout'>
+			<Typography variant='profileSectionTitle'>Logout</Typography>
+			<Typography variant='mainSubtitle'>Are you sure you want to logout?</Typography>
+			<Button onClick={handleNavigation} styles={{ backgroundColor: 'black' }}>Logout</Button>
+		</div>
+	);
 }

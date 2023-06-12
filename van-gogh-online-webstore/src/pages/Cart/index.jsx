@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import './style.css';
 import Navbar from '../../components/Navbar';
 import { Typography } from '@mui/material';
@@ -8,53 +7,57 @@ import CartProduct from '../../components/CartProduct';
 
 
 export default function Cart() {
-    const [products, setProducts] = useState([
-        {
-            id: 1,
-            image: require('../../images/products/mug-vincents-flowers.jpg'),
-            name: "TESTE 1 ",
-            price: 9.00,
-            amount: 1
-        },
-        {
-            id: 2,
-            image: require('../../images/products/mug-vincents-flowers.jpg'),
-            name: "TESTE 2",
-            price: 9.00,
-            amount: 2
-        },
-        {
-            id: 3,
-            image: require('../../images/products/mug-vincents-flowers.jpg'),
-            name: "NOSSA EU N SEI",
-            price: 9.00,
-            amount: 3
-        }
-    ]);
+	let getProducts = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
+	const [products, setProducts] = useState(getProducts);
 
-    const [isEmpty, setIsEmpty] = useState(false);
-    const [subtotalPrice, setSubtotalPrice] = useState(products.reduce((sum, product) => { return sum + (product.price * product.amount) }, 0));
-    const [shipping, setShipping] = useState({
-        address: "Street 10, 430, Zundert - Netherlands",
-        price: 4
-    });
+	const loggedIn = localStorage.getItem('session') ? true : false;
+	let getSession, getProfile, adress, price;
 
-    const handleProductAmount = (id, amount) => {
-        let newProducts = products.map(product => product.id === id ? { ...product, amount: amount } : product)
-        setProducts(newProducts)
-    };
+	if(loggedIn){
+		getSession = JSON.parse(localStorage.getItem('session'));
+		getProfile = JSON.parse(localStorage.getItem(getSession));
+		adress = getProfile.adress;
+		price = 0;
+	}else{
+		adress = "Log in to set your adress"
+		price = 0
+	}
 
-    const handleProductDeletion = (id) => {
-        let newProducts = products.filter(product => product.id !== id)
-        if (newProducts.length === 0) {
-            setIsEmpty(true)
-        }
-        setProducts(newProducts)
-    };
+	const [isEmpty, setIsEmpty] = useState(getProducts.length > 0 ? false : true);
+	const [subtotalPrice, setSubtotalPrice] = useState(products.reduce((sum, product) => { return sum + (product.price * product.quantity) }, 0));
+	const [shipping, setShipping] = useState({
+		address: adress,
+		price: price
+	});
 
-    useEffect(() => {
-        setSubtotalPrice(products.reduce((sum, product) => { return sum + (product.price * product.amount) }, 0));
-    }, [products]);
+	const handleProductAmount = (id, quantity) => {
+		let newProducts = products.map(product => product.id === id ? { ...product, quantity: quantity} : product)
+		localStorage.setItem('cart', JSON.stringify(newProducts))
+		setProducts(newProducts)
+	};
+
+	const handleProductDeletion = (id) => {
+		let newProducts = products.filter(product => product.id !== id)
+		if (newProducts.length === 0) {
+			setIsEmpty(true)
+		}
+		localStorage.setItem('cart', JSON.stringify(newProducts))
+		setProducts(newProducts)
+	};
+
+	const handleCompleteOrder = () => {
+		let newOrder = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : []
+		console.log(newOrder)
+		newOrder = newOrder.concat(products)
+		localStorage.setItem('order', JSON.stringify(newOrder))
+	}
+
+	useEffect(
+		() => {
+			setSubtotalPrice(products.reduce((sum, product) => { return sum + (product.price * product.quantity) }, 0));
+		},
+		[products]
+	);
 
     return (
         <>
@@ -66,7 +69,7 @@ export default function Cart() {
                         handleProductDeletion={handleProductDeletion} handleProductAmount={handleProductAmount} />)}
                     {isEmpty ? <Typography variant='mainSubtitle'>Your cart is empty</Typography> : undefined}
                 </div>
-                <PaymentInformations shipping={shipping} subtotalPrice={subtotalPrice} />
+                <PaymentInformations shipping={shipping} subtotalPrice={subtotalPrice} handleCompleteOrder={handleCompleteOrder}/>
             </div>
         </>
     );

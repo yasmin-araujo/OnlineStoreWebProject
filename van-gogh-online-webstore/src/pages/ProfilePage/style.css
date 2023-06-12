@@ -1,6 +1,7 @@
 .profile {
     display: flex;
     flex-direction: row;
+    background-color: white;
     gap: 10%;
     padding: 135px 160px;
 }
