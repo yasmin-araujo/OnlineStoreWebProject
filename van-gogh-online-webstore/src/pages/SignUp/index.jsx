@@ -14,6 +14,7 @@ const SignUp = () => {
     let handleNavigation = (e) => {
         e.preventDefault();
         navigate('/');
+        console.log(signUp)
     }
 
     useEffect(() => {
