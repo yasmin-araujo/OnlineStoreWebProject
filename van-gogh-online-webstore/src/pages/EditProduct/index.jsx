@@ -1,6 +1,6 @@
 import { React, useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Breadcrumbs, Typography, TextField, useMediaQuery, useTheme, MenuItem } from '@mui/material'
+import { Breadcrumbs, Typography, useMediaQuery, useTheme, MenuItem, InputLabel, FormControl, Select } from '@mui/material'
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import NumberTextField from '../../components/NumberTextField'
@@ -105,20 +105,22 @@ const EditProduct = () => {
                     <div className='price-editproduct'>
                         <div><Typography variant='editProductText'>Collection: </Typography></div>
                         <div className='price-field-editproduct'>
-                            <TextField
-                                name='collection'
-                                size='small'
-                                select
-                                label="Selecione uma opção"
-                                value={informations.collection}
-                                onChange={handleInformationsChange}
-                                sx={{ width: '160px' }}
-                            >
-                                <MenuItem value="">Selecione...</MenuItem>
-                                <MenuItem value="opcao1">Opção 1</MenuItem>
-                                <MenuItem value="opcao2">Opção 2</MenuItem>
-                                <MenuItem value="opcao3">Opção 3</MenuItem>
-                            </TextField>
+                            <FormControl sx={{ width: '160px' }} size='small'>
+                                <InputLabel id="collection-selector-label">Selecione uma opção</InputLabel>
+                                <Select
+                                    labelId='collection-selector-label'
+                                    id="collection-selector"
+                                    name='collection'
+                                    label="Selecione uma opção"
+                                    value={informations.collection}
+                                    onChange={handleInformationsChange}
+                                >
+                                    <MenuItem value="">Selecione...</MenuItem>
+                                    <MenuItem value="opcao1">Opção 1</MenuItem>
+                                    <MenuItem value="opcao2">Opção 2</MenuItem>
+                                    <MenuItem value="opcao3">Opção 3</MenuItem>
+                                </Select>
+                            </FormControl>
                         </div>
                     </div>
                 </div>
