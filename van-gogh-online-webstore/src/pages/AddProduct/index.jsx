@@ -43,7 +43,7 @@ const AddProduct = () => {
         <div id='addproductpage'>
             <img id='image-addproduct' alt='Imagem do Produto' src={require('../../images/products/add-product.png')} />
             <div id='productinformations-addproduct'>
-            <Typography variant='productYellowName'>Add Product</Typography>
+                <Typography variant='productYellowName'>Add Product</Typography>
                 <div id='productinfo-addproduct'>
                     <div className='price-addproduct'>
                         <div><Typography variant='editProductText'>Name:</Typography></div>
@@ -60,7 +60,7 @@ const AddProduct = () => {
                     <div className='price-addproduct'>
                         <div><Typography variant='editProductText'>Quantity in stock: </Typography></div>
                         <div className='price-field-addproduct'>
-                            <NumberTextField style={{ width: '160px' }} value={informations.quantity} onChange={handleInformationsChange} name='quantity' label="Quantity" />
+                            <NumberTextField style={{ width: '160px' }} value={informations.quantity} onChange={handleInformationsChange} name='quantity' label="Quantity" maxLenght={3} />
                         </div>
                     </div>
                     <div className='price-addproduct'>

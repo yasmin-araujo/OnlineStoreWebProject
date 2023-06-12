@@ -5,30 +5,34 @@ import NumberTextField from '../NumberTextField';
 
 
 export default function CartProduct({ product, handleProductDeletion, handleProductAmount }) {
-	const [productAmount, setProductAmount] = useState(product.amount)
+    const [productAmount, setProductAmount] = useState(product.amount);
 
-	const handleDeletionEvent = () => {
-		handleProductDeletion(product.id)
-	}
+    const handleDeletionEvent = () => {
+        handleProductDeletion(product.id);
+    }
 
-	useEffect(
-		() => {
-			handleProductAmount(product.id, parseInt(productAmount))
-		},
-		[productAmount]
-	);
+    useEffect(() => {
+        if (productAmount === '') {
+            handleProductAmount(product.id, 1);
+            setProductAmount('1');
+        }
+        else {
+            handleProductAmount(product.id, parseInt(productAmount));
+        }
+    }, [productAmount]);
 
-	return (
-		<div className='cart-product'>
-			<div className='cart-product-info'>
-				<img id='cart-product-image' src={product.image} />
-				<div>
-					<p><strong>{product.name}</strong></p>
-					<p>$ {product.price}</p>
-				</div>
-			</div>
-			<NumberTextField label={'Qty'} value={product.amount} setValue={(value) => { setProductAmount(value) }} style={{ width: '80px', minWidth: '55px' }} min={1} max={30}/>
-			<button className='cart-delete-button' onClick={handleDeletionEvent}><DeleteIcon /></button>
-		</div>
-	);
+    return (
+        <div className='cart-product'>
+            <div className='cart-product-info'>
+                <img id='cart-product-image' src={product.image} alt={product.name} />
+                <div>
+                    <p><strong>{product.name}</strong></p>
+                    <p>$ {product.price}</p>
+                </div>
+            </div>
+            <NumberTextField label={'Qty'} value={productAmount} setValue={setProductAmount}
+                style={{ width: '80px', minWidth: '55px' }} min={1} max={30} maxLenght={3} />
+            <button className='cart-delete-button' onClick={handleDeletionEvent}><DeleteIcon /></button>
+        </div>
+    );
 }

@@ -48,7 +48,7 @@ const SingleProduct = () => {
                 <div id='quantity-singleproduct'>
                     <Typography variant='editProductText'>Quantity: </Typography>
                     <div id='quantityinput-singleproduct'>
-                        <NumberTextField value={informations.quantity} setValue={handleQuantityChange} label="Qty." />
+                        <NumberTextField value={informations.quantity} setValue={handleQuantityChange} label="Qty." maxLenght={3} />
                     </div>
                 </div>
                 <div id="button-singleproductpage">
