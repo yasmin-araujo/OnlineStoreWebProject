@@ -1,4 +1,4 @@
-import { React, useState,useEffect } from 'react'
+import { React, useState, useEffect } from 'react'
 import './style.css'
 
 import { Link } from 'react-router-dom'
@@ -6,6 +6,7 @@ import { Breadcrumbs, Typography, useMediaQuery, useTheme, MenuItem, InputLabel,
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import NumberTextField from '../../components/NumberTextField'
+import { collectionsEnum } from '../../utils/collectionsEnum'
 
 
 const AddProduct = () => {
@@ -80,10 +81,9 @@ const AddProduct = () => {
                                     value={informations.collection}
                                     onChange={handleInformationsChange}
                                 >
-                                    <MenuItem value="">Selecione...</MenuItem>
-                                    <MenuItem value="opcao1">Opção 1</MenuItem>
-                                    <MenuItem value="opcao2">Opção 2</MenuItem>
-                                    <MenuItem value="opcao3">Opção 3</MenuItem>
+                                    {Object.values(collectionsEnum).map(element => (
+                                        <MenuItem value={element.id}>{element.name}</MenuItem>
+                                    ))}
                                 </Select>
                             </FormControl>
                         </div>
