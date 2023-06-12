@@ -45,7 +45,7 @@ const SingleProduct = () => {
         }
         let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
         if(cart.find(element=>element.id===product.id)!=undefined){
-            cart.find(element=>element.id===product.id).quantity++;
+            cart.find(element=>element.id===product.id).quantity+=parseInt(product.quantity);
         }
         else
         cart.push(product);
