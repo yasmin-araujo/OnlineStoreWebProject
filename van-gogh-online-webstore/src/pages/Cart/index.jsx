@@ -69,7 +69,7 @@ export default function Cart() {
                         handleProductDeletion={handleProductDeletion} handleProductAmount={handleProductAmount} />)}
                     {isEmpty ? <Typography variant='mainSubtitle'>Your cart is empty</Typography> : undefined}
                 </div>
-                <PaymentInformations shipping={shipping} subtotalPrice={subtotalPrice} handleCompleteOrder={handleCompleteOrder}/>
+                <PaymentInformations cartProducts={products} shipping={shipping} subtotalPrice={subtotalPrice} handleCompleteOrder={handleCompleteOrder}/>
             </div>
         </>
     );

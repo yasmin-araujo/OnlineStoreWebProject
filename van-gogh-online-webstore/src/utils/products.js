@@ -14,7 +14,7 @@ export const products = [{
     img: 'mug-vincents-flowers.jpg'
 }, {
     id: 3,
-    name: 'Product',
+    name: 'Product2',
     price: 88.00,
     qtd: 50,
     collection: 0,

@@ -5,27 +5,41 @@ import { TextField, Typography } from '@mui/material';
 
 import './style.css';
 import { isNumber } from '../../utils/isNumber';
+import { products } from '../../utils/products';
 
-export default function PaymentInformations({ shipping, subtotalPrice, handleCompleteOrder }) {
+export default function PaymentInformations({ shipping, subtotalPrice, handleCompleteOrder, cartProducts }) {
+	let productsOutStock = [];
+	let haveStock = true;
+	const setHaveStock = () => {
+		haveStock = true; productsOutStock = [];
+		for (let i = 0; i < cartProducts.length; i++) {
+			const element = cartProducts[i];
+			const x = products.find((y) => y.id === element.id)
+			if (x.qtd < element.quantity) {
+				haveStock = false;
+				productsOutStock.push(element.name);
+			}
+		}
+	}
 
 	const navigate = useNavigate();
 	const loggedIn = localStorage.getItem('session') ? true : false;
-	
-    const [cards, setCards] = useState([
-        'https://purepng.com/public/uploads/large/purepng.com-mastercard-logologobrand-logoiconslogos-251519938372dnf77.png',
-        'https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png',
-        'https://logodownload.org/wp-content/uploads/2017/04/elo-logo-1-1.png',
-        'https://selectra.net.br/sites/selectra.net.br/files/styles/article_hero/public/images/paypal-825.png?itok=Kglm1b9o'
-    ])
 
-	const [paymentInformations, setPaymentInfomations] = useState({ name: '', cardNumber: '', expireDate: '', cvv: ''})
+	const [cards, setCards] = useState([
+		'https://purepng.com/public/uploads/large/purepng.com-mastercard-logologobrand-logoiconslogos-251519938372dnf77.png',
+		'https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png',
+		'https://logodownload.org/wp-content/uploads/2017/04/elo-logo-1-1.png',
+		'https://selectra.net.br/sites/selectra.net.br/files/styles/article_hero/public/images/paypal-825.png?itok=Kglm1b9o'
+	])
 
-    const handleInputChange = (e) => {
-        setPaymentInfomations(paymentInformations => ({
-            ...paymentInformations,
-            [e.target.name]: e.target.value
-        }))
-    }
+	const [paymentInformations, setPaymentInfomations] = useState({ name: '', cardNumber: '', expireDate: '', cvv: '' })
+
+	const handleInputChange = (e) => {
+		setPaymentInfomations(paymentInformations => ({
+			...paymentInformations,
+			[e.target.name]: e.target.value
+		}))
+	}
 
 	const handleNumberChange = (e) => {
 		if (!isNumber(e)) {
@@ -46,13 +60,23 @@ export default function PaymentInformations({ shipping, subtotalPrice, handleCom
 	}
 
 	const handleSubmit = (e) => {
-		if(!loggedIn){
+		if (!loggedIn) {
 			alert('Sign in to complete your purchase')
 			e.preventDefault();
 			return false;
 		}
-		if(subtotalPrice == 0){
+		if (subtotalPrice == 0) {
 			alert('Your cart is empty')
+			e.preventDefault();
+			return false;
+		}
+		setHaveStock();
+		if (!haveStock) {
+			let frase = ""
+			productsOutStock.map(y => {
+				frase += y + " :We don't have this amount in stock\n"
+			})
+			alert(frase)
 			e.preventDefault();
 			return false;
 		}
@@ -92,7 +116,7 @@ export default function PaymentInformations({ shipping, subtotalPrice, handleCom
 					<Typography variant='paymentInformationText'>Total (tax Incl)</Typography>
 					<Typography variant='paymentInformationText'>${subtotalPrice + shipping.price}</Typography>
 				</div>
-				<Button isSubmitForm={true} styles={{ backgroundColor: '#D7A324', marginTop: '10px'}} name={'COMPLETE YOUR PURCHASE'} ></Button>
+				<Button isSubmitForm={true} styles={{ backgroundColor: '#D7A324', marginTop: '10px' }} name={'COMPLETE YOUR PURCHASE'} ></Button>
 			</div>
 		</form>
 	);
