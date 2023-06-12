@@ -22,6 +22,17 @@ export default function PaymentInformations({ shipping, subtotalPrice, handleCom
 		}
 	}
 
+	const changeProductStock = () => {
+		cartProducts.map(y =>{
+			for(let i=0;i<products.length;i++){
+				if(y.id===products[i].id){
+					products[i].qtd-=y.quantity;
+					break;
+				}
+			}
+		})
+	}
+
 	const navigate = useNavigate();
 	const loggedIn = localStorage.getItem('session') ? true : false;
 
@@ -81,6 +92,7 @@ export default function PaymentInformations({ shipping, subtotalPrice, handleCom
 			return false;
 		}
 		localStorage.removeItem('cart');
+		changeProductStock();
 		handleCompleteOrder();
 		e.preventDefault();
 		navigate('/thanks');
