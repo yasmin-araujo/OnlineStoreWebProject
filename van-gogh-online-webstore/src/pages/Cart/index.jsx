@@ -13,12 +13,12 @@ export default function Cart() {
 	const loggedIn = localStorage.getItem('session') ? true : false;
 	let getSession, getProfile, adress, price;
 
-	if (loggedIn) {
+	if(loggedIn){
 		getSession = JSON.parse(localStorage.getItem('session'));
 		getProfile = JSON.parse(localStorage.getItem(getSession));
 		adress = getProfile.adress;
 		price = 0;
-	} else {
+	}else{
 		adress = "Log in to set your adress"
 		price = 0
 	}
@@ -31,7 +31,7 @@ export default function Cart() {
 	});
 
 	const handleProductAmount = (id, quantity) => {
-		let newProducts = products.map(product => product.id === id ? { ...product, quantity: quantity } : product)
+		let newProducts = products.map(product => product.id === id ? { ...product, quantity: quantity} : product)
 		localStorage.setItem('cart', JSON.stringify(newProducts))
 		setProducts(newProducts)
 	};
@@ -59,18 +59,18 @@ export default function Cart() {
 		[products]
 	);
 
-	return (
-		<>
-			<Navbar bgColor='white' />
-			<div className='cart'>
-				<div className='cart-content'>
-					<Typography variant='yellowTitle'>Cart</Typography>
-					{products.map((product, index) => <CartProduct key={'cart-item-' + index} product={product}
-						handleProductDeletion={handleProductDeletion} handleProductAmount={handleProductAmount} />)}
-					{isEmpty ? <Typography variant='mainSubtitle'>Your cart is empty</Typography> : undefined}
-				</div>
-				<PaymentInformations cartProducts={products} shipping={shipping} subtotalPrice={subtotalPrice} handleCompleteOrder={handleCompleteOrder} />
-			</div>
-		</>
-	);
+    return (
+        <>
+            <Navbar bgColor='white' />
+            <div className='cart'>
+                <div className='cart-content'>
+                    <Typography variant='yellowTitle'>Cart</Typography>
+                    {products.map((product, index) => <CartProduct key={'cart-item-' + index} product={product}
+                        handleProductDeletion={handleProductDeletion} handleProductAmount={handleProductAmount} />)}
+                    {isEmpty ? <Typography variant='mainSubtitle'>Your cart is empty</Typography> : undefined}
+                </div>
+                <PaymentInformations cartProducts={products} shipping={shipping} subtotalPrice={subtotalPrice} handleCompleteOrder={handleCompleteOrder}/>
+            </div>
+        </>
+    );
 }

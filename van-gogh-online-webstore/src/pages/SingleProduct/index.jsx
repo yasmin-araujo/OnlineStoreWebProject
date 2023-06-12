@@ -21,7 +21,7 @@ const SingleProduct = () => {
     const handleQuantityChange = (value) => {
         setproduct(product => ({
             ...product,
-            quantity: parseInt(value)
+            quantity: value
         }))
     }
 
@@ -36,25 +36,20 @@ const SingleProduct = () => {
 
     }
 
-    const changeProductStock = () => {
-        products.find(element => element.id === product.id).qtd -= product.quantity;
-    }
-
     const handleSubmit = (e) => {
         setHaveStock();
-        if (!haveStock) {
+        if(!haveStock){
             alert("We don't have this amount in stock")
             e.preventDefault();
             return false;
         }
         let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-        if (cart.find(element => element.id === product.id) != undefined) {
-            cart.find(element => element.id === product.id).quantity += product.quantity;
+        if(cart.find(element=>element.id===product.id)!=undefined){
+            cart.find(element=>element.id===product.id).quantity+=parseInt(product.quantity);
         }
         else
-            cart.push(product);
+        cart.push(product);
         localStorage.setItem('cart', JSON.stringify(cart));
-        changeProductStock();
         e.preventDefault();
         navigate('/products');
     }
