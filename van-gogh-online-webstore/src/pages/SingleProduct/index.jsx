@@ -2,7 +2,6 @@ import { React, useState } from 'react'
 import './style.css'
 import { Breadcrumbs, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { Link } from 'react-router-dom'
-import imagem from "./img/asd.png"
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import NumberTextField from '../../components/NumberTextField'
@@ -11,9 +10,7 @@ import NumberTextField from '../../components/NumberTextField'
 const SingleProduct = () => {
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
 
-    const [informations, setInformations] = useState({ name: "Mug Vincent's flowers", price: "$ 9.00", quantity: 0 })
-
-
+    const [informations, setInformations] = useState({ name: "Mug Vincent's flowers", price: "$ 9.00", quantity: 1, available: 50 })
 
     const handleButtonClick = (e) => {
         console.log(informations)
@@ -25,9 +22,6 @@ const SingleProduct = () => {
             quantity: value
         }))
     }
-
-
-
 
     return <>
 
@@ -46,10 +40,11 @@ const SingleProduct = () => {
         </div>
 
         <div id='singleproductpage'>
-            <img id='image-singleproduct' alt={informations.name} src={imagem} />
+            <img id='image-singleproduct' alt={informations.name} src={require('../../images/products/mug-vincents-flowers.jpg')} />
             <div id='singleproductinformations'>
-                <Typography variant='productYellowName'>{informations.name}</Typography><br />
+                <Typography variant='productYellowName'>{informations.name}</Typography>
                 <Typography variant='editProductText'>{informations.price}</Typography>
+                <Typography variant='editProductText'>In stock: {informations.available}</Typography>
                 <div id='quantity-singleproduct'>
                     <Typography variant='editProductText'>Quantity: </Typography>
                     <div id='quantityinput-singleproduct'>
