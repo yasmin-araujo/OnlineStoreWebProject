@@ -50,4 +50,7 @@ There is no Test Results.
 No problems were found during the development of the project.
 
 ## Comments
-There are no additional comments.
+To access the admin panel, use the following credentials:
+
+Email: admin@admin
+Password: admin
