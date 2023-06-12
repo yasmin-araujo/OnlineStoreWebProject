@@ -3,7 +3,6 @@ import './style.css'
 
 import { Link } from 'react-router-dom'
 import { Breadcrumbs, Typography, useMediaQuery, useTheme, MenuItem, InputLabel, FormControl, Select, TextField } from '@mui/material'
-import imagem from "./img/add.png"
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import NumberTextField from '../../components/NumberTextField'
@@ -27,8 +26,6 @@ const AddProduct = () => {
     }
 
 
-
-
     return <>
 
         <Navbar bgColor='#FFF' />
@@ -44,7 +41,7 @@ const AddProduct = () => {
             </Breadcrumbs>
         </div>
         <div id='addproductpage'>
-            <img id='image-addproduct' alt='Imagem do Produto' src={imagem} />
+            <img id='image-addproduct' alt='Imagem do Produto' src={require('../../images/products/add-product.png')} />
             <div id='productinformations-addproduct'>
                 <Typography variant='productYellowName'>Add Product</Typography>
                 <div id='productinfo-addproduct'>

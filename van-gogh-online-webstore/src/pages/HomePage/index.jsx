@@ -33,7 +33,7 @@ export default function HomePage() {
                     <div className="fs-box-margin bottom"></div>
                     <div className="fs-box-margin"></div>
                 </div>
-                <img src="https://i.ibb.co/CWsTwy1/vaso.png" alt='Sunflowers painting' />
+                <img src={require('../../images/paintings/sunflowers.png')} alt='Sunflowers painting' />
             </div>
         </div>
 
@@ -47,7 +47,7 @@ export default function HomePage() {
         <div className="explore-section first">
             <div className="explore-image-box">
                 <div className="explore-image-margin left"></div>
-                <img src="https://i.ibb.co/X5s4vTw/avore.png" alt='Arrow' />
+                <img src={require('../../images/paintings/almond-blossom.png')} alt='Arrow' />
             </div>
             <div>
                 <Typography variant='mainText'>Almond trees flowers early in the spring making them a symbol of newlife. <br />Check out
@@ -62,7 +62,7 @@ export default function HomePage() {
         <div className="explore-section row-reverse">
             <div className="explore-image-box">
                 <div className="explore-image-margin right"></div>
-                <img src="https://i.ibb.co/Ry9bNv6/original.png" alt='Arrow' />
+                <img src={require('../../images/paintings/starry-night.png')} alt='Arrow' />
             </div>
             <div>
                 <div>
