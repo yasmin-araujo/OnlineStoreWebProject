@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material';
+import { light } from '@mui/material/styles/createPalette';
 
 export const theme = createTheme({
     typography: {
@@ -79,6 +80,20 @@ export const theme = createTheme({
         mediumText: {
             fontSize: '20px',
             lineHeight: '46px',
+        },
+        cardDetails: {
+            fontSize: '24px',
+            fontWeight: 'bold',
+            paddingBottom: '25px'
+        },
+        addressCart: {
+            fontSize: '14px',
+            color: 'gray'
+        },
+        paymentInformationText: {
+            fontSize: '15px',
+            lineHeight: '35px',
+            fontWeight: '400'
         },
         textBold: {
             fontSize: '16px',

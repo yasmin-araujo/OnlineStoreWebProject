@@ -1,4 +1,4 @@
-.profile-menu{
+.profile-menu {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,7 +7,7 @@
     min-width: 210px;
 }
 
-#profile-icon{
+#profile-icon {
     width: 210px;
     height: 225px;
     border-radius: 50%;

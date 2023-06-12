@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import Button from '../Button'
-import { TextField, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import './style.css';
 
 export default function ProfileInformations({ setShowGallery }) {
-    const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
     const [profileInformations, setProfileInformation] = useState([
         {
             field: "Name",

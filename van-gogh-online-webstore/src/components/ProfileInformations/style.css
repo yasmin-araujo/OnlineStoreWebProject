@@ -1,16 +1,16 @@
-.informations{
+.informations {
     max-width: 600px;
     min-width: 322px;
     width: 100%;
 }
 
-.information-fields{
+.information-fields {
     margin-top: 40px;
     display: flex;
     flex-direction: column;
 }
 
-.buttons{
+.buttons {
     display: flex;
     flex-direction: row;
     gap: 40%;

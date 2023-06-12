@@ -1,0 +1,43 @@
+.payment-informations {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    margin-top: 25px;
+}
+
+.card-row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.card-image {
+    height: 30px;
+    width: 55px;
+    object-fit: contain;
+    border: 2px solid #ada4a4;
+    border-radius: 10%;
+    padding: 5px;
+}
+
+.address {
+    border-bottom: 1px solid #DADADA;
+    padding-bottom: 15px;
+}
+
+.price {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.payment-informations>button {
+    margin-top: 15px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .payment-informations {
+        max-width: 1000px;
+    }
+}

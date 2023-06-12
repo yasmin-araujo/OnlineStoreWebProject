@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
 import ProductsPage from './pages/ProductsPage';
+import Cart from './pages/Cart';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 import Thanks from './pages/Thanks';
@@ -26,6 +27,7 @@ root.render(
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<HomePage />} />
+					<Route path="/cart" element={<Cart />} />
 					<Route path="/products" element={<ProductsPage />} />
 					<Route path="/profile" element={<ProfilePage />} />
 					<Route path="/signup" element={<SignUp />} />

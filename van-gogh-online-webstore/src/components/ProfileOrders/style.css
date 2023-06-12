@@ -1,10 +1,9 @@
-.order-section{
+.order-section {
     display: flex;
     flex-direction: column;
     gap: 50px;
 }
 
-.orders{
-    max-height: 600px;
+.orders {
     min-width: 52vw;
 }
