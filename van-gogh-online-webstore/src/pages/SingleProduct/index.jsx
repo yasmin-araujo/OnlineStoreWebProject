@@ -16,7 +16,7 @@ const SingleProduct = () => {
     const navigate = useNavigate();
 
     let getProduct = products.filter(product => product.id == params.productId)
-    const [product, setproduct] = useState({id: getProduct[0].id, name: getProduct[0].name, price: getProduct[0].price, quantity: 1, collection: getProduct[0].collection, img: getProduct[0].img, stock: getProduct[0].qtd})
+    const [product, setproduct] = useState({ id: getProduct[0].id, name: getProduct[0].name, price: getProduct[0].price, quantity: 1, collection: getProduct[0].collection, img: getProduct[0].img, stock: getProduct[0].qtd })
 
     const handleQuantityChange = (value) => {
         setproduct(product => ({
@@ -25,7 +25,24 @@ const SingleProduct = () => {
         }))
     }
 
+    let haveStock = true;
+    const setHaveStock = () => {
+        haveStock = true;
+        const element = product;
+        const x = products.find((y) => y.id === element.id)
+        if (x.qtd < element.quantity) {
+            haveStock = false;
+        }
+
+    }
+
     const handleSubmit = (e) => {
+        setHaveStock();
+        if(!haveStock){
+            alert("We don't have this amount in stock")
+            e.preventDefault();
+            return false;
+        }
         let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
         cart.push(product);
         localStorage.setItem('cart', JSON.stringify(cart));
@@ -59,7 +76,7 @@ const SingleProduct = () => {
                     <div id='quantity-singleproduct'>
                         <Typography variant='editProductText'>Quantity: </Typography>
                         <div id='quantityinput-singleproduct'>
-                            <NumberTextField value={product.quantity} setValue={handleQuantityChange} label="Qty." min={1} maxLenght={3} style={{width: '70px', marginLeft: '5px'}}/>
+                            <NumberTextField value={product.quantity} setValue={handleQuantityChange} label="Qty." min={1} maxLenght={3} style={{ width: '70px', marginLeft: '5px' }} />
                         </div>
                     </div>
                     <div id="button-singleproductpage">
