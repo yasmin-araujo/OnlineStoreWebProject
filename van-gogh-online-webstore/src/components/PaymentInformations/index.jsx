@@ -24,12 +24,7 @@ export default function PaymentInformations({ shipping, subtotalPrice, handleCom
 
 	const changeProductStock = () => {
 		cartProducts.map(y =>{
-			for(let i=0;i<products.length;i++){
-				if(y.id===products[i].id){
-					products[i].qtd-=y.quantity;
-					break;
-				}
-			}
+			products.find(element=>element.id===y.id).qtd-=y.quantity;
 		})
 	}
 

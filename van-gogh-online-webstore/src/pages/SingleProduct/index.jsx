@@ -44,6 +44,10 @@ const SingleProduct = () => {
             return false;
         }
         let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+        if(cart.find(element=>element.id===product.id)!=undefined){
+            cart.find(element=>element.id===product.id).quantity++;
+        }
+        else
         cart.push(product);
         localStorage.setItem('cart', JSON.stringify(cart));
         e.preventDefault();
