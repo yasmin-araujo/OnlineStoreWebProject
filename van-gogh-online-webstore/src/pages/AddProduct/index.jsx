@@ -8,7 +8,6 @@ import { collectionsEnum } from '../../utils/collectionsEnum';
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import NumberTextField from '../../components/NumberTextField'
-import { collectionsEnum } from '../../utils/collectionsEnum'
 
 
 const AddProduct = () => {
