@@ -35,7 +35,14 @@
 }
 
 #button-productpage-editproduct {
-    width: 100%
+    display: flex;
+    width: 100%;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+#button-productpage-editproduct>button {
+    width: 170px;
 }
 
 .links-editproduct {

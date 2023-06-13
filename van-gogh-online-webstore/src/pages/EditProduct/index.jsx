@@ -1,5 +1,5 @@
 import { React, useState, useRef, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Breadcrumbs, Typography, useMediaQuery, useTheme, MenuItem, InputLabel, FormControl, Select, TextField } from '@mui/material'
 import { collectionsEnum } from '../../utils/collectionsEnum';
 import Navbar from '../../components/Navbar'
@@ -13,6 +13,7 @@ const EditProduct = () => {
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
     const { productId } = useParams();
     const [informations, setInformations] = useState(products.find((p) => p.id == productId))
+    const navigate = useNavigate();
 
     useEffect(() => {
         document.body.style.backgroundColor = 'white';
@@ -27,6 +28,15 @@ const EditProduct = () => {
 
     const handleButtonClick = (e) => {
         console.log(informations);
+        e.preventDefault();
+        navigate('/products');
+    }
+
+    const handleDeleteButtonClick = (e) => {
+        if(window.confirm('Do you really want to delete this product?')) {
+            e.preventDefault();
+            navigate('/products');
+        }
     }
 
     const [modoEdicao, setModoEdicao] = useState(false);
@@ -145,7 +155,8 @@ const EditProduct = () => {
                     </div>
                 </div>
                 <div id="button-productpage-editproduct">
-                    <Button onClick={handleButtonClick} styles={{ height: '30px', backgroundColor: '#D7A324', fontSize: '13px' }}>SAVE</Button>
+                    <Button onClick={handleDeleteButtonClick} styles={{ height: '30px', backgroundColor: '#C4C4C4' }}>Delete Item</Button>
+                    <Button onClick={handleButtonClick} styles={{ height: '30px', backgroundColor: '#D7A324' }}>Save Changes</Button>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from 'react'
 import './style.css'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Breadcrumbs, Typography, useMediaQuery, useTheme, MenuItem, InputLabel, FormControl, Select, TextField } from '@mui/material'
 import { collectionsEnum } from '../../utils/collectionsEnum';
 
@@ -15,6 +15,7 @@ const AddProduct = () => {
         document.body.style.backgroundColor = 'white';
     }, []);
 
+    const navigate = useNavigate();
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
     const [informations, setInformations] = useState({ name: '', price: '', quantity: '', collection: '', img: '' })
 
@@ -26,7 +27,9 @@ const AddProduct = () => {
     }
 
     const handleButtonClick = (e) => {
-        console.log(informations)
+        console.log(informations);
+        e.preventDefault();
+        navigate('/products');
     }
 
     const [img, setImg] = useState(require('../../images/products/add-product.png'));
@@ -104,7 +107,7 @@ const AddProduct = () => {
                     </div>
                 </div>
                 <div id="button-productpage-addproduct">
-                    <Button onClick={handleButtonClick} styles={{ height: '30px', backgroundColor: '#D7A324', fontSize: '13px' }}>SAVE</Button>
+                    <Button onClick={handleButtonClick} styles={{ height: '30px', backgroundColor: '#D7A324'}}>Create Product</Button>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 .products {
     background-color: white;
-    height: 100vh;
-    padding: 135px 160px 180px;
+    height: fit-content;
+    padding: 135px 160px 160px;
 }
 
 .products-components {
