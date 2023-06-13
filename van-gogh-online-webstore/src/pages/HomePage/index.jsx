@@ -3,8 +3,11 @@ import { useState } from 'react';
 import './style.css';
 import Navbar from '../../components/Navbar';
 import { Typography } from '@mui/material';
+import { collectionsEnum } from '../../utils/collectionsEnum';
+import { useNavigate } from 'react-router';
 
 export default function HomePage() {
+    const navigate = useNavigate();
     const [bgColor, setBgColor] = useState('#D6A324');
     const [fontColor, setFontColor] = useState('black');
     const changeNavbarColor = () => {
@@ -18,6 +21,11 @@ export default function HomePage() {
         }
     };
     window.addEventListener('scroll', changeNavbarColor);
+
+    const handleArrow = (e, collection) => {
+        e.preventDefault();
+        navigate('/products?collection=' + collection);
+    }
 
     return (<div className='main-home'>
         <Navbar bgColor={bgColor} fontColor={fontColor} />
@@ -39,7 +47,7 @@ export default function HomePage() {
 
         <div className="explore-title">
             <Typography variant='mainSectionTitle'>Explore the products</Typography>
-            <button className='arrow-button'>
+            <button className='arrow-button' onClick={(e) => handleArrow(e, collectionsEnum.SUNFLOWERS.id)}>
                 <img src="https://i.ibb.co/yXmgB62/Arrow-1.png" alt='Arrow' />
             </button>
         </div>
@@ -52,7 +60,7 @@ export default function HomePage() {
             <div>
                 <Typography variant='mainText'>Almond trees flowers early in the spring making them a symbol of newlife. <br />Check out
                     all the items inspired by this famous paiting.
-                    <button className='arrow-button'>
+                    <button className='arrow-button' onClick={(e) => handleArrow(e, collectionsEnum.ALMOND_BLOSSOM.id)}>
                         <img src="https://i.ibb.co/yXmgB62/Arrow-1.png" alt='Arrow' />
                     </button>
                 </Typography>
@@ -69,7 +77,7 @@ export default function HomePage() {
                     <Typography variant='mainText'>Instantly recognizable and aniconic image in our culture, Vicent van Gogh's The
                         Starry Night is a touchstone of modern art and onebof the most beloved works.
                         <br />Check out all the inspired items.
-                        <button className='arrow-button'>
+                        <button className='arrow-button' onClick={(e) => handleArrow(e, collectionsEnum.STARRY_NIGHT.id)}>
                             <img src="https://i.ibb.co/yXmgB62/Arrow-1.png" alt='Arrow' />
                         </button>
                     </Typography>

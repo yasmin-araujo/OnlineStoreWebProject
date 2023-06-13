@@ -23,8 +23,8 @@ export default function PaymentInformations({ shipping, subtotalPrice, handleCom
 	}
 
 	const changeProductStock = () => {
-		cartProducts.map(y =>{
-			products.find(element=>element.id===y.id).qtd-=y.quantity;
+		cartProducts.map(y => {
+			products.find(element => element.id === y.id).qtd -= y.quantity;
 		})
 		localStorage.setItem('products', JSON.stringify(products))
 	}

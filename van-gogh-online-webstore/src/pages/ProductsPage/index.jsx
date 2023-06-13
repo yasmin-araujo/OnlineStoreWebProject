@@ -1,6 +1,7 @@
-import { useState,useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Typography } from '@mui/material';
+import { useSearchParams } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar';
 import Button from '../../components/Button';
@@ -13,14 +14,21 @@ export default function ProductsPage() {
         document.body.style.backgroundColor = '#FFF'
     }, [])
     const navigate = useNavigate();
-    const isAdmin = false;
+    const isAdmin = localStorage.getItem('isAdmin');
+    const [searchParams, _] = useSearchParams();
+
+    useEffect(() => {
+        document.body.style.backgroundColor = 'white';
+    }, []);
 
     const handleNavigation = (e) => {
         e.preventDefault();
         navigate('/addproduct');
     }
 
-    const [filter, setFilter] = useState({ price: { min: '', max: '' }, collections: [], showUnavailable: false });
+    const collectionParam = parseInt(searchParams.get('collection'));
+    const collections = isNaN(collectionParam) ? [] : [collectionParam];
+    const [filter, setFilter] = useState({ price: { min: '', max: '' }, collections: collections, showUnavailable: false });
 
     return (
         <>

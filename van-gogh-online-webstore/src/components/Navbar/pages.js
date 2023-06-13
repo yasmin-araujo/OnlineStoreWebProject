@@ -37,6 +37,6 @@ export const pages_admin = [
 	},
 	{
 		label: 'Overview',
-		href: '/',
+		href: '/salesOverview',
 	}
 ];

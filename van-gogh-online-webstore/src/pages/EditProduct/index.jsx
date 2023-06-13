@@ -1,11 +1,12 @@
 import { React, useState, useRef, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Breadcrumbs, Typography, useMediaQuery, useTheme, MenuItem, InputLabel, FormControl, Select } from '@mui/material'
+import { Link, useParams } from 'react-router-dom'
+import { Breadcrumbs, Typography, useMediaQuery, useTheme, MenuItem, InputLabel, FormControl, Select, TextField } from '@mui/material'
+import { collectionsEnum } from '../../utils/collectionsEnum';
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import NumberTextField from '../../components/NumberTextField'
 import './style.css'
-import { collectionsEnum } from '../../utils/collectionsEnum'
+import { products } from '../../utils/products'
 
 const EditProduct = () => {
 
@@ -14,8 +15,12 @@ const EditProduct = () => {
     }, [])
 
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
+    const { productId } = useParams();
+    const [informations, setInformations] = useState(products.find((p) => p.id == productId))
 
-    const [informations, setInformations] = useState({ name: "Mug Vincent's flowers", price: "9.00", quantity: 0, collection: "" })
+    useEffect(() => {
+        document.body.style.backgroundColor = 'white';
+    }, []);
 
     const handleInformationsChange = (e) => {
         setInformations(informations => ({
@@ -66,6 +71,15 @@ const EditProduct = () => {
         }
     }
 
+    const [img, setImg] = useState(require('../../images/products/add-product.png'));
+    useEffect(() => {
+        try {
+            setImg(require('../../images/products/' + informations.img));
+        } catch {
+            setImg(require('../../images/products/add-product.png'))
+        }
+    }, [informations.img])
+
 
     return <>
 
@@ -82,7 +96,7 @@ const EditProduct = () => {
             </Breadcrumbs>
         </div>
         <div id='editproductpage'>
-            <img id='image-editproduct' alt={informations.name} src={require('../../images/products/mug-vincents-flowers.jpg')} />
+            <img id='image-editproduct' alt={informations.name} src={img} />
             <div id='productinformations-editproduct'>
                 <div className='editproductname'>
                     {modoEdicao
@@ -104,7 +118,7 @@ const EditProduct = () => {
                     <div className='price-editproduct'>
                         <div><Typography variant='editProductText'>Quantity in stock: </Typography></div>
                         <div className='price-field-editproduct'>
-                            <NumberTextField style={{ width: '160px' }} value={informations.quantity} onChange={handleInformationsChange} name='quantity' label="Quantity" maxLenght={3} />
+                            <NumberTextField style={{ width: '160px' }} value={informations.qtd} onChange={handleInformationsChange} name='quantity' label="Quantity" maxLenght={3} />
                         </div>
                     </div>
                     <div className='price-editproduct'>
@@ -120,11 +134,17 @@ const EditProduct = () => {
                                     value={informations.collection}
                                     onChange={handleInformationsChange}
                                 >
-                                    {Object.values(collectionsEnum).map(element => (
-                                        <MenuItem value={element.id}>{element.name}</MenuItem>
-                                    ))}
+                                    {Object.values(collectionsEnum).map((elemento, index) => {
+                                        return <MenuItem key={'collection-selector-edit-' + index} value={elemento.id}>{elemento.name}</MenuItem>
+                                    })}
                                 </Select>
                             </FormControl>
+                        </div>
+                    </div>
+                    <div className='price-editproduct'>
+                        <div><Typography variant='editProductText'>Image name:</Typography></div>
+                        <div className='price-field-addproduct'>
+                            <TextField size='small' style={{ width: '160px' }} onChange={handleInformationsChange} value={informations.img} name='img' label="Image name" />
                         </div>
                     </div>
                 </div>

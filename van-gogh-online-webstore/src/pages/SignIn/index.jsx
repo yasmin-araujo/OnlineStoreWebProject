@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import { TextField } from '@mui/material';
 import { useNavigate } from 'react-router';
+import { admins } from '../../utils/admins';
 
 const SignIn = () => {
 
@@ -19,21 +20,37 @@ const SignIn = () => {
         setSignIn(signIn => ({
             ...signIn,
             [e.target.type]: e.target.value
-        }))
+        }));
+    };
+
+    const isAdmin = () => {
+        const match = admins.find((admin) => admin.email === signIn.email);
+        if (match === null || match.password !== signIn.password)
+            return false;
+        return true;
     }
 
     const handleSubmit = (e) => {
-        let checkProfile = localStorage.getItem(signIn.email)
-        if(checkProfile === null){
+        let checkProfile = localStorage.getItem(signIn.email);
+        if (checkProfile === null) {
+            if (isAdmin) {
+                localStorage.setItem('isAdmin', JSON.stringify(true))
+                localStorage.setItem('session', JSON.stringify(signIn.email))
+                e.preventDefault();
+                navigate('/');
+                return;
+            }
             alert('Incorrect email or password')
             e.preventDefault();
-            return false
+            return false;
         }
+
         checkProfile = JSON.parse(checkProfile);
-        if(checkProfile.password !== signIn.password){
-            alert('Incorrect email or password')
+
+        if (checkProfile.password !== signIn.password) {
+            alert('Incorrect email or password');
             e.preventDefault();
-            return false
+            return false;
         }
 
         localStorage.setItem('session', JSON.stringify(signIn.email))
@@ -43,7 +60,7 @@ const SignIn = () => {
 
 
     return <>
-        <Navbar />
+        <Navbar fontColor='white' />
 
         <div>
             <div className='meio-signin'>
@@ -57,7 +74,7 @@ const SignIn = () => {
                         <TextField required variant='outlined' margin='normal' onChange={handleInputChange} label="Password" type="password" />
                     </div><br />
 
-                    <Button isSubmitForm={true} styles={{ backgroundColor: '#44627C' }} name={'SIGN IN'}/>
+                    <Button isSubmitForm={true} styles={{ backgroundColor: '#44627C' }} name={'SIGN IN'} />
                 </form>
             </div>
         </div>

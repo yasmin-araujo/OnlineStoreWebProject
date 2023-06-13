@@ -1,4 +1,4 @@
-import { React, useState,useEffect } from 'react'
+import { React, useEffect, useState } from 'react'
 import { useParams } from 'react-router';
 import './style.css'
 import { Breadcrumbs, Typography, useMediaQuery, useTheme } from '@mui/material'
@@ -12,10 +12,10 @@ import { useNavigate } from 'react-router';
 const SingleProduct = () => {
 
     let products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
-    
+
     useEffect(() => {
-        document.body.style.backgroundColor = '#FFF'
-    }, [])
+        document.body.style.backgroundColor = 'white';
+    }, []);
 
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
     let params = useParams()
@@ -34,7 +34,7 @@ const SingleProduct = () => {
     let haveStock = true;
     const setHaveStock = () => {
         let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-        let cartQtd= cart.find(element=>element.id===product.id)!==undefined ?  cart.find(element=>element.id===product.id).quantity : 0;
+        let cartQtd = cart.find(element => element.id === product.id) !== undefined ? cart.find(element => element.id === product.id).quantity : 0;
         haveStock = true;
         const element = product;
         const x = products.find((y) => y.id === element.id)
@@ -46,17 +46,17 @@ const SingleProduct = () => {
 
     const handleSubmit = (e) => {
         setHaveStock();
-        if(!haveStock){
+        if (!haveStock) {
             alert("Your cart will exceed the stock limit")
             e.preventDefault();
             return false;
         }
         let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-        if(cart.find(element=>element.id===product.id)!==undefined){
-            cart.find(element=>element.id===product.id).quantity+=product.quantity;
+        if (cart.find(element => element.id === product.id) !== undefined) {
+            cart.find(element => element.id === product.id).quantity += product.quantity;
         }
         else
-        cart.push(product);
+            cart.push(product);
         localStorage.setItem('cart', JSON.stringify(cart));
         e.preventDefault();
         navigate('/products');
@@ -80,7 +80,7 @@ const SingleProduct = () => {
 
         <form onSubmit={handleSubmit}>
             <div id='singleproductpage'>
-                <img id='image-singleproduct' src={require('../../pages/ProductsPage/products-images/' + product.img)} alt={product.name + ' picture'} />
+                <img id='image-singleproduct' src={require('../../images/products/' + product.img)} alt={product.name + ' picture'} />
                 <div id='singleproductinformations'>
                     <Typography variant='productYellowName'>{product.name}</Typography><br />
                     <Typography variant='editProductText'>${product.price}.00</Typography>

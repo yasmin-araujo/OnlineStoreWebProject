@@ -9,13 +9,12 @@
 }
 
 #productinfo-editproduct {
-    height: 150px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
     margin-top: 20px;
     min-width: 400px;
+    gap: 10px;
 }
 
 .price-editproduct {
@@ -29,8 +28,8 @@
 }
 
 #image-editproduct {
-    max-height: 400px;
-    max-width: 340px;
+    height: 420px;
+    width: 445px;
     border: 2px #F3F3F3 solid;
     object-fit: contain;  
 }

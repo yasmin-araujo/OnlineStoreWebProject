@@ -27,8 +27,8 @@ let id = undefined;
 
 if (!localStorage.getItem('products')) {
 	localStorage.setItem('products', JSON.stringify(products));
-  }
-  
+}
+
 
 root.render(
 	<StrictMode>
@@ -44,7 +44,7 @@ root.render(
 					<Route path="/thanks" element={<Thanks />} />
 					<Route path="/salesoverview" element={<SalesOverview />} />
 					<Route path={"/product/:productId"} element={<SingleProduct />} />
-					<Route path="/editproduct" element={<EditProduct />} />
+					<Route path="/editproduct/:productId" element={<EditProduct />} />
 					<Route path="/addproduct" element={<AddProduct />} />
 				</Routes>
 			</BrowserRouter>

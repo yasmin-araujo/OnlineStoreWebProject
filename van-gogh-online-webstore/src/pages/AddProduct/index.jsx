@@ -1,8 +1,10 @@
-import { React, useState, useEffect } from 'react'
+import { React, useEffect, useState } from 'react'
 import './style.css'
 
 import { Link } from 'react-router-dom'
 import { Breadcrumbs, Typography, useMediaQuery, useTheme, MenuItem, InputLabel, FormControl, Select, TextField } from '@mui/material'
+import { collectionsEnum } from '../../utils/collectionsEnum';
+
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import NumberTextField from '../../components/NumberTextField'
@@ -10,14 +12,16 @@ import { collectionsEnum } from '../../utils/collectionsEnum'
 
 
 const AddProduct = () => {
+    useEffect(() => {
+        document.body.style.backgroundColor = 'white';
+    }, []);
 
     useEffect(() => {
         document.body.style.backgroundColor = '#FFF'
     }, [])
 
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
-
-    const [informations, setInformations] = useState({ name: "", price: "", quantity: '', collection: '' })
+    const [informations, setInformations] = useState({ name: '', price: '', quantity: '', collection: '', img: '' })
 
     const handleInformationsChange = (e) => {
         setInformations(informations => ({
@@ -30,9 +34,17 @@ const AddProduct = () => {
         console.log(informations)
     }
 
+    const [img, setImg] = useState(require('../../images/products/add-product.png'));
+    useEffect(() => {
+        try {
+            setImg(require('../../images/products/' + informations.img));
+        } catch {
+            setImg(require('../../images/products/add-product.png'))
+        }
+    }, [informations.img])
+
 
     return <>
-
         <Navbar bgColor='#FFF' />
         <div className='links-addproduct'>
             <Breadcrumbs color='#D7A324' aria-label="breadcrumb">
@@ -46,7 +58,7 @@ const AddProduct = () => {
             </Breadcrumbs>
         </div>
         <div id='addproductpage'>
-            <img id='image-addproduct' alt='Imagem do Produto' src={require('../../images/products/add-product.png')} />
+            <img id='image-addproduct' alt='Imagem do Produto' src={img} />
             <div id='productinformations-addproduct'>
                 <Typography variant='productYellowName'>Add Product</Typography>
                 <div id='productinfo-addproduct'>
@@ -81,11 +93,18 @@ const AddProduct = () => {
                                     value={informations.collection}
                                     onChange={handleInformationsChange}
                                 >
-                                    {Object.values(collectionsEnum).map(element => (
-                                        <MenuItem value={element.id}>{element.name}</MenuItem>
-                                    ))}
+                                    {Object.values(collectionsEnum).map((elemento, index) => {
+                                        return <MenuItem key={'collection-selector-add-' + index} value={elemento.id}>{elemento.name}</MenuItem>
+                                    })}
+
                                 </Select>
                             </FormControl>
+                        </div>
+                    </div>
+                    <div className='price-addproduct'>
+                        <div><Typography variant='editProductText'>Image name:</Typography></div>
+                        <div className='price-field-addproduct'>
+                            <TextField size='small' style={{ width: '160px' }} onChange={handleInformationsChange} value={informations.img} name='img' label="Image name" />
                         </div>
                     </div>
                 </div>

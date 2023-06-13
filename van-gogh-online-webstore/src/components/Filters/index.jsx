@@ -6,7 +6,7 @@ import { collectionsEnum } from '../../utils/collectionsEnum';
 import './style.css';
 
 export default function Filters({ filter, setFilter }) {
-    const isAdmin = true;
+    const isAdmin = localStorage.getItem('isAdmin');;
 
     const checkboxStyle = {
         color: '#D6A324',
