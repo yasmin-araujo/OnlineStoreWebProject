@@ -1,6 +1,6 @@
 import { React, useState, useRef, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { Breadcrumbs, Typography, useMediaQuery, useTheme, MenuItem, InputLabel, FormControl, Select } from '@mui/material'
+import { Breadcrumbs, Typography, useMediaQuery, useTheme, MenuItem, InputLabel, FormControl, Select, TextField } from '@mui/material'
 import { collectionsEnum } from '../../utils/collectionsEnum';
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
@@ -67,6 +67,15 @@ const EditProduct = () => {
         }
     }
 
+    const [img, setImg] = useState(require('../../images/products/add-product.png'));
+    useEffect(() => {
+        try {
+            setImg(require('../../images/products/' + informations.img));
+        } catch {
+            setImg(require('../../images/products/add-product.png'))
+        }
+    }, [informations.img])
+
 
     return <>
 
@@ -83,7 +92,7 @@ const EditProduct = () => {
             </Breadcrumbs>
         </div>
         <div id='editproductpage'>
-            <img id='image-editproduct' alt={informations.name} src={require('../../images/products/mug-vincents-flowers.jpg')} />
+            <img id='image-editproduct' alt={informations.name} src={img} />
             <div id='productinformations-editproduct'>
                 <div className='editproductname'>
                     {modoEdicao
@@ -121,11 +130,17 @@ const EditProduct = () => {
                                     value={informations.collection}
                                     onChange={handleInformationsChange}
                                 >
-                                    {Object.values(collectionsEnum).map((elemento) => {
-                                        return <MenuItem value={elemento.id}>{elemento.name}</MenuItem>
+                                    {Object.values(collectionsEnum).map((elemento, index) => {
+                                        return <MenuItem key={'collection-selector-edit-' + index} value={elemento.id}>{elemento.name}</MenuItem>
                                     })}
                                 </Select>
                             </FormControl>
+                        </div>
+                    </div>
+                    <div className='price-editproduct'>
+                        <div><Typography variant='editProductText'>Image name:</Typography></div>
+                        <div className='price-field-addproduct'>
+                            <TextField size='small' style={{ width: '160px' }} onChange={handleInformationsChange} value={informations.img} name='img' label="Image name" />
                         </div>
                     </div>
                 </div>

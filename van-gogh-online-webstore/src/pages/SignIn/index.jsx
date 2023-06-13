@@ -60,7 +60,7 @@ const SignIn = () => {
 
 
     return <>
-        <Navbar />
+        <Navbar fontColor='white' />
 
         <div>
             <div className='meio-signin'>
