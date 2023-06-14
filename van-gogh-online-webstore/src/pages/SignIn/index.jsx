@@ -36,6 +36,7 @@ const SignIn = () => {
             if (isAdmin) {
                 localStorage.setItem('isAdmin', JSON.stringify(true))
                 localStorage.setItem('session', JSON.stringify(signIn.email))
+                localStorage.setItem(signIn.email, JSON.stringify(admins.find((admin) => admin.email === signIn.email)))
                 e.preventDefault();
                 navigate('/');
                 return;

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Box, Tab, Tabs, Typography } from '@mui/material';
-import imagem from './profile-icons/vicent-self-portrait.jpg'
 import './style.css';
 
 
 export default function ProfileMenu({ handleProfileChange, profilePages = ['Informations', 'Orders', 'Logout'] }) {
-	let name = 'Van Gogh';
+	const getSession = JSON.parse(localStorage.getItem('session'));
+	const getProfile = JSON.parse(localStorage.getItem(getSession));
+
 	const [menuIndex, setMenuIndex] = useState(0);
 	const handleTabChange = (e, tabIndex) => {
 		setMenuIndex(tabIndex);
@@ -14,8 +15,8 @@ export default function ProfileMenu({ handleProfileChange, profilePages = ['Info
 
 	return (
 		<div className='profile-menu'>
-			<img id='profile-icon' src={require('../../images/paintings/vangogh-portrait.png')} alt='Profile Icon' />
-			<Typography variant='profileName'>{name}</Typography>
+			<img id='profile-icon' src={require('../../images/paintings/' + getProfile.profilePic)} alt='Profile Icon' />
+			<Typography variant='profileName'>{getProfile.name}</Typography>
 			<Tabs
 				value={menuIndex}
 				orientation="vertical"

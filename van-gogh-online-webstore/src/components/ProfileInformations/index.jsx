@@ -28,7 +28,7 @@ export default function ProfileInformations({ setShowGallery }) {
     }
 
     const handleSubmit = (e) => {
-        localStorage.setItem(profileInformations.email, JSON.stringify({...profileInformations, password: getProfile.password, confirmpass: getProfile.confirmpass}))
+        localStorage.setItem(profileInformations.email, JSON.stringify({...profileInformations, password: getProfile.password, confirmpass: getProfile.confirmpass, orders: getProfile.orders, profilePic: getProfile.profilePic}))
 		localStorage.setItem('session', JSON.stringify(profileInformations.email))
     }
 
@@ -37,7 +37,7 @@ export default function ProfileInformations({ setShowGallery }) {
 			<Typography variant='profileSectionTitle'>Informations</Typography>
 			<form onSubmit={handleSubmit}>
 				<div className='information-fields'>
-					<TextField onChange={handleInputChange} className='TextField' name='name' label='Name' variant='outlined' margin='normal' defaultValue={profileInformations.name} />
+					<TextField onChange={handleInputChange} className='TextField' name='name' label='Name' variant='outlined' margin='normal' defaultValue={profileInformations.name} inputProps={{ maxLength: 30 }}/>
 					<TextField onChange={handleInputChange} className='TextField' name='email' label='Email' variant='outlined' margin='normal' defaultValue={profileInformations.email} type='email' />
 					<TextField onChange={handleInputChange} className='TextField' name='adress' label='Adress' variant='outlined' margin='normal' defaultValue={profileInformations.adress} />
 					<TextField onKeyDown={handleNumberChange} onChange={handleInputChange} className='TextField' name='telephone' label='Telephone' variant='outlined' margin='normal' defaultValue={profileInformations.telephone} type='tel' inputProps={{ maxLength: 14 }} />

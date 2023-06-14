@@ -50,10 +50,9 @@ export default function Cart() {
 	};
 
 	const handleCompleteOrder = () => {
-		let newOrder = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : []
-		console.log(newOrder)
-		newOrder = newOrder.concat(products)
-		localStorage.setItem('order', JSON.stringify(newOrder))
+		let randId = Math.floor(Math.random() * 10000)
+		products.map(product => {getProfile.orders.push({...product, orderId: randId})})
+		localStorage.setItem(getSession, JSON.stringify(getProfile))
 	}
 
 	useEffect(
