@@ -13,9 +13,8 @@ import NumberTextField from '../../components/NumberTextField'
 const AddProduct = () => {
 
     const navigate = useNavigate();
-
-
     let products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
+    console.log(products);
 
     useEffect(() => {
         document.body.style.backgroundColor = 'white';
@@ -31,18 +30,13 @@ const AddProduct = () => {
         }))
     }
 
-    const handleButtonClick = (e) => {
-        console.log(informations);
-        e.preventDefault();
-    }
-
     const handleSubmit = (e) => {
         e.preventDefault();
         if (img === require('../../images/products/add-product.png')) {
             alert('Essa imagem não é válida')
             return false
         }
-        let lastId = products[products.length - 1].id
+        let lastId = products.length > 0 ? products[products.length - 1].id : 0;
         let newProduct = {
             id: lastId + 1,
             name: informations.name,
@@ -50,7 +44,7 @@ const AddProduct = () => {
             qtd: informations.qtd,
             collection: informations.collection,
             img: informations.img
-        }
+        };
         products.push(newProduct);
         localStorage.setItem('products', JSON.stringify(products));
         navigate('/products');

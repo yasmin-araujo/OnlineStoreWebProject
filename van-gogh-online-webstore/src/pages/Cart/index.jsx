@@ -35,13 +35,13 @@ export default function Cart() {
 	});
 
 	const handleProductAmount = (id, quantity) => {
-		let newProducts = products.map(product => product.id === id ? { ...product, quantity: quantity } : product)
+		const newProducts = products.map(product => product.id === id ? { ...product, quantity: quantity } : product)
 		localStorage.setItem('cart', JSON.stringify(newProducts))
 		setProducts(newProducts)
 	};
 
 	const handleProductDeletion = (id) => {
-		let newProducts = products.filter(product => product.id !== id)
+		const newProducts = products.filter(product => product.id !== id)
 		if (newProducts.length === 0) {
 			setIsEmpty(true)
 		}

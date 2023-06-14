@@ -10,17 +10,13 @@ import './style.css'
 const EditProduct = () => {
 
     let products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
+    console.log(products);
 
     useEffect(() => {
         document.body.style.backgroundColor = '#FFF'
     }, [])
 
     const navigate = useNavigate();
-
-    let handleNavigation = (e) => {
-        e.preventDefault();
-        navigate('/products');
-    }
 
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
     const { productId } = useParams();
@@ -37,14 +33,10 @@ const EditProduct = () => {
         }))
     }
 
-    const handleButtonClick = (e) => {
-        console.log(informations);
-        e.preventDefault();
-        navigate('/products');
-    }
-
     const handleDeleteButtonClick = (e) => {
         if (window.confirm('Do you really want to delete this product?')) {
+            const filteredProducts = products.filter(product => product.id != productId);
+            localStorage.setItem('products', JSON.stringify(filteredProducts));
             e.preventDefault();
             navigate('/products');
         }
@@ -62,7 +54,8 @@ const EditProduct = () => {
         products.find(element => element.id == productId).collection = informations.collection
         products.find(element => element.id == productId).img = informations.img
         localStorage.setItem('products', JSON.stringify(products))
-        handleNavigation(e);
+        e.preventDefault();
+        navigate('/products');
     }
 
     const [modoEdicao, setModoEdicao] = useState(false);
