@@ -5,16 +5,16 @@ import { profilePictures } from './profilePictures';
 import './style.css';
 
 export default function ProfilePictureGallery({ setShowGallery }) {
-    const [selected, setSelected] = useState(0);
     const getSession = JSON.parse(localStorage.getItem('session'));
 	const getProfile = JSON.parse(localStorage.getItem(getSession));
-
+    const [selected, setSelected] = useState(getProfile.profilePic);
+    
     const handleImgClick = (e) => {
         setSelected(parseInt(e.target.name));
     };
 
     const handleImgChange = () => {
-        let updatedProfile = {...getProfile, profilePic: profilePictures[selected].href}
+        let updatedProfile = {...getProfile, profilePic: profilePictures[selected].id}
         localStorage.setItem(getSession, JSON.stringify(updatedProfile))
         setShowGallery(false)
     }
