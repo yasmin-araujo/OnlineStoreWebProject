@@ -182,10 +182,9 @@ const EditProduct = () => {
                         </div>
                     </div>
                     <div id="button-productpage-editproduct">
-                        <Button isSubmitForm={true} styles={{ backgroundColor: '#D7A324', marginTop: '10px' }} name={'Save'} ></Button>
                         <Button onClick={handleDeleteButtonClick} styles={{ height: '30px', backgroundColor: '#C4C4C4' }}>Delete Item</Button>
+                        <Button isSubmitForm={true} styles={{ height: '30px', backgroundColor: '#D7A324' }} name={'Save'} ></Button>
                     </div>
-                    {/* //     <Button onClick={handleButtonClick} styles={{ height: '30px', backgroundColor: '#D7A324' }}>Save Changes</Button> */}
                 </div >
             </div >
         </form >

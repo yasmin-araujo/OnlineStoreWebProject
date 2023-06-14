@@ -42,7 +42,7 @@
 }
 
 #button-productpage-editproduct>button {
-    width: 170px;
+    width: 170px !important;
 }
 
 .links-editproduct {
