@@ -11,13 +11,18 @@ import NumberTextField from '../../components/NumberTextField'
 
 
 const AddProduct = () => {
+
+    const navigate = useNavigate();
+
+
+    let products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
+
     useEffect(() => {
         document.body.style.backgroundColor = 'white';
     }, []);
 
-    const navigate = useNavigate();
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
-    const [informations, setInformations] = useState({ name: '', price: '', quantity: '', collection: '', img: '' })
+    const [informations, setInformations] = useState({ name: undefined, price: 0, qtd: 0, collection: undefined, img: undefined })
 
     const handleInformationsChange = (e) => {
         setInformations(informations => ({
@@ -29,6 +34,25 @@ const AddProduct = () => {
     const handleButtonClick = (e) => {
         console.log(informations);
         e.preventDefault();
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (img === require('../../images/products/add-product.png')) {
+            alert('Essa imagem não é válida')
+            return false
+        }
+        let lastId = products[products.length - 1].id
+        let newProduct = {
+            id: lastId + 1,
+            name: informations.name,
+            price: informations.price,
+            qtd: informations.qtd,
+            collection: informations.collection,
+            img: informations.img
+        }
+        products.push(newProduct);
+        localStorage.setItem('products', JSON.stringify(products));
         navigate('/products');
     }
 
@@ -55,62 +79,65 @@ const AddProduct = () => {
                 {isMobile ? ('') : (<Typography color="#D7A324">Add Product</Typography>)}
             </Breadcrumbs>
         </div>
-        <div id='addproductpage'>
-            <img id='image-addproduct' alt='Imagem do Produto' src={img} />
-            <div id='productinformations-addproduct'>
-                <Typography variant='productYellowName'>Add Product</Typography>
-                <div id='productinfo-addproduct'>
-                    <div className='price-addproduct'>
-                        <div><Typography variant='editProductText'>Name:</Typography></div>
-                        <div className='price-field-addproduct'>
-                            <TextField autoComplete='off' size='small' style={{ width: '160px' }} onChange={handleInformationsChange} value={informations.name} name='name' label="Name" />
+        <form onSubmit={handleSubmit}>
+            <div id='addproductpage'>
+                <img id='image-addproduct' alt='Imagem do Produto' src={img} />
+                <div id='productinformations-addproduct'>
+                    <Typography variant='productYellowName'>Add Product</Typography>
+                    <div id='productinfo-addproduct'>
+                        <div className='price-addproduct'>
+                            <div><Typography variant='editProductText'>Name:</Typography></div>
+                            <div className='price-field-addproduct'>
+                                <TextField required autoComplete='off' size='small' style={{ width: '160px' }} onChange={handleInformationsChange} value={informations.name} name='name' label="Name" />
+                            </div>
                         </div>
-                    </div>
-                    <div className='price-addproduct'>
-                        <div><Typography variant='editProductText'>Price($):</Typography></div>
-                        <div className='price-field-addproduct'>
-                            <NumberTextField style={{ width: '160px' }} onChange={handleInformationsChange} value={informations.price} name='price' label="Price" />
+                        <div className='price-addproduct'>
+                            <div><Typography variant='editProductText'>Price($):</Typography></div>
+                            <div className='price-field-addproduct'>
+                                <NumberTextField style={{ width: '160px' }} onChange={handleInformationsChange} value={informations.price} name='price' label="Price" />
+                            </div>
                         </div>
-                    </div>
-                    <div className='price-addproduct'>
-                        <div><Typography variant='editProductText'>Quantity in stock: </Typography></div>
-                        <div className='price-field-addproduct'>
-                            <NumberTextField style={{ width: '160px' }} value={informations.quantity} onChange={handleInformationsChange} name='quantity' label="Quantity" maxLenght={3} />
+                        <div className='price-addproduct'>
+                            <div><Typography variant='editProductText'>Quantity in stock: </Typography></div>
+                            <div className='price-field-addproduct'>
+                                <NumberTextField style={{ width: '160px' }} value={parseInt(informations.qtd)} onChange={handleInformationsChange} name='qtd' label="Quantity" maxLenght={3} />
+                            </div>
                         </div>
-                    </div>
-                    <div className='price-addproduct'>
-                        <div><Typography variant='editProductText'>Collection: </Typography></div>
-                        <div className='price-field-addproduct'>
-                            <FormControl sx={{ width: '160px' }} size='small'>
-                                <InputLabel id="collection-selector-label">Selecione uma opção</InputLabel>
-                                <Select
-                                    labelId='collection-selector-label'
-                                    id="collection-selector"
-                                    name='collection'
-                                    label="Selecione uma opção"
-                                    value={informations.collection}
-                                    onChange={handleInformationsChange}
-                                >
-                                    {Object.values(collectionsEnum).map((elemento, index) => {
-                                        return <MenuItem key={'collection-selector-add-' + index} value={elemento.id}>{elemento.name}</MenuItem>
-                                    })}
+                        <div className='price-addproduct'>
+                            <div><Typography variant='editProductText'>Collection: </Typography></div>
+                            <div className='price-field-addproduct'>
+                                <FormControl sx={{ width: '160px' }} size='small'>
+                                    <InputLabel id="collection-selector-label">Selecione uma opção</InputLabel>
+                                    <Select
+                                        required
+                                        labelId='collection-selector-label'
+                                        id="collection-selector"
+                                        name='collection'
+                                        label="Selecione uma opção"
+                                        value={informations.collection}
+                                        onChange={handleInformationsChange}
+                                    >
+                                        {Object.values(collectionsEnum).map((elemento, index) => {
+                                            return <MenuItem key={'collection-selector-add-' + index} value={elemento.id}>{elemento.name}</MenuItem>
+                                        })}
 
-                                </Select>
-                            </FormControl>
+                                    </Select>
+                                </FormControl>
+                            </div>
+                        </div>
+                        <div className='price-addproduct'>
+                            <div><Typography variant='editProductText'>Image name:</Typography></div>
+                            <div className='price-field-addproduct'>
+                                <TextField required size='small' style={{ width: '160px' }} onChange={handleInformationsChange} value={informations.img} name='img' label="Image name" />
+                            </div>
                         </div>
                     </div>
-                    <div className='price-addproduct'>
-                        <div><Typography variant='editProductText'>Image name:</Typography></div>
-                        <div className='price-field-addproduct'>
-                            <TextField size='small' style={{ width: '160px' }} onChange={handleInformationsChange} value={informations.img} name='img' label="Image name" />
-                        </div>
+                    <div id="button-productpage-addproduct">
+                        <Button isSubmitForm={true} styles={{ height: '30px', backgroundColor: '#D7A324', marginTop: '10px' }} name={'Save'} ></Button>
                     </div>
                 </div>
-                <div id="button-productpage-addproduct">
-                    <Button onClick={handleButtonClick} styles={{ height: '30px', backgroundColor: '#D7A324'}}>Create Product</Button>
-                </div>
-            </div>
-        </div>
+            </div >
+        </form >
 
     </>
 

@@ -7,22 +7,22 @@ import CartProduct from '../../components/CartProduct';
 
 
 export default function Cart() {
-    useEffect(() => {
-        document.body.style.backgroundColor = 'white';
-    }, []);
-    
+	useEffect(() => {
+		document.body.style.backgroundColor = 'white';
+	}, []);
+
 	let getProducts = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
 	const [products, setProducts] = useState(getProducts);
 
 	const loggedIn = localStorage.getItem('session') ? true : false;
 	let getSession, getProfile, adress, price;
 
-	if(loggedIn){
+	if (loggedIn) {
 		getSession = JSON.parse(localStorage.getItem('session'));
 		getProfile = JSON.parse(localStorage.getItem(getSession));
 		adress = getProfile.adress;
 		price = 0;
-	}else{
+	} else {
 		adress = "Log in to set your adress"
 		price = 0
 	}
@@ -35,7 +35,7 @@ export default function Cart() {
 	});
 
 	const handleProductAmount = (id, quantity) => {
-		let newProducts = products.map(product => product.id === id ? { ...product, quantity: quantity} : product)
+		let newProducts = products.map(product => product.id === id ? { ...product, quantity: quantity } : product)
 		localStorage.setItem('cart', JSON.stringify(newProducts))
 		setProducts(newProducts)
 	};
@@ -50,10 +50,9 @@ export default function Cart() {
 	};
 
 	const handleCompleteOrder = () => {
-		let newOrder = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : []
-		console.log(newOrder)
-		newOrder = newOrder.concat(products)
-		localStorage.setItem('order', JSON.stringify(newOrder))
+		let randId = Math.floor(Math.random() * 10000)
+		products.map(product => {getProfile.orders.push({...product, orderId: randId})})
+		localStorage.setItem(getSession, JSON.stringify(getProfile))
 	}
 
 	useEffect(
@@ -63,18 +62,18 @@ export default function Cart() {
 		[products]
 	);
 
-    return (
-        <>
-            <Navbar bgColor='white' />
-            <div className='cart'>
-                <div className='cart-content'>
-                    <Typography variant='yellowTitle'>Cart</Typography>
-                    {products.map((product, index) => <CartProduct key={'cart-item-' + index} product={product}
-                        handleProductDeletion={handleProductDeletion} handleProductAmount={handleProductAmount} />)}
-                    {isEmpty ? <Typography variant='mainSubtitle'>Your cart is empty</Typography> : undefined}
-                </div>
-                <PaymentInformations shipping={shipping} subtotalPrice={subtotalPrice} handleCompleteOrder={handleCompleteOrder}/>
-            </div>
-        </>
-    );
+	return (
+		<>
+			<Navbar bgColor='white' />
+			<div className='cart'>
+				<div className='cart-content'>
+					<Typography variant='yellowTitle'>Cart</Typography>
+					{products.map((product, index) => <CartProduct key={'cart-item-' + index} product={product}
+						handleProductDeletion={handleProductDeletion} handleProductAmount={handleProductAmount} />)}
+					{isEmpty ? <Typography variant='mainSubtitle'>Your cart is empty</Typography> : undefined}
+				</div>
+				<PaymentInformations cartProducts={products} shipping={shipping} subtotalPrice={subtotalPrice} handleCompleteOrder={handleCompleteOrder} />
+			</div>
+		</>
+	);
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 
 import './style.css';
 
@@ -9,6 +9,9 @@ import ProfileLogout from '../../components/ProfileLogout';
 
 
 export default function SalesOverview() {
+    useEffect(() => {
+        document.body.style.backgroundColor = '#FFF'
+    }, [])
     const pages = [<TabelaSales />, <ProfileLogout />]
     const [profilePage, setProfilePage] = useState(pages[0])
     const handleProfileChange = (index) => {

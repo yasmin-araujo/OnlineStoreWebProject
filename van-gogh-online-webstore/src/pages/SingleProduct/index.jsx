@@ -6,11 +6,13 @@ import { Link } from 'react-router-dom'
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import NumberTextField from '../../components/NumberTextField'
-import { products } from "../../utils/products";
 import { useNavigate } from 'react-router';
 
 
 const SingleProduct = () => {
+
+    let products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
+
     useEffect(() => {
         document.body.style.backgroundColor = 'white';
     }, []);
@@ -25,13 +27,36 @@ const SingleProduct = () => {
     const handleQuantityChange = (value) => {
         setproduct(product => ({
             ...product,
-            quantity: value
+            quantity: parseInt(value)
         }))
     }
 
-    const handleSubmit = (e) => {
+    let haveStock = true;
+    const setHaveStock = () => {
         let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-        cart.push(product);
+        let cartQtd = cart.find(element => element.id === product.id) !== undefined ? cart.find(element => element.id === product.id).quantity : 0;
+        haveStock = true;
+        const element = product;
+        const x = products.find((y) => y.id === element.id)
+        if (x.qtd < element.quantity + cartQtd) {
+            haveStock = false;
+        }
+
+    }
+
+    const handleSubmit = (e) => {
+        setHaveStock();
+        if (!haveStock) {
+            alert("Your cart will exceed the stock limit")
+            e.preventDefault();
+            return false;
+        }
+        let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+        if (cart.find(element => element.id === product.id) !== undefined) {
+            cart.find(element => element.id === product.id).quantity += product.quantity;
+        }
+        else
+            cart.push(product);
         localStorage.setItem('cart', JSON.stringify(cart));
         e.preventDefault();
         navigate('/products');
@@ -63,7 +88,7 @@ const SingleProduct = () => {
                     <div id='quantity-singleproduct'>
                         <Typography variant='editProductText'>Quantity: </Typography>
                         <div id='quantityinput-singleproduct'>
-                            <NumberTextField value={product.quantity} setValue={handleQuantityChange} label="Qty." min={1} maxLenght={3} style={{ width: '70px', marginLeft: '5px' }} />
+                            <NumberTextField value={parseInt(product.quantity)} setValue={handleQuantityChange} label="Qty." min={1} maxLenght={3} style={{ width: '70px', marginLeft: '5px' }} />
                         </div>
                     </div>
                     <div id="button-singleproductpage">

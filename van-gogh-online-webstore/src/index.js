@@ -15,12 +15,19 @@ import SingleProduct from './pages/SingleProduct';
 import EditProduct from './pages/EditProduct';
 import AddProduct from './pages/AddProduct';
 
+import { products } from './utils/products';
+
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+let id = undefined;
+
+if (!localStorage.getItem('products')) {
+	localStorage.setItem('products', JSON.stringify(products));
+}
 
 root.render(
 	<StrictMode>
@@ -36,7 +43,7 @@ root.render(
 					<Route path="/thanks" element={<Thanks />} />
 					<Route path="/salesoverview" element={<SalesOverview />} />
 					<Route path={"/product/:productId"} element={<SingleProduct />} />
-					<Route path="/editproduct/:productId" element={<EditProduct />} />
+					<Route path={"/editproduct/:productId"} element={<EditProduct />} />
 					<Route path="/addproduct" element={<AddProduct />} />
 				</Routes>
 			</BrowserRouter>
