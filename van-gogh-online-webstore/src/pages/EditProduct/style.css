@@ -41,8 +41,8 @@
     justify-content: space-between;
 }
 
-#button-productpage-editproduct>button {
-    width: 170px !important;
+#button-productpage-editproduct>.edit-button {
+    width: 170px;
 }
 
 .links-editproduct {
