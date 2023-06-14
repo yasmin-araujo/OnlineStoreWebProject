@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import './style.css';
-import { products } from "../../utils/products";
 import Product from "../Product";
 
 export default function ProductsGrid({ filter }) {
+    let products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
     const [productsList, setProductsList] = useState(products);
 
     useEffect(() => {

@@ -10,6 +10,9 @@ import ProductsGrid from '../../components/ProductsGrid';
 import './style.css';
 
 export default function ProductsPage() {
+    useEffect(() => {
+        document.body.style.backgroundColor = '#FFF'
+    }, [])
     const navigate = useNavigate();
     const isAdmin = localStorage.getItem('isAdmin');
     const [searchParams, _] = useSearchParams();
@@ -26,7 +29,7 @@ export default function ProductsPage() {
     const collectionParam = parseInt(searchParams.get('collection'));
     const collections = isNaN(collectionParam) ? [] : [collectionParam];
     const [filter, setFilter] = useState({ price: { min: '', max: '' }, collections: collections, showUnavailable: false });
-    
+
     return (
         <>
             <Navbar bgColor='white' />

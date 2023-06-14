@@ -1,14 +1,27 @@
 import { React, useState, useRef, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router';
 import { Breadcrumbs, Typography, useMediaQuery, useTheme, MenuItem, InputLabel, FormControl, Select, TextField } from '@mui/material'
 import { collectionsEnum } from '../../utils/collectionsEnum';
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import NumberTextField from '../../components/NumberTextField'
 import './style.css'
-import { products } from '../../utils/products'
 
 const EditProduct = () => {
+
+    let products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
+
+    useEffect(() => {
+        document.body.style.backgroundColor = '#FFF'
+    }, [])
+
+    const navigate = useNavigate();
+
+    let handleNavigation = (e) => {
+        e.preventDefault();
+        navigate('/products');
+    }
 
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
     const { productId } = useParams();
@@ -25,8 +38,19 @@ const EditProduct = () => {
         }))
     }
 
-    const handleButtonClick = (e) => {
-        console.log(informations);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (img === require('../../images/products/add-product.png')) {
+            alert('Essa imagem não é válida')
+            return false
+        }
+        products.find(element => element.id == productId).name = informations.name
+        products.find(element => element.id == productId).price = informations.price
+        products.find(element => element.id == productId).qtd = informations.qtd
+        products.find(element => element.id == productId).collection = informations.collection
+        products.find(element => element.id == productId).img = informations.img
+        localStorage.setItem('products', JSON.stringify(products))
+        handleNavigation(e);
     }
 
     const [modoEdicao, setModoEdicao] = useState(false);
@@ -91,64 +115,66 @@ const EditProduct = () => {
                 {isMobile ? ('') : (<Typography color="#D7A324">{informations.name}</Typography>)}
             </Breadcrumbs>
         </div>
-        <div id='editproductpage'>
-            <img id='image-editproduct' alt={informations.name} src={img} />
-            <div id='productinformations-editproduct'>
-                <div className='editproductname'>
-                    {modoEdicao
-                        ? (<div className='yellowname-editproducts'>
-                            <input ref={inputRef} type='text' value={informations.name} name='name'
-                                onChange={handleInformationsChange} onKeyDown={handleEnterKey} /> </div>)
-                        : (<div className='yellowname-editproducts'>
-                            <Typography variant='productYellowName'>{informations.name}</Typography>
-                        </div>)}
-                    <img id='addvector' alt='Editar Produto' src={require('../../images/icons/pencil.png')} onClick={handleVectorClick} />
-                </div>
-                <div id='productinfo-editproduct'>
-                    <div className='price-editproduct'>
-                        <div><Typography variant='editProductText'>Price($):</Typography></div>
-                        <div className='price-field-editproduct'>
-                            <NumberTextField style={{ width: '160px' }} value={informations.price} onChange={handleInformationsChange} name='price' label="Price" />
+        <form onSubmit={handleSubmit}>
+            <div id='editproductpage'>
+                <img id='image-editproduct' alt={informations.name} src={img} />
+                <div id='productinformations-editproduct'>
+                    <div className='editproductname'>
+                        {modoEdicao
+                            ? (<div className='yellowname-editproducts'>
+                                <input ref={inputRef} type='text' value={informations.name} name='name'
+                                    onChange={handleInformationsChange} onKeyDown={handleEnterKey} /> </div>)
+                            : (<div className='yellowname-editproducts'>
+                                <Typography variant='productYellowName'>{informations.name}</Typography>
+                            </div>)}
+                        <img id='addvector' alt='Editar Produto' src={require('../../images/icons/pencil.png')} onClick={handleVectorClick} />
+                    </div>
+                    <div id='productinfo-editproduct'>
+                        <div className='price-editproduct'>
+                            <div><Typography variant='editProductText'>Price($):</Typography></div>
+                            <div className='price-field-editproduct'>
+                                <NumberTextField style={{ width: '160px' }} value={informations.price} onChange={handleInformationsChange} name='price' label="Price" />
+                            </div>
+                        </div>
+                        <div className='price-editproduct'>
+                            <div><Typography variant='editProductText'>Quantity in stock: </Typography></div>
+                            <div className='price-field-editproduct'>
+                                <NumberTextField style={{ width: '160px' }} value={parseInt(informations.qtd)} onChange={handleInformationsChange} name='qtd' label="Quantity" maxLenght={3} />
+                            </div>
+                        </div>
+                        <div className='price-editproduct'>
+                            <div><Typography variant='editProductText'>Collection: </Typography></div>
+                            <div className='price-field-editproduct'>
+                                <FormControl sx={{ width: '160px' }} size='small'>
+                                    <InputLabel id="collection-selector-label">Selecione uma opção</InputLabel>
+                                    <Select
+                                        labelId='collection-selector-label'
+                                        id="collection-selector"
+                                        name='collection'
+                                        label="Selecione uma opção"
+                                        value={informations.collection}
+                                        onChange={handleInformationsChange}
+                                    >
+                                        {Object.values(collectionsEnum).map((elemento, index) => {
+                                            return <MenuItem key={'collection-selector-edit-' + index} value={elemento.id}>{elemento.name}</MenuItem>
+                                        })}
+                                    </Select>
+                                </FormControl>
+                            </div>
+                        </div>
+                        <div className='price-editproduct'>
+                            <div><Typography variant='editProductText'>Image name:</Typography></div>
+                            <div className='price-field-addproduct'>
+                                <TextField size='small' style={{ width: '160px' }} onChange={handleInformationsChange} value={informations.img} name='img' label="Image name" />
+                            </div>
                         </div>
                     </div>
-                    <div className='price-editproduct'>
-                        <div><Typography variant='editProductText'>Quantity in stock: </Typography></div>
-                        <div className='price-field-editproduct'>
-                            <NumberTextField style={{ width: '160px' }} value={informations.qtd} onChange={handleInformationsChange} name='quantity' label="Quantity" maxLenght={3} />
-                        </div>
+                    <div id="button-productpage-editproduct">
+                        <Button isSubmitForm={true} styles={{ backgroundColor: '#D7A324', marginTop: '10px' }} name={'Save'} ></Button>
                     </div>
-                    <div className='price-editproduct'>
-                        <div><Typography variant='editProductText'>Collection: </Typography></div>
-                        <div className='price-field-editproduct'>
-                            <FormControl sx={{ width: '160px' }} size='small'>
-                                <InputLabel id="collection-selector-label">Selecione uma opção</InputLabel>
-                                <Select
-                                    labelId='collection-selector-label'
-                                    id="collection-selector"
-                                    name='collection'
-                                    label="Selecione uma opção"
-                                    value={informations.collection}
-                                    onChange={handleInformationsChange}
-                                >
-                                    {Object.values(collectionsEnum).map((elemento, index) => {
-                                        return <MenuItem key={'collection-selector-edit-' + index} value={elemento.id}>{elemento.name}</MenuItem>
-                                    })}
-                                </Select>
-                            </FormControl>
-                        </div>
-                    </div>
-                    <div className='price-editproduct'>
-                        <div><Typography variant='editProductText'>Image name:</Typography></div>
-                        <div className='price-field-addproduct'>
-                            <TextField size='small' style={{ width: '160px' }} onChange={handleInformationsChange} value={informations.img} name='img' label="Image name" />
-                        </div>
-                    </div>
-                </div>
-                <div id="button-productpage-editproduct">
-                    <Button onClick={handleButtonClick} styles={{ height: '30px', backgroundColor: '#D7A324', fontSize: '13px' }}>SAVE</Button>
                 </div>
             </div>
-        </div>
+        </form>
 
     </>
 
