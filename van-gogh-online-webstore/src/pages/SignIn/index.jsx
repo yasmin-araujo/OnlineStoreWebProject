@@ -33,7 +33,7 @@ const SignIn = () => {
     const handleSubmit = (e) => {
         let checkProfile = localStorage.getItem(signIn.email);
         if (checkProfile === null) {
-            if (isAdmin) {
+            if (signIn.email === 'admin@admin' && signIn.password === 'admin')  {
                 localStorage.setItem('isAdmin', JSON.stringify(true))
                 localStorage.setItem('session', JSON.stringify(signIn.email))
                 localStorage.setItem(signIn.email, JSON.stringify(admins.find((admin) => admin.email === signIn.email)))
