@@ -21,7 +21,7 @@ const SingleProduct = () => {
     let params = useParams()
     const navigate = useNavigate();
 
-    let getProduct = products.filter(product => product.id === params.productId)
+    let getProduct = products.filter(product => product.id == params.productId)
     const [product, setproduct] = useState({ id: getProduct[0].id, name: getProduct[0].name, price: getProduct[0].price, quantity: 1, collection: getProduct[0].collection, img: getProduct[0].img, stock: getProduct[0].qtd })
 
     const handleQuantityChange = (value) => {
@@ -88,7 +88,7 @@ const SingleProduct = () => {
                     <div id='quantity-singleproduct'>
                         <Typography variant='editProductText'>Quantity: </Typography>
                         <div id='quantityinput-singleproduct'>
-                            <NumberTextField value={product.quantity} setValue={handleQuantityChange} label="Qty." min={1} maxLenght={3} style={{ width: '70px', marginLeft: '5px' }} />
+                            <NumberTextField value={parseInt(product.quantity)} setValue={handleQuantityChange} label="Qty." min={1} maxLenght={3} style={{ width: '70px', marginLeft: '5px' }} />
                         </div>
                     </div>
                     <div id="button-singleproductpage">

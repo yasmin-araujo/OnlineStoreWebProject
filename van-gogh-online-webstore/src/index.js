@@ -43,7 +43,7 @@ root.render(
 					<Route path="/thanks" element={<Thanks />} />
 					<Route path="/salesoverview" element={<SalesOverview />} />
 					<Route path={"/product/:productId"} element={<SingleProduct />} />
-					<Route path="/editproduct/:productId" element={<EditProduct />} />
+					<Route path={"/editproduct/:productId"} element={<EditProduct />} />
 					<Route path="/addproduct" element={<AddProduct />} />
 				</Routes>
 			</BrowserRouter>
