@@ -17,6 +17,7 @@
     flex-wrap: wrap;
     gap: 25px;
     overflow: scroll;
+    flex-shrink: 0;
 }
 
 .profile-pic {

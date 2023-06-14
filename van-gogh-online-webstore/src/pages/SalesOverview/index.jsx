@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './style.css';
 
@@ -21,8 +21,8 @@ export default function SalesOverview() {
     return (
         <>
             <Navbar bgColor='white' />
-            <div className='profile'>
-                <ProfileMenu profilePages={['Sales Overview','Logout']}  handleProfileChange={handleProfileChange} />
+            <div className='profile-so'>
+                <ProfileMenu profilePages={['Sales Overview', 'Logout']} handleProfileChange={handleProfileChange} />
                 {profilePage}
             </div>
         </>
