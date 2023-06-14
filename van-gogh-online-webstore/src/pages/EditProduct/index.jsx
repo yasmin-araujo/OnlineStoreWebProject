@@ -1,18 +1,27 @@
 import { React, useState, useRef, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router';
 import { Breadcrumbs, Typography, useMediaQuery, useTheme, MenuItem, InputLabel, FormControl, Select, TextField } from '@mui/material'
 import { collectionsEnum } from '../../utils/collectionsEnum';
 import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import NumberTextField from '../../components/NumberTextField'
 import './style.css'
-import { products } from '../../utils/products'
 
 const EditProduct = () => {
+
+    let products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
 
     useEffect(() => {
         document.body.style.backgroundColor = '#FFF'
     }, [])
+
+    const navigate = useNavigate();
+
+    let handleNavigation = (e) => {
+        e.preventDefault();
+        navigate('/products');
+    }
 
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
     const { productId } = useParams();
@@ -30,7 +39,13 @@ const EditProduct = () => {
     }
 
     const handleButtonClick = (e) => {
-        console.log(informations);
+        products.find(element => element.id == productId).name = informations.name
+        products.find(element => element.id == productId).price = informations.price
+        products.find(element => element.id == productId).qtd = informations.qtd
+        products.find(element => element.id == productId).collection = informations.collection
+        products.find(element => element.id == productId).img = informations.img
+        localStorage.setItem('products', JSON.stringify(products))
+        handleNavigation(e);
     }
 
     const [modoEdicao, setModoEdicao] = useState(false);
@@ -118,7 +133,7 @@ const EditProduct = () => {
                     <div className='price-editproduct'>
                         <div><Typography variant='editProductText'>Quantity in stock: </Typography></div>
                         <div className='price-field-editproduct'>
-                            <NumberTextField style={{ width: '160px' }} value={informations.qtd} onChange={handleInformationsChange} name='quantity' label="Quantity" maxLenght={3} />
+                            <NumberTextField style={{ width: '160px' }} value={informations.qtd} onChange={handleInformationsChange} name='qtd' label="Quantity" maxLenght={3} />
                         </div>
                     </div>
                     <div className='price-editproduct'>
