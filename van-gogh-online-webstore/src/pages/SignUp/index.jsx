@@ -6,8 +6,6 @@ import { TextField } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { isNumber } from '../../utils/isNumber';
 
-
-
 const SignUp = () => {
 
     const navigate = useNavigate();
@@ -16,7 +14,7 @@ const SignUp = () => {
         document.body.style.backgroundColor = '#A1C1AA'
     }, [])
 
-    const [signUp, setSignUp] = useState({ name: '', email: '', adress: '', telephone: '', password: '', confirmpass: '', orders: [], profilePic: 'vangogh-portrait.png'})
+    const [signUp, setSignUp] = useState({ name: '', email: '', adress: '', telephone: '', password: '', confirmpass: '', orders: [], profilePic: 0})
 
     const handleInputChange = (e) => {
         setSignUp(signUp => ({
