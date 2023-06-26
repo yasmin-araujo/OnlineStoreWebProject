@@ -110,5 +110,12 @@ export const theme = createTheme({
             fontSize: '18px',
             lineHeight: '40px',
         },
+        salesTitle: {
+            fontStyle: 'normal',
+            fontWeight: '500',
+            fontSize: '42px',
+            lineHeight: '50px',
+            color: '#D7A324'
+        }
     }
 });

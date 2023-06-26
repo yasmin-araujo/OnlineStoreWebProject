@@ -1,0 +1,47 @@
+.EditUsersPage {
+    min-width: 52vw;
+}
+
+.EditUsers-bloco {
+    background-color: #f3f3f3;
+    height: 300px;
+    overflow: auto;
+    min-width: 880px;
+}
+
+.EditUsers-header {
+    display: flex;
+    gap: 60px;
+    background-color: #f3f3f3;
+    margin-top: 100px;
+    padding-left: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 50px;
+    max-height: 65px;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    align-items: center;
+    min-width: 880px;
+}
+
+.EditUsers-usuario {
+    display: flex;
+    gap: 60px;
+    padding-left: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 50px;
+    box-sizing: border-box;
+
+}
+
+.EditUsers-info {
+    min-width: 100px;
+    max-width: 100px;
+}
+
+.EditUsers-button {
+    width: 50px;
+    margin-left: 40px;
+}
