@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
-import Navbar from '../Navbar'
 import Coluna from '../Coluna-salesoverview'
+import { Typography } from '@mui/material'
 
 const TabelaSales = () => {
 
@@ -10,7 +10,7 @@ const TabelaSales = () => {
     const avgTicket = ['$ 209.00', '$ 390.00', '$ 750.00', '$ 248.00', '$ 659.00', '$ 129.00'];
     const qtyProducts = ['100', '250', '100', '250', '250', '160'];
     const currentMonth = 7;
-    const currentYear= 23;
+    const currentYear = 23;
     const months = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     const months2 = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
 
@@ -35,43 +35,41 @@ const TabelaSales = () => {
 
 
     return <>
-        <Navbar bgColor='#FFF' />
 
-        <div className='container-sales'>
 
-            <div className='tabela-sales'>
-                <div className='titulo-sales'>Sales Overview</div>
-                <div className='past-six'>Past six mounths</div>
-                <div className='tabela'>
-                    <div className='line1'></div>
-                    <div className='categories'>
-                        <div className='element-categorie-null-ini'></div>
-                        <div className='element-categorie'>Total Income</div>
-                        <div className='element-categorie'>Amount of Sales</div>
-                        <div className='element-categorie'>Avg. Ticket</div>
-                        <div className='element-categorie'>Qty. Products</div>
+        <div className='tabela-sales'>
+            <Typography variant='salesTitle'>Sales Overview</Typography>
+            <div className='past-six'>Past six mounths</div>
+            <div className='tabela'>
+                <div className='line1'></div>
+                <div className='categories'>
+                    <div className='element-categorie-null-ini'></div>
+                    <div className='element-categorie'>Total Income</div>
+                    <div className='element-categorie'>Amount of Sales</div>
+                    <div className='element-categorie'>Avg. Ticket</div>
+                    <div className='element-categorie'>Qty. Products</div>
+                </div>
+                <div className='line2'></div>
+                <div className='colunas'>
+                    <div className='element-coluna'>
+                        {pastSix.map((valor) => (
+                            <div>{valor}</div>
+                        ))}
+
                     </div>
-                    <div className='line2'></div>
-                    <div className='colunas'>
-                        <div className='element-coluna'>
-                            {pastSix.map((valor) => (
-                                <div>{valor}</div>
-                            ))}
-
-                        </div>
-                        <div className='element-coluna2'>
-                            {pastSix2.map((valor) => (
-                                <div>{valor}</div>
-                            ))}
-                        </div>
-                        <Coluna valores={totalIncome} />
-                        <Coluna valores={amountSales} />
-                        <Coluna valores={avgTicket} />
-                        <Coluna valores={qtyProducts} />
+                    <div className='element-coluna2'>
+                        {pastSix2.map((valor) => (
+                            <div>{valor}</div>
+                        ))}
                     </div>
+                    <Coluna valores={totalIncome} />
+                    <Coluna valores={amountSales} />
+                    <Coluna valores={avgTicket} />
+                    <Coluna valores={qtyProducts} />
                 </div>
             </div>
         </div>
+
     </>
 
 
