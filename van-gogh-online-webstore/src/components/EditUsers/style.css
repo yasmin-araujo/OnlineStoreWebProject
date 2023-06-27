@@ -3,16 +3,13 @@
 }
 
 .EditUsers-bloco {
-    background-color: #f3f3f3;
     height: 300px;
-    overflow: auto;
     min-width: 880px;
 }
 
 .EditUsers-header {
     display: flex;
     gap: 60px;
-    background-color: #f3f3f3;
     margin-top: 100px;
     padding-left: 50px;
     padding-top: 20px;
@@ -42,6 +39,7 @@
 }
 
 .EditUsers-button {
-    width: 50px;
-    margin-left: 40px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
