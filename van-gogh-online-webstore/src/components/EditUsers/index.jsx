@@ -1,7 +1,8 @@
 import { React, useState } from 'react'
 import './style.css'
 import { Typography, TextField } from '@mui/material'
-
+import { PlusOutlined } from '@ant-design/icons'
+import User from '../User';
 
 const EditUsers = () => {
     const [users, setUsers] = useState([
@@ -120,20 +121,12 @@ const EditUsers = () => {
                 <div className='EditUsers-info'>Password</div>
                 <div className='EditUsers-info'>Type</div>
                 <TextField value={textFilter} onChange={handleTextChange} size='small' style={{ backgroundColor: 'white' }} label="Find Users" />
+                <PlusOutlined />
             </div>
             <div className='EditUsers-bloco'>
-                {filteredUsers.map(element => {
-
-                    return <div className='EditUsers-usuario'>
-                        <div className='EditUsers-info'>{element.name}</div>
-                        <div className='EditUsers-info'>{element.email}</div>
-                        <div className='EditUsers-info'>{element.password}</div>
-                        <div className='EditUsers-info'>{element.tipo}</div>
-                        <button name={element.name} onClick={handleButtonClick} className='EditUsers-button'>x</button>
-                    </div>
-
-
-                })}
+                {filteredUsers.map(element => (
+                    <User element={element} users={users} setUsers={setUsers} setFilteredUsers={setFilteredUsers} textFilter={textFilter} />
+                ))}
 
             </div>
 
