@@ -1,14 +1,22 @@
 .User-user {
     display: flex;
-    gap: 60px;
-    padding-left: 50px;
+    justify-content: space-between;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-right: 50px;
     box-sizing: border-box;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.13);
 }
 
 .User-info {
-    min-width: 100px;
-    max-width: 100px;
+    width: 150px;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.User-icons {
+    min-width: 200px;
+    max-width: 200px;
+    display: flex;
+    justify-content: space-around;
 }

@@ -1,0 +1,21 @@
+.EditUser-input {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    width: 700px;
+    margin: 120px auto;
+    margin-top: 200px;
+    border-radius: 50px;
+    border: none;
+    padding: 60px 110px;
+    box-sizing: border-box;
+}
+
+.EditUser-header {
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+.EditUser-button {
+    margin-top: 30px;
+}
