@@ -1,10 +1,9 @@
-const express = require('express');
-const mongoose = require('mongoose');
+import express from 'express';
+import mongoose from 'mongoose';
+import productRoutes from './controller/products.js'
+
+
 mongoose.connect('mongodb+srv://van-gogh:vangogh@clusterwebproject.xcx7ftr.mongodb.net/');
-
-const Product = mongoose.model('Product') 
-
-const productRoutes = require('./controller/products')
 
 const app = express();
 app.use('/products', productRoutes)
@@ -19,6 +18,6 @@ app.use((req, res, next) => {
 
 app.use('/products', productRoutes)
 
-app.listen(3001, () => {
+app.listen(5000, () => {
     console.log('Server is listening on port 3001');
 });

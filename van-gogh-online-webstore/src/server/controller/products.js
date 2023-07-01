@@ -1,4 +1,5 @@
-import express from 'express'
+import express from "express"
+import mongoose from "mongoose";
 
 const router = express.Router();
 const Product = mongoose.model('Product') 
