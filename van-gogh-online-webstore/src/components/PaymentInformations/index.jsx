@@ -15,7 +15,7 @@ export default function PaymentInformations({ shipping, subtotalPrice, handleCom
 		for (let i = 0; i < cartProducts.length; i++) {
 			const element = cartProducts[i];
 			const x = products.find((y) => y.id === element.id)
-			if (x.qtd < element.quantity) {
+			if (x.qty < element.quantity) {
 				haveStock = false;
 				productsOutStock.push(element.name);
 			}
@@ -24,7 +24,7 @@ export default function PaymentInformations({ shipping, subtotalPrice, handleCom
 
 	const changeProductStock = () => {
 		cartProducts.map(y => {
-			products.find(element => element.id === y.id).qtd -= y.quantity;
+			products.find(element => element.id === y.id).qty -= y.quantity;
 		})
 		localStorage.setItem('products', JSON.stringify(products))
 	}

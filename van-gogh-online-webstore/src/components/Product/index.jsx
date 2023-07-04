@@ -20,7 +20,7 @@ export default function Product({ product }) {
             <button className="product-details" onClick={handleNavigation}>
                 <Typography variant="textBold">{product.name}</Typography>
                 <Typography variant="text">$ {product.price}</Typography>
-                <Typography variant="text">Qty: {product.qtd}</Typography>
+                <Typography variant="text">Qty: {product.qty}</Typography>
             </button>
         </div>
     );

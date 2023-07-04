@@ -22,7 +22,7 @@ const SingleProduct = () => {
     const navigate = useNavigate();
 
     let getProduct = products.filter(product => product.id == params.productId)
-    const [product, setproduct] = useState({ id: getProduct[0].id, name: getProduct[0].name, price: getProduct[0].price, quantity: 1, collection: getProduct[0].collection, img: getProduct[0].img, stock: getProduct[0].qtd })
+    const [product, setproduct] = useState({ id: getProduct[0].id, name: getProduct[0].name, price: getProduct[0].price, quantity: 1, collection: getProduct[0].collectionId, img: getProduct[0].img, stock: getProduct[0].qty })
 
     const handleQuantityChange = (value) => {
         setproduct(product => ({
@@ -38,7 +38,7 @@ const SingleProduct = () => {
         haveStock = true;
         const element = product;
         const x = products.find((y) => y.id === element.id)
-        if (x.qtd < element.quantity + cartQtd) {
+        if (x.qty < element.quantity + cartQtd) {
             haveStock = false;
         }
 

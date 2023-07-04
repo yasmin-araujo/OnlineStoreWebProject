@@ -50,8 +50,8 @@ const EditProduct = () => {
         }
         products.find(element => element.id == productId).name = informations.name
         products.find(element => element.id == productId).price = informations.price
-        products.find(element => element.id == productId).qtd = informations.qtd
-        products.find(element => element.id == productId).collection = informations.collection
+        products.find(element => element.id == productId).qty = informations.qty
+        products.find(element => element.id == productId).collectionId = informations.collectionId
         products.find(element => element.id == productId).img = informations.img
         localStorage.setItem('products', JSON.stringify(products))
         e.preventDefault();
@@ -144,7 +144,7 @@ const EditProduct = () => {
                         <div className='price-editproduct'>
                             <div><Typography variant='editProductText'>Quantity in stock: </Typography></div>
                             <div className='price-field-editproduct'>
-                                <NumberTextField style={{ width: '160px' }} value={parseInt(informations.qtd)} onChange={handleInformationsChange} name='qtd' label="Quantity" maxLenght={3} />
+                                <NumberTextField style={{ width: '160px' }} value={parseInt(informations.qty)} onChange={handleInformationsChange} name='qty' label="Quantity" maxLenght={3} />
                             </div>
                         </div>
                         <div className='price-editproduct'>

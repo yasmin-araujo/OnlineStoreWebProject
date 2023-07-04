@@ -25,9 +25,21 @@ import { theme } from './theme';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 let id = undefined;
 
-if (!localStorage.getItem('products')) {
-	localStorage.setItem('products', JSON.stringify(products));
-}
+// Carregar produtos no banco de dados
+// try{
+// 	products.map( product => 
+// 	fetch('http://localhost:5000/products', {
+// 		method: 'POST',
+// 		headers: {
+// 			  'Content-Type': 'application/json'
+// 		},
+// 		body: JSON.stringify(product)
+//   	}));
+// } 
+// catch(e){
+// 	console.log(e);
+// }
+
 
 root.render(
 	<StrictMode>

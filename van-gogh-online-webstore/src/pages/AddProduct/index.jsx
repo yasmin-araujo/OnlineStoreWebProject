@@ -21,7 +21,7 @@ const AddProduct = () => {
     }, []);
 
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
-    const [informations, setInformations] = useState({ name: undefined, price: 0, qtd: 0, collection: undefined, img: undefined })
+    const [informations, setInformations] = useState({ name: undefined, price: 0, qty: 0, collectionId: undefined, img: undefined })
 
     const handleInformationsChange = (e) => {
         setInformations(informations => ({
@@ -41,8 +41,8 @@ const AddProduct = () => {
             id: lastId + 1,
             name: informations.name,
             price: informations.price,
-            qtd: informations.qtd,
-            collection: informations.collection,
+            qty: informations.qty,
+            collectionId: informations.collectionId,
             img: informations.img
         };
         products.push(newProduct);
@@ -94,7 +94,7 @@ const AddProduct = () => {
                         <div className='price-addproduct'>
                             <div><Typography variant='editProductText'>Quantity in stock: </Typography></div>
                             <div className='price-field-addproduct'>
-                                <NumberTextField style={{ width: '160px' }} value={parseInt(informations.qtd)} onChange={handleInformationsChange} name='qtd' label="Quantity" maxLenght={3} />
+                                <NumberTextField style={{ width: '160px' }} value={parseInt(informations.qty)} onChange={handleInformationsChange} name='qty' label="Quantity" maxLenght={3} />
                             </div>
                         </div>
                         <div className='price-addproduct'>
@@ -108,7 +108,7 @@ const AddProduct = () => {
                                         id="collection-selector"
                                         name='collection'
                                         label="Selecione uma opção"
-                                        value={informations.collection}
+                                        value={informations.collectionId}
                                         onChange={handleInformationsChange}
                                     >
                                         {Object.values(collectionsEnum).map((elemento, index) => {
