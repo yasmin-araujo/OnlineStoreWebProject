@@ -16,7 +16,8 @@
     padding-right: 50px;
     max-height: 65px;
     box-sizing: border-box;
-    border: 2px solid rgba(0, 0, 0, 0.13);
+    border: solid rgba(0, 0, 0, 0.13);
+    border-width: 2px 0px;
     align-items: center;
     min-width: 880px;
     text-align: center;
