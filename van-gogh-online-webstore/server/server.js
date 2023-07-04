@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const productRoutes = require('./controller/products.js')
+const userRoutes = require('./controller/users.js')
 
 
 mongoose.connect('mongodb+srv://van-gogh:vangogh@clusterwebproject.xcx7ftr.mongodb.net/webapp');
@@ -18,6 +19,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/products', productRoutes)
+app.use('/user', userRoutes)
 
 app.listen(5000, () => {
     console.log('Server is listening on port 5000');
