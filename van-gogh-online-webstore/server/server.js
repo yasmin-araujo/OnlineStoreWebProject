@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/products', productRoutes)
-app.use('/user', userRoutes)
+app.use('/users', userRoutes)
 
 app.listen(5000, () => {
     console.log('Server is listening on port 5000');

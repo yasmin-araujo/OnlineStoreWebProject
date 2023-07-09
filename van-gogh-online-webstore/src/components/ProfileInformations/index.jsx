@@ -8,7 +8,7 @@ export default function ProfileInformations({ setShowGallery }) {
 	
 	const getSession = JSON.parse(localStorage.getItem('session'));
 	const getProfile = JSON.parse(localStorage.getItem(getSession));
-	const [profileInformations, setProfileInformations] = useState({ name: getProfile.name, email: getProfile.email, adress: getProfile.adress, telephone: getProfile.telephone })
+	const [profileInformations, setProfileInformations] = useState({ name: getProfile.name, email: getProfile.email, address: getProfile.address, telephone: getProfile.telephone })
 
 	const handleInputChange = (e) => {
 		setProfileInformations(profileInformations => ({
@@ -39,7 +39,7 @@ export default function ProfileInformations({ setShowGallery }) {
 				<div className='information-fields'>
 					<TextField onChange={handleInputChange} className='TextField' name='name' label='Name' variant='outlined' margin='normal' defaultValue={profileInformations.name} inputProps={{ maxLength: 30 }}/>
 					<TextField onChange={handleInputChange} className='TextField' name='email' label='Email' variant='outlined' margin='normal' defaultValue={profileInformations.email} type='email' />
-					<TextField onChange={handleInputChange} className='TextField' name='adress' label='Adress' variant='outlined' margin='normal' defaultValue={profileInformations.adress} />
+					<TextField onChange={handleInputChange} className='TextField' name='address' label='Address' variant='outlined' margin='normal' defaultValue={profileInformations.address} />
 					<TextField onKeyDown={handleNumberChange} onChange={handleInputChange} className='TextField' name='telephone' label='Telephone' variant='outlined' margin='normal' defaultValue={profileInformations.telephone} type='tel' inputProps={{ maxLength: 14 }} />
 
 					<div className='buttons'>

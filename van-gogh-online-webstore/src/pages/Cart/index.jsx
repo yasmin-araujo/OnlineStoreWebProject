@@ -15,22 +15,22 @@ export default function Cart() {
 	const [products, setProducts] = useState(getProducts);
 
 	const loggedIn = localStorage.getItem('session') ? true : false;
-	let getSession, getProfile, adress, price;
+	let getSession, getProfile, address, price;
 
 	if (loggedIn) {
 		getSession = JSON.parse(localStorage.getItem('session'));
 		getProfile = JSON.parse(localStorage.getItem(getSession));
-		adress = getProfile.adress;
+		address = getProfile.address;
 		price = 0;
 	} else {
-		adress = "Log in to set your adress"
+		address = "Log in to set your address"
 		price = 0
 	}
 
 	const [isEmpty, setIsEmpty] = useState(getProducts.length > 0 ? false : true);
 	const [subtotalPrice, setSubtotalPrice] = useState(products.reduce((sum, product) => { return sum + (product.price * product.qty) }, 0));
 	const [shipping, setShipping] = useState({
-		address: adress,
+		address: address,
 		price: price
 	});
 
@@ -51,7 +51,7 @@ export default function Cart() {
 
 	const handleCompleteOrder = () => {
 		let randId = Math.floor(Math.random() * 10000)
-		products.map(product => {getProfile.orders.push({...product, orderId: randId})})
+		products.map(product => getProfile.orders.push({...product, orderId: randId}))
 		localStorage.setItem(getSession, JSON.stringify(getProfile))
 	}
 

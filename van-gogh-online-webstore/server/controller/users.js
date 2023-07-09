@@ -24,4 +24,16 @@ router.get('/:id', async(req, res) => {
     }
 });
 
+// Add an user
+router.post('/', async (req, res) => {
+    const user = new User(req.body);
+    console.log(user);
+    try {
+        await user.save();
+        res.status(200).send({message: 'User added'});
+    } catch(e) {
+        res.status(404).send({message: 'Error to add user: ' + e});
+    }
+});
+
 module.exports = router;
