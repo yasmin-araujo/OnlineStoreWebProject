@@ -16,18 +16,16 @@ const SingleProduct = () => {
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
     const navigate = useNavigate();
 
-    const [product, setProduct] = useState([]);
+    const [product, setProduct] = useState(null);
     const [productQty, setProductQty] = useState(1);
 
     useEffect(() => {
         console.log('to entrando aqui??')
-        fetch('http://localhost:5000/products/1')
+        fetch('http://localhost:5000/products/' + params.productId)
             .then(res => {
-                console.log('eu entrei aqui?')
                 return res.json();
             })
             .then(data => {
-                console.log('entrou aqui?')
                 setProduct(data);
             })
             .catch(e => {
@@ -39,16 +37,14 @@ const SingleProduct = () => {
         document.body.style.backgroundColor = 'white';
     }, []);
 
-    //let getProduct = products.filter(product => product.id == params.productId) = useState({ id: getProduct[0].id, name: getProduct[0].name, price: getProduct[0].price, quantity: 1, collection: getProduct[0].collectionId, img: getProduct[0].img, stock: getProduct[0].qty })
-
-    const handleQuantityChange = (value) => {
+    const handleQtyChange = (value) => {
         setProductQty(parseInt(value))
     }
 
     let haveStock = true;
     const setHaveStock = () => {
         let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-        let cartQty = cart.find(element => element.id === product.id) !== undefined ? cart.find(element => element.id === product.id).quantity : 0;
+        let cartQty = cart.find(element => element.id === product.id) !== undefined ? cart.find(element => element.id === product.id).qty : 0;
         haveStock = true;
         if (product.qty < productQty + cartQty) {
             haveStock = false;
@@ -65,17 +61,18 @@ const SingleProduct = () => {
         }
         let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
         if (cart.find(element => element.id === product.id) !== undefined) {
-            cart.find(element => element.id === product.id).quantity += product.quantity;
+            cart.find(element => element.id === product.id).qty += productQty;
         }
         else
-            cart.push(product);
+            cart.push({...product, qty: productQty});
         localStorage.setItem('cart', JSON.stringify(cart));
         e.preventDefault();
         navigate('/products');
     }
 
+    console.log(product)
     return <>
-        
+
         <Navbar bgColor='#FFF' />
 
         <div className='links-singleproduct'>
@@ -86,13 +83,13 @@ const SingleProduct = () => {
                 <Link underline="hover" style={{ color: "#D7A324" }} to="/products">
                     Products
                 </Link>
-                {product && isMobile ? ('') : (<Typography color="#D7A324">{product.name}</Typography>)}
+                {isMobile ? ('') : (<Typography color="#D7A324">{product && product.name}</Typography>)}
             </Breadcrumbs>
         </div>
 
         <form onSubmit={handleSubmit}>
             <div id='singleproductpage'>
-                {product &&<img id='image-singleproduct' src={require('../../images/products/' + product.img)} alt={product.name + ' picture'} />}
+                {product && <img id='image-singleproduct' src={require('../../images/products/' + product.img)} alt={product.name + ' picture'} />}
                 <div id='singleproductinformations'>
                     {product && <Typography variant='productYellowName'>{product.name}</Typography>} <br />
                     {product && <Typography variant='editProductText'>${product.price}.00</Typography>}
@@ -100,7 +97,7 @@ const SingleProduct = () => {
                     <div id='quantity-singleproduct'>
                         <Typography variant='editProductText'>Quantity: </Typography>
                         <div id='quantityinput-singleproduct'>
-                            {productQty &&  <NumberTextField value={parseInt(productQty)} setValue={handleQuantityChange} label="Qty." min={1} maxLenght={3} style={{ width: '70px', marginLeft: '5px' }} />}
+                            <NumberTextField value={parseInt(productQty)} setValue={handleQtyChange} label="Qty." min={1} maxLenght={3} style={{ width: '70px', marginLeft: '5px' }} />
                         </div>
                     </div>
                     <div id="button-singleproductpage">

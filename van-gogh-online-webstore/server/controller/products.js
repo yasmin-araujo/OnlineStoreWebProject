@@ -39,13 +39,14 @@ router.post('/', async (req, res) => {
 //atualiza um produto a partir do slug
 router.put('/:id', async (req, res) => {
     try {
-        await Product.findOneAndUpdate({slug: req.params.id}, {
+        await Product.findOneAndUpdate({id: req.params.id}, {
             $set: {
+                id: req.body.id,
                 name: req.body.name,
-                slug: req.body.slug,
-                description: req.body.description,
                 price: req.body.price,
-                quantity: req.body.quantity
+                qty: req.body.qty,
+                collectionId: req.body.collectionId,
+                img: req.body.img
             }
         });
         res.status(200).send({message: 'Product updated'});
@@ -57,7 +58,7 @@ router.put('/:id', async (req, res) => {
 //deleta um produto a partir do slug
 router.delete('/:id', async (req, res) => {
     try {
-        await Product.deleteOne({slug: req.params.id})
+        await Product.deleteOne({id: req.params.id})
 
         res.status(200).send({message: 'Product deleted'});
     } catch(e) {

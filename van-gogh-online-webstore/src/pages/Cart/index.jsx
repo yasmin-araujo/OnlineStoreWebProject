@@ -28,14 +28,14 @@ export default function Cart() {
 	}
 
 	const [isEmpty, setIsEmpty] = useState(getProducts.length > 0 ? false : true);
-	const [subtotalPrice, setSubtotalPrice] = useState(products.reduce((sum, product) => { return sum + (product.price * product.quantity) }, 0));
+	const [subtotalPrice, setSubtotalPrice] = useState(products.reduce((sum, product) => { return sum + (product.price * product.qty) }, 0));
 	const [shipping, setShipping] = useState({
 		address: adress,
 		price: price
 	});
 
-	const handleProductAmount = (id, quantity) => {
-		const newProducts = products.map(product => product.id === id ? { ...product, quantity: quantity } : product)
+	const handleProductAmount = (id, qty) => {
+		const newProducts = products.map(product => product.id === id ? { ...product, qty: qty } : product)
 		localStorage.setItem('cart', JSON.stringify(newProducts))
 		setProducts(newProducts)
 	};
@@ -57,7 +57,7 @@ export default function Cart() {
 
 	useEffect(
 		() => {
-			setSubtotalPrice(products.reduce((sum, product) => { return sum + (product.price * product.quantity) }, 0));
+			setSubtotalPrice(products.reduce((sum, product) => { return sum + (product.price * product.qty) }, 0));
 		},
 		[products]
 	);

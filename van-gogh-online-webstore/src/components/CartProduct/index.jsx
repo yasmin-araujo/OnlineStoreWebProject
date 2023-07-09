@@ -5,7 +5,7 @@ import NumberTextField from '../NumberTextField';
 
 
 export default function CartProduct({ product, handleProductDeletion, handleProductAmount }) {
-	const [productAmount, setProductAmount] = useState(product.quantity)
+	const [productAmount, setProductAmount] = useState(product.qty)
 
     const handleDeletionEvent = () => {
         handleProductDeletion(product.id);
@@ -30,7 +30,7 @@ export default function CartProduct({ product, handleProductDeletion, handleProd
 					<p>$ {product.price}</p>
 				</div>
 			</div>
-			<NumberTextField label={'Qty'} value={product.quantity} setValue={(value) => { setProductAmount(value) }} style={{ width: '80px', minWidth: '55px' }} min={1} max={50} maxLenght={1}/>
+			<NumberTextField label={'Qty'} value={product.qty} setValue={(value) => { setProductAmount(value) }} style={{ width: '80px', minWidth: '55px' }} min={1} max={50} maxLenght={1}/>
 			<button className='cart-delete-button' onClick={handleDeletionEvent}><DeleteIcon /></button>
 		</div>
 	);
