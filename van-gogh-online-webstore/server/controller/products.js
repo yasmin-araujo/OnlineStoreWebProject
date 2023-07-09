@@ -32,6 +32,7 @@ router.post('/', async (req, res) => {
         await product.save()
         res.status(200).send({message: 'Product added'});
     } catch(e) {
+        console.log('hmmmmm ' + e)
         res.status(404).send('Error to add  product' + e);
     }
 });
@@ -41,7 +42,6 @@ router.put('/:id', async (req, res) => {
     try {
         await Product.findOneAndUpdate({id: req.params.id}, {
             $set: {
-                id: req.body.id,
                 name: req.body.name,
                 price: req.body.price,
                 qty: req.body.qty,

@@ -17,10 +17,9 @@ const SingleProduct = () => {
     const navigate = useNavigate();
 
     const [product, setProduct] = useState(null);
-    const [productQty, setProductQty] = useState(1);
+    const [productQty, setProductQty] = useState('1');
 
     useEffect(() => {
-        console.log('to entrando aqui??')
         fetch('http://localhost:5000/products/' + params.productId)
             .then(res => {
                 return res.json();
@@ -38,7 +37,7 @@ const SingleProduct = () => {
     }, []);
 
     const handleQtyChange = (value) => {
-        setProductQty(parseInt(value))
+        setProductQty(value)
     }
 
     let haveStock = true;
@@ -70,7 +69,12 @@ const SingleProduct = () => {
         navigate('/products');
     }
 
-    console.log(product)
+    useEffect(() => {
+        if (productQty === '') {
+            setProductQty('1');
+        }
+    }, [productQty]);
+
     return <>
 
         <Navbar bgColor='#FFF' />
@@ -97,7 +101,7 @@ const SingleProduct = () => {
                     <div id='quantity-singleproduct'>
                         <Typography variant='editProductText'>Quantity: </Typography>
                         <div id='quantityinput-singleproduct'>
-                            <NumberTextField value={parseInt(productQty)} setValue={handleQtyChange} label="Qty." min={1} maxLenght={3} style={{ width: '70px', marginLeft: '5px' }} />
+                            <NumberTextField value={productQty} setValue={handleQtyChange} label="Qty." min={1} maxLenght={3} style={{ width: '70px', marginLeft: '5px' }} />
                         </div>
                     </div>
                     <div id="button-singleproductpage">

@@ -27,14 +27,14 @@ let id = undefined;
 
 // Carregar produtos no banco de dados
 // try{
-// 	products.map( product => 
-// 	fetch('http://localhost:5000/products', {
-// 		method: 'POST',
-// 		headers: {
-// 			  'Content-Type': 'application/json'
-// 		},
-// 		body: JSON.stringify(product)
-//   	}));
+	// products.map( product => 
+	// fetch('http://localhost:5000/products', {
+	// 	method: 'POST',
+	// 	headers: {
+	// 		  'Content-Type': 'application/json'
+	// 	},
+	// 	body: JSON.stringify(product)
+  	// }));
 // } 
 // catch(e){
 // 	console.log(e);
