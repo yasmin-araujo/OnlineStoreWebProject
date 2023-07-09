@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
         await product.save()
         res.status(200).send({message: 'Product added'});
     } catch(e) {
-        res.status(404).send('Error to add  product' + e);
+        res.status(404).send('Error to add product' + e);
     }
 });
 
