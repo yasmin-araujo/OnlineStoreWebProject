@@ -6,14 +6,14 @@ import Navbar from '../../components/Navbar';
 import ProfileMenu from '../../components/ProfileMenu';
 import TabelaSales from '../../components/TabelaSales';
 import ProfileLogout from '../../components/ProfileLogout';
-import EditUsers from '../../components/EditUsers';
+import ManageUsers from '../../components/ManageUsers';
 
 
 export default function SalesOverview() {
     useEffect(() => {
         document.body.style.backgroundColor = '#FFF'
     }, [])
-    const pages = [<TabelaSales />, <EditUsers />, <ProfileLogout />]
+    const pages = [<TabelaSales />, <ManageUsers />, <ProfileLogout />]
     const [profilePage, setProfilePage] = useState(pages[0])
     const handleProfileChange = (index) => {
         setProfilePage(pages[index])
