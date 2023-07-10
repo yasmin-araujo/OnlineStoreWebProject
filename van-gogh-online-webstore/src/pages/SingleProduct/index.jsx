@@ -28,7 +28,6 @@ const SingleProduct = () => {
                 setProduct(data);
             })
             .catch(e => {
-                console.log('eeerrrooo')
             })
     }, [])
 
@@ -45,7 +44,7 @@ const SingleProduct = () => {
         let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
         let cartQty = cart.find(element => element.id === product.id) !== undefined ? cart.find(element => element.id === product.id).qty : 0;
         haveStock = true;
-        if (product.qty < productQty + cartQty) {
+        if (product.qty < parseInt(productQty) + cartQty) {
             haveStock = false;
         }
 
@@ -60,7 +59,7 @@ const SingleProduct = () => {
         }
         let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
         if (cart.find(element => element.id === product.id) !== undefined) {
-            cart.find(element => element.id === product.id).qty += productQty;
+            cart.find(element => element.id === product.id).qty += parseInt(productQty);
         }
         else
             cart.push({...product, qty: productQty});

@@ -50,11 +50,18 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/addOrder/:id', async (req, res) => {
+    console.log('oi?')
     try {
         console.log(req.body)
         await User.findOneAndUpdate({ id: req.params.id }, {
             $push: {
-                orders: req.body 
+                orders: {
+                    id: req.body.id,
+                    name: req.body.name,
+                    qty: req.body.qty,
+                    price: req.body.price,
+                    img: req.body.img
+                }
             }
         });
         res.status(200).send({ message: 'Order added' });

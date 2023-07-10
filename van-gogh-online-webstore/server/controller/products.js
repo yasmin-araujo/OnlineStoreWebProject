@@ -54,6 +54,17 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+router.put('/updateStock/:id', async (req, res) => {
+    try {
+        await Product.findOneAndUpdate({ id: req.params.id }, {
+            $inc: { qty: (req.body.qty)*-1 }
+        });
+        res.status(200).send({ message: 'Product updated' });
+    } catch (e) {
+        res.status(400).send(e);
+    }
+})
+
 //deleta um produto a partir do slug
 router.delete('/:id', async (req, res) => {
     try {
@@ -64,5 +75,6 @@ router.delete('/:id', async (req, res) => {
         res.status(400).send(e);
     }
 });
+
 
 module.exports = router;

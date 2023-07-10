@@ -27,7 +27,7 @@ export default function Cart() {
 					return res.json();
 				})
 				.then(data => {
-					setShipping({address: data.address, price: 0})
+					setShipping({ address: data.address, price: 0 })
 				})
 		}
 	}, [])
@@ -51,18 +51,41 @@ export default function Cart() {
 	};
 
 	const handleCompleteOrder = () => {
-		alert('oiii')
 		let session = localStorage.getItem('session')
 		let randId = Math.floor(Math.random() * 10000)
-		products.map( product =>
-			fetch('http://localhost:5000/users/addOrder' + JSON.parse(session), {
+		products.map(product => {
+			fetch('http://localhost:5000/products/' + product.id)
+				.then(res => {
+					return res.json();
+				})
+				.then(data => {
+					console.log('entrei aqui')
+					if (data.qty - product.qty < 0) {
+						alert('The product ' + product.name + ' will exced the stock limit' + product.qty)
+						return false;
+					}
+				})
+				.catch(e => {
+				})
+		})
+		products.map(product => {
+			fetch('http://localhost:5000/products/updateStock/' + product.id, {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({...product, orderId: randId})
+				body: JSON.stringify({ qty: product.qty })
 			})
-		)
+			fetch('http://localhost:5000/users/addOrder/' + JSON.parse(session), {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify([{ id: randId, name: product.name, qty: product.qty, price: product.price, img: product.img }])
+			}).then(res => {
+				alert(res.status)
+			})
+		})
 	}
 
 	useEffect(

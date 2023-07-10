@@ -7,28 +7,6 @@ import './style.css';
 import { isNumber } from '../../utils/isNumber';
 
 export default function PaymentInformations({ shipping, subtotalPrice, handleCompleteOrder, cartProducts }) {
-	let products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
-	let productsOutStock = [];
-	let haveStock = true;
-	const setHaveStock = () => {
-		haveStock = true; productsOutStock = [];
-		for (let i = 0; i < cartProducts.length; i++) {
-			const element = cartProducts[i];
-			const x = products.find((y) => y.id === element.id)
-			if (x.qty < element.qty) {
-				haveStock = false;
-				productsOutStock.push(element.name);
-			}
-		}
-	}
-
-	const changeProductStock = () => {
-		cartProducts.map(y => {
-			products.find(element => element.id === y.id).qty -= y.quantity;
-		})
-		localStorage.setItem('products', JSON.stringify(products))
-	}
-
 	const navigate = useNavigate();
 	const loggedIn = localStorage.getItem('session') ? true : false;
 
@@ -76,17 +54,7 @@ export default function PaymentInformations({ shipping, subtotalPrice, handleCom
 			alert('Your cart is empty')
 			return false;
 		}
-		setHaveStock();
-		if (!haveStock) {
-			let frase = ""
-			productsOutStock.map(y => {
-				frase += y + ": We don't have this amount in stock\n"
-			})
-			alert(frase)
-			return false;
-		}
 		localStorage.removeItem('cart');
-		changeProductStock();
 		handleCompleteOrder();
 		navigate('/thanks');
 	}
