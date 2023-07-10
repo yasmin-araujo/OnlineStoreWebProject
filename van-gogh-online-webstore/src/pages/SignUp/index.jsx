@@ -14,7 +14,7 @@ const SignUp = () => {
         document.body.style.backgroundColor = '#A1C1AA'
     }, [])
 
-    const [signUp, setSignUp] = useState({ name: '', email: '', adress: '', telephone: '', password: '', confirmpass: '', orders: [], profilePic: 0})
+    const [signUp, setSignUp] = useState({ name: '', email: '', adress: '', telephone: '', password: '', confirmpass: '', orders: [], profilePic: 0 })
 
     const handleInputChange = (e) => {
         setSignUp(signUp => ({
@@ -24,7 +24,7 @@ const SignUp = () => {
     }
 
     const handleNumberChange = (e) => {
-        if(!isNumber(e)){
+        if (!isNumber(e)) {
             e.preventDefault()
         }
         setSignUp(signUp => ({
@@ -34,12 +34,12 @@ const SignUp = () => {
     }
 
     const handleSubmit = (e) => {
-        if(signUp.password !== signUp.confirmpass){
+        if (signUp.password !== signUp.confirmpass) {
             alert("Passwords don't match")
             e.preventDefault();
             return false;
         }
-        if(localStorage.getItem(signUp.email) !== null){
+        if (localStorage.getItem(signUp.email) !== null) {
             alert("This email is already being used")
             e.preventDefault();
             return false;
@@ -63,7 +63,7 @@ const SignUp = () => {
                         <TextField required variant='outlined' margin='normal' onChange={handleInputChange} name="name" label="Name" type="text" inputProps={{ maxLength: 30 }} />
                         <TextField required variant='outlined' margin='normal' onChange={handleInputChange} name="email" label="Email" type={"email"} />
                         <TextField required variant='outlined' margin='normal' onChange={handleInputChange} name="adress" label="Adress" type={"text"} />
-                        <TextField required variant='outlined' margin='normal' onKeyDown={handleNumberChange} onChange={handleInputChange} name="telephone" label="Telephone" type={"tel"} inputProps={{maxLength: 14}} />
+                        <TextField required variant='outlined' margin='normal' onKeyDown={handleNumberChange} onChange={handleInputChange} name="telephone" label="Telephone" type={"tel"} inputProps={{ maxLength: 14 }} />
                         <TextField required variant='outlined' margin='normal' onChange={handleInputChange} name="password" label="Password" type={"password"} />
                         <TextField required variant='outlined' margin='normal' onChange={handleInputChange} name="confirmpass" label="Confirm Password" type={"password"} />
 
