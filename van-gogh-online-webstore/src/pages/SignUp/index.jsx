@@ -46,7 +46,6 @@ const SignUp = () => {
             'profilePic': 0,
         };
 
-        console.log(body);
         try {
             fetch('http://localhost:5000/users', {
                 method: 'POST',

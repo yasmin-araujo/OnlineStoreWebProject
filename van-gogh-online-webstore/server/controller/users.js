@@ -24,6 +24,16 @@ router.get('/:id', async(req, res) => {
     }
 });
 
+router.get('/byEmail/:email', async(req, res) => {
+    try {
+        const data = await User.findOne({email: req.params.email});
+        console.log(data);
+        res.status(200).send(data);
+    } catch(e) {
+        res.status(404).send(e);
+    }
+});
+
 // Add an user
 router.post('/', async (req, res) => {
     const user = new User(req.body);
