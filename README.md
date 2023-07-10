@@ -22,14 +22,14 @@ The website owner will have access to an admin panel where they can view statist
 Information to be saved on the server includes client data (name, email, phone, address, password, isAdmin), product data (name, quantity in stock, price, picture, collection), and order data (id, client, products, payment method, total price, timestamp).
 
 
-The project pages are: main page, product page, cart, sign in, sign up, profile page (with two sections: all orders made and profile information), single product page, order completed page, administrator product page, administrator sales overview page, administrator single product page and administrator manage users page. 
+The project pages are: main page, product page, cart, sign in, sign up, profile page (with three sections: all orders made, profile information, and profile picture), single product page, order completed page, administrator product page, administrator sales overview page, administrator single product page and administrator manage users page. 
 
 
 The screen mockups for the website can be found on [Figma](https://www.figma.com/file/4SYAvVb0Y8XL6viOJ67HNA/OnlineStoreMockup?type=design&node-id=0%3A1&t=ur51hlypofs9jZOS-1) and the diagram navigation can be found below:<br><br>
 <img src="./navigation_diagram.png" alt="Navigation Diagram"/>
 
 ## Comments About the Code
-We have developed the project using React, CSS, and JavaScript. The backend data for the products and users informations is stored as JavaScript objects using mongoDB.
+We have developed the project using React, CSS, and JavaScript. The backend data for the products and users informations is stored in cloud using MongoDB. Data such as cart or login session, that don't need to be persistent is stored in the browser's local storage.
 
 ## Test Plan
 **GENERAL INPUTS**
