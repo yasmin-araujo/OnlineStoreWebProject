@@ -11,34 +11,41 @@ import { useNavigate } from 'react-router';
 
 const SingleProduct = () => {
 
-    let products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
+    // let products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
+    let params = useParams()
+    const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
+    const navigate = useNavigate();
+
+    const [product, setProduct] = useState(null);
+    const [productQty, setProductQty] = useState('1');
+
+    useEffect(() => {
+        fetch('http://localhost:5000/products/' + params.productId)
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                setProduct(data);
+            })
+            .catch(e => {
+                console.log('eeerrrooo')
+            })
+    }, [])
 
     useEffect(() => {
         document.body.style.backgroundColor = 'white';
     }, []);
 
-    const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
-    let params = useParams()
-    const navigate = useNavigate();
-
-    let getProduct = products.filter(product => product.id == params.productId)
-    const [product, setproduct] = useState({ id: getProduct[0].id, name: getProduct[0].name, price: getProduct[0].price, quantity: 1, collection: getProduct[0].collection, img: getProduct[0].img, stock: getProduct[0].qtd })
-
-    const handleQuantityChange = (value) => {
-        setproduct(product => ({
-            ...product,
-            quantity: parseInt(value)
-        }))
+    const handleQtyChange = (value) => {
+        setProductQty(value)
     }
 
     let haveStock = true;
     const setHaveStock = () => {
         let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-        let cartQtd = cart.find(element => element.id === product.id) !== undefined ? cart.find(element => element.id === product.id).quantity : 0;
+        let cartQty = cart.find(element => element.id === product.id) !== undefined ? cart.find(element => element.id === product.id).qty : 0;
         haveStock = true;
-        const element = product;
-        const x = products.find((y) => y.id === element.id)
-        if (x.qtd < element.quantity + cartQtd) {
+        if (product.qty < productQty + cartQty) {
             haveStock = false;
         }
 
@@ -53,14 +60,20 @@ const SingleProduct = () => {
         }
         let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
         if (cart.find(element => element.id === product.id) !== undefined) {
-            cart.find(element => element.id === product.id).quantity += product.quantity;
+            cart.find(element => element.id === product.id).qty += productQty;
         }
         else
-            cart.push(product);
+            cart.push({...product, qty: productQty});
         localStorage.setItem('cart', JSON.stringify(cart));
         e.preventDefault();
         navigate('/products');
     }
+
+    useEffect(() => {
+        if (productQty === '') {
+            setProductQty('1');
+        }
+    }, [productQty]);
 
     return <>
 
@@ -74,21 +87,21 @@ const SingleProduct = () => {
                 <Link underline="hover" style={{ color: "#D7A324" }} to="/products">
                     Products
                 </Link>
-                {isMobile ? ('') : (<Typography color="#D7A324">{product.name}</Typography>)}
+                {isMobile ? ('') : (<Typography color="#D7A324">{product && product.name}</Typography>)}
             </Breadcrumbs>
         </div>
 
         <form onSubmit={handleSubmit}>
             <div id='singleproductpage'>
-                <img id='image-singleproduct' src={require('../../images/products/' + product.img)} alt={product.name + ' picture'} />
+                {product && <img id='image-singleproduct' src={require('../../images/products/' + product.img)} alt={product.name + ' picture'} />}
                 <div id='singleproductinformations'>
-                    <Typography variant='productYellowName'>{product.name}</Typography><br />
-                    <Typography variant='editProductText'>${product.price}.00</Typography>
-                    <Typography variant='editProductText'>In stock: {product.stock}</Typography>
+                    {product && <Typography variant='productYellowName'>{product.name}</Typography>} <br />
+                    {product && <Typography variant='editProductText'>${product.price}.00</Typography>}
+                    {product && <Typography variant='editProductText'>In stock: {product.qty}</Typography>}
                     <div id='quantity-singleproduct'>
                         <Typography variant='editProductText'>Quantity: </Typography>
                         <div id='quantityinput-singleproduct'>
-                            <NumberTextField value={parseInt(product.quantity)} setValue={handleQuantityChange} label="Qty." min={1} maxLenght={3} style={{ width: '70px', marginLeft: '5px' }} />
+                            <NumberTextField value={productQty} setValue={handleQtyChange} label="Qty." min={1} maxLenght={3} style={{ width: '70px', marginLeft: '5px' }} />
                         </div>
                     </div>
                     <div id="button-singleproductpage">

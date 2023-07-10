@@ -8,37 +8,49 @@ import NumberTextField from '../../components/NumberTextField'
 import './style.css'
 
 const EditProduct = () => {
+    const params = useParams()
+    const navigate = useNavigate();
+    const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
 
-    let products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
-    console.log(products);
+    const [product, setProduct] = useState([])
+    const [collectionId, setCollectionId] = useState(0)
 
     useEffect(() => {
-        document.body.style.backgroundColor = '#FFF'
+        fetch('http://localhost:5000/products/' + params.productId)
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                setProduct(data);
+                setCollectionId(data.collectionId)
+                console.log(data)
+            })
+            .catch(e => {
+            })
     }, [])
-
-    const navigate = useNavigate();
-
-    const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
-    const { productId } = useParams();
-    const [informations, setInformations] = useState(products.find((p) => p.id == productId))
 
     useEffect(() => {
         document.body.style.backgroundColor = 'white';
     }, []);
 
-    const handleInformationsChange = (e) => {
-        setInformations(informations => ({
-            ...informations,
+    const handleProductChange = (e) => {
+        if(e.target.name == 'collectionId'){
+            setCollectionId(e.target.value)
+        }
+        setProduct(product => ({
+            ...product,
             [e.target.name]: e.target.value
         }))
     }
 
     const handleDeleteButtonClick = (e) => {
         if (window.confirm('Do you really want to delete this product?')) {
-            const filteredProducts = products.filter(product => product.id != productId);
-            localStorage.setItem('products', JSON.stringify(filteredProducts));
-            e.preventDefault();
-            navigate('/products');
+            fetch('http://localhost:5000/products/' + params.productId, {
+                method: 'DELETE',
+            }).then(() => {
+                e.preventDefault();
+                navigate('/products');
+            })
         }
     }
 
@@ -48,14 +60,16 @@ const EditProduct = () => {
             alert('Essa imagem não é válida')
             return false
         }
-        products.find(element => element.id == productId).name = informations.name
-        products.find(element => element.id == productId).price = informations.price
-        products.find(element => element.id == productId).qtd = informations.qtd
-        products.find(element => element.id == productId).collection = informations.collection
-        products.find(element => element.id == productId).img = informations.img
-        localStorage.setItem('products', JSON.stringify(products))
-        e.preventDefault();
-        navigate('/products');
+        fetch('http://localhost:5000/products/' + params.productId, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(product)
+        }).then(() => {
+            e.preventDefault();
+            navigate('/products');
+        })
     }
 
     const [modoEdicao, setModoEdicao] = useState(false);
@@ -69,15 +83,15 @@ const EditProduct = () => {
 
     const handleVectorClick = (e) => {
         setModoEdicao(!modoEdicao);
-        if (informations.name === 'Product Name') {
-            setInformations(informations => ({
-                ...informations,
+        if (product.name === 'Product Name') {
+            setProduct(product => ({
+                ...product,
                 name: ''
             }))
         }
-        if (informations.name === '') {
-            setInformations(informations => ({
-                ...informations,
+        if (product.name === '') {
+            setProduct(product => ({
+                ...product,
                 name: 'Product Name'
             }))
         }
@@ -87,9 +101,9 @@ const EditProduct = () => {
     const handleEnterKey = (e) => {
         if (e.key === 'Enter') {
             setModoEdicao(false);
-            if (informations.name === '') {
-                setInformations(informations => ({
-                    ...informations,
+            if (product.name === '') {
+                setProduct(product => ({
+                    ...product,
                     name: 'Product Name'
                 }))
             }
@@ -99,11 +113,11 @@ const EditProduct = () => {
     const [img, setImg] = useState(require('../../images/products/add-product.png'));
     useEffect(() => {
         try {
-            setImg(require('../../images/products/' + informations.img));
+            setImg(require('../../images/products/' + product.img));
         } catch {
             setImg(require('../../images/products/add-product.png'))
         }
-    }, [informations.img])
+    }, [product.img])
 
 
     return <>
@@ -117,20 +131,20 @@ const EditProduct = () => {
                 <Link underline="hover" style={{ color: "#D7A324" }} to="/products">
                     Products
                 </Link>
-                {isMobile ? ('') : (<Typography color="#D7A324">{informations.name}</Typography>)}
+                {isMobile ? ('') : (<Typography color="#D7A324">{product.name}</Typography>)}
             </Breadcrumbs>
         </div>
         <form onSubmit={handleSubmit}>
             <div id='editproductpage'>
-                <img id='image-editproduct' alt={informations.name} src={img} />
+                <img id='image-editproduct' alt={product.name} src={img} />
                 <div id='productinformations-editproduct'>
                     <div className='editproductname'>
                         {modoEdicao
                             ? (<div className='yellowname-editproducts'>
-                                <input ref={inputRef} type='text' value={informations.name} name='name'
-                                    onChange={handleInformationsChange} onKeyDown={handleEnterKey} /> </div>)
+                                <input ref={inputRef} type='text' value={product.name} name='name'
+                                    onChange={handleProductChange} onKeyDown={handleEnterKey} /> </div>)
                             : (<div className='yellowname-editproducts'>
-                                <Typography variant='productYellowName'>{informations.name}</Typography>
+                                <Typography variant='productYellowName'>{product.name}</Typography>
                             </div>)}
                         <img id='addvector' alt='Editar Produto' src={require('../../images/icons/pencil.png')} onClick={handleVectorClick} />
                     </div>
@@ -138,29 +152,30 @@ const EditProduct = () => {
                         <div className='price-editproduct'>
                             <div><Typography variant='editProductText'>Price($):</Typography></div>
                             <div className='price-field-editproduct'>
-                                <NumberTextField style={{ width: '160px' }} value={informations.price} onChange={handleInformationsChange} name='price' label="Price" />
+                                <NumberTextField required={true} style={{ width: '160px' }} value={parseInt(product.price)} onChange={handleProductChange} name='price' label="Price" />
                             </div>
                         </div>
                         <div className='price-editproduct'>
                             <div><Typography variant='editProductText'>Quantity in stock: </Typography></div>
                             <div className='price-field-editproduct'>
-                                <NumberTextField style={{ width: '160px' }} value={parseInt(informations.qtd)} onChange={handleInformationsChange} name='qtd' label="Quantity" maxLenght={3} />
+                                <NumberTextField required={true} style={{ width: '160px' }} value={parseInt(product.qty)} onChange={handleProductChange} name='qty' label="Quantity" maxLenght={3} />
                             </div>
                         </div>
                         <div className='price-editproduct'>
                             <div><Typography variant='editProductText'>Collection: </Typography></div>
                             <div className='price-field-editproduct'>
                                 <FormControl sx={{ width: '160px' }} size='small'>
-                                    <InputLabel id="collection-selector-label">Selecione uma opção</InputLabel>
+                                    <InputLabel required id="collection-selector-label">Selecione uma opção</InputLabel>
                                     <Select
                                         labelId='collection-selector-label'
                                         id="collection-selector"
-                                        name='collection'
+                                        name='collectionId'
                                         label="Selecione uma opção"
-                                        value={informations.collection}
-                                        onChange={handleInformationsChange}
+                                        value={collectionId}
+                                        onChange={handleProductChange}
                                     >
                                         {Object.values(collectionsEnum).map((elemento, index) => {
+                                            console.log(elemento.name + ' ' + index)
                                             return <MenuItem key={'collection-selector-edit-' + index} value={elemento.id}>{elemento.name}</MenuItem>
                                         })}
                                     </Select>
@@ -170,7 +185,7 @@ const EditProduct = () => {
                         <div className='price-editproduct'>
                             <div><Typography variant='editProductText'>Image name:</Typography></div>
                             <div className='price-field-addproduct'>
-                                <TextField size='small' style={{ width: '160px' }} onChange={handleInformationsChange} value={informations.img} name='img' label="Image name" />
+                                <TextField size='small' style={{ width: '160px' }} onChange={handleProductChange} value={product.img} name='img' label="Image name" InputLabelProps={{ shrink: true }}/>
                             </div>
                         </div>
                     </div>
