@@ -1,26 +1,26 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const Product = require('../schemas/products.js') 
+const Product = require('../schemas/products.js')
 
 const router = express.Router();
-mongoose.model('Product') 
+mongoose.model('Product')
 
 //retorna todos produtos 
-router.get('/', async(req, res) => {
+router.get('/', async (req, res) => {
     try {
         const data = await Product.find()
         res.status(200).send(data)
-    } catch(e) {
-        res.status(404).send(e);
+    } catch (e) {
+        res.status(400).send(e);
     }
 });
 
-router.get('/:id', async(req, res) => {
+router.get('/:id', async (req, res) => {
     try {
-        const data = await Product.findOne({id: req.params.id})
+        const data = await Product.findOne({ id: req.params.id })
         res.status(200).send(data)
-    } catch(e) {
-        res.status(404).send(e);
+    } catch (e) {
+        res.status(400).send(e);
     }
 });
 
@@ -30,18 +30,17 @@ router.post('/', async (req, res) => {
     console.log(product)
     try {
         await product.save()
-        res.status(200).send({message: 'Product added'});
-    } catch(e) {
-        res.status(404).send('Error to add product' + e);
+        res.status(200).send({ message: 'Product added' });
+    } catch (e) {
+        res.status(400).send('Error to add product' + e);
     }
 });
 
 //atualiza um produto a partir do slug
 router.put('/:id', async (req, res) => {
     try {
-        await Product.findOneAndUpdate({id: req.params.id}, {
+        await Product.findOneAndUpdate({ id: req.params.id }, {
             $set: {
-                id: req.body.id,
                 name: req.body.name,
                 price: req.body.price,
                 qty: req.body.qty,
@@ -49,20 +48,20 @@ router.put('/:id', async (req, res) => {
                 img: req.body.img
             }
         });
-        res.status(200).send({message: 'Product updated'});
+        res.status(200).send({ message: 'Product updated' });
     } catch {
-        res.status(404).send('Error to update product');
+        res.status(400).send('Error to update product');
     }
 });
 
 //deleta um produto a partir do slug
 router.delete('/:id', async (req, res) => {
     try {
-        await Product.deleteOne({id: req.params.id})
+        await Product.deleteOne({ id: req.params.id })
 
-        res.status(200).send({message: 'Product deleted'});
-    } catch(e) {
-        res.status(404).send(e);
+        res.status(200).send({ message: 'Product deleted' });
+    } catch (e) {
+        res.status(400).send(e);
     }
 });
 

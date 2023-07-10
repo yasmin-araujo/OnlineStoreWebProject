@@ -1,9 +1,9 @@
 import { TextField } from "@mui/material";
 
-export default function NumberTextField({ name, label, value, setValue, style, min = 0, max = undefined, maxLenght = 6,
+export default function NumberTextField({ name, label, value, setValue, style, min = 0, max = undefined, maxLenght = 6, required = false,
     onChange = (e) => setValue(e.target.value) }) {
     return (
-        <TextField name={name} value={value} onChange={onChange} label={label} variant='outlined'
+        <TextField required={required} name={name} value={value} onChange={onChange} label={label} variant='outlined'
             type='number' size='small' sx={style} inputProps={{ min: min, max: max }}
             onKeyDown={(e) => {
                 if (e.key === "Backspace") {

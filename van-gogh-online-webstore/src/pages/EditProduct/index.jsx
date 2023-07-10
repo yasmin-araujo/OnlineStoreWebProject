@@ -13,6 +13,7 @@ const EditProduct = () => {
     const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
 
     const [product, setProduct] = useState([])
+    const [collectionId, setCollectionId] = useState(0)
 
     useEffect(() => {
         fetch('http://localhost:5000/products/' + params.productId)
@@ -21,6 +22,7 @@ const EditProduct = () => {
             })
             .then(data => {
                 setProduct(data);
+                setCollectionId(data.collectionId)
                 console.log(data)
             })
             .catch(e => {
@@ -32,6 +34,9 @@ const EditProduct = () => {
     }, []);
 
     const handleProductChange = (e) => {
+        if(e.target.name == 'collectionId'){
+            setCollectionId(e.target.value)
+        }
         setProduct(product => ({
             ...product,
             [e.target.name]: e.target.value
@@ -147,29 +152,30 @@ const EditProduct = () => {
                         <div className='price-editproduct'>
                             <div><Typography variant='editProductText'>Price($):</Typography></div>
                             <div className='price-field-editproduct'>
-                                <NumberTextField style={{ width: '160px' }} value={parseInt(product.price)} onChange={handleProductChange} name='price' label="Price" />
+                                <NumberTextField required={true} style={{ width: '160px' }} value={parseInt(product.price)} onChange={handleProductChange} name='price' label="Price" />
                             </div>
                         </div>
                         <div className='price-editproduct'>
                             <div><Typography variant='editProductText'>Quantity in stock: </Typography></div>
                             <div className='price-field-editproduct'>
-                                <NumberTextField style={{ width: '160px' }} value={parseInt(product.qty)} onChange={handleProductChange} name='qty' label="Quantity" maxLenght={3} />
+                                <NumberTextField required={true} style={{ width: '160px' }} value={parseInt(product.qty)} onChange={handleProductChange} name='qty' label="Quantity" maxLenght={3} />
                             </div>
                         </div>
                         <div className='price-editproduct'>
                             <div><Typography variant='editProductText'>Collection: </Typography></div>
                             <div className='price-field-editproduct'>
                                 <FormControl sx={{ width: '160px' }} size='small'>
-                                    <InputLabel id="collection-selector-label">Selecione uma opção</InputLabel>
+                                    <InputLabel required id="collection-selector-label">Selecione uma opção</InputLabel>
                                     <Select
                                         labelId='collection-selector-label'
                                         id="collection-selector"
-                                        name='collection'
+                                        name='collectionId'
                                         label="Selecione uma opção"
-                                        value={product.collection}
+                                        value={collectionId}
                                         onChange={handleProductChange}
                                     >
                                         {Object.values(collectionsEnum).map((elemento, index) => {
+                                            console.log(elemento.name + ' ' + index)
                                             return <MenuItem key={'collection-selector-edit-' + index} value={elemento.id}>{elemento.name}</MenuItem>
                                         })}
                                     </Select>
