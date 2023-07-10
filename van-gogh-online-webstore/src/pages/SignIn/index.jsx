@@ -4,7 +4,6 @@ import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import { TextField } from '@mui/material';
 import { useNavigate } from 'react-router';
-import { admins } from '../../utils/admins';
 
 const SignIn = () => {
 
@@ -33,14 +32,22 @@ const SignIn = () => {
                 },
             })
                 .then(async res => {
-                    if (!res.ok) {
-                        alert("Error while fetching account.");
+                    if (res.status === 404) {
+                        alert("Incorrect email or password.");
+                        return false;
                     }
-                    console.log(res);
+                    else if (!res.ok) {
+                        alert("Error while fetching account.");
+                        return false;
+                    }
                     return res.json();
                 })
                 .then(data => {
-                    if (!data || data.password !== signIn.password) {
+                    if (!data) {
+                        return;
+                    }
+
+                    if (data.password !== signIn.password) {
                         alert("Incorrect email or password.");
                         return;
                     }
