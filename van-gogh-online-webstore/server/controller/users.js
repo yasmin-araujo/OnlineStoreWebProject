@@ -58,6 +58,7 @@ router.put('/:id', async (req, res) => {
                 email: req.body.email,
                 address: req.body.address,
                 telephone: req.body.telephone,
+                profilePic: req.body.profilePic,
             }
         });
         res.status(200).send({ message: 'User updated' });

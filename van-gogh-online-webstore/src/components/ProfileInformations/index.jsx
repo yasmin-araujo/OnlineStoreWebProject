@@ -4,7 +4,7 @@ import { TextField, Typography } from '@mui/material';
 import './style.css';
 import { isNumber } from '../../utils/isNumber';
 
-export default function ProfileInformations({ setShowGallery }) {
+export default function ProfileInformations({ setShowGallery, updateInfo }) {
 
     const userId = JSON.parse(localStorage.getItem('session'));
     const [user, setUser] = useState({ name: "", email: "", address: "", telephone: "" });
@@ -27,7 +27,6 @@ export default function ProfileInformations({ setShowGallery }) {
                     if (!data) {
                         return;
                     }
-                    console.log(data);
                     setUser(data);
                 })
                 .catch(error => {
@@ -74,6 +73,7 @@ export default function ProfileInformations({ setShowGallery }) {
             })
                 .then(res => {
                     if (res.status === 200) {
+                        updateInfo();
                         alert("Personal information succesfully updated!");
                     }
                     else {

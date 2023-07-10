@@ -4,7 +4,7 @@ import './style.css';
 import { profilePictures } from '../ProfilePictureGallery/profilePictures';
 
 
-export default function ProfileMenu({ handleProfileChange, profilePages = ['Informations', 'Orders', 'Logout'] }) {
+export default function ProfileMenu({ handleProfileChange, shouldUpdate, profilePages = ['Informations', 'Orders', 'Logout'] }) {
     const userId = JSON.parse(localStorage.getItem('session'));
     const [user, setUser] = useState({ name: 'User', profilePic: 0 });
 
@@ -36,7 +36,7 @@ export default function ProfileMenu({ handleProfileChange, profilePages = ['Info
         catch (e) {
             console.log(e);
         }
-    }, []);
+    }, [shouldUpdate]);
 
     const [menuIndex, setMenuIndex] = useState(0);
     const handleTabChange = (e, tabIndex) => {
