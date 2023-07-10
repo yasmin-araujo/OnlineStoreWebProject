@@ -49,4 +49,21 @@ router.post('/', async (req, res) => {
     }
 });
 
+// Update user by id
+router.put('/:id', async (req, res) => {
+    try {
+        await User.findOneAndUpdate({ id: req.params.id }, {
+            $set: {
+                name: req.body.name,
+                email: req.body.email,
+                address: req.body.address,
+                telephone: req.body.telephone,
+            }
+        });
+        res.status(200).send({ message: 'User updated' });
+    } catch {
+        res.status(400).send('Error to update user');
+    }
+});
+
 module.exports = router;

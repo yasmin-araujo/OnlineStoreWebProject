@@ -57,7 +57,7 @@ export default function ProfileMenu({ handleProfileChange, profilePages = ['Info
                 textColor='black'
                 TabIndicatorProps={{ style: { backgroundColor: "black" } }}>
                 {
-                    profilePages.map((page) => <Tab className='Tab' label={page} />)
+                    profilePages.map((page, index) => <Tab key={"tab-" + index} className='Tab' label={page} />)
                 }
             </Tabs>
         </div>
