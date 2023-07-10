@@ -15,7 +15,13 @@ export default function ProfilePage() {
     }, []);
 
     const [showGallery, setShowGallery] = useState(false);
-    const pages = [<ProfileInformations setShowGallery={setShowGallery} />,
+    const [shouldUpdate, setShouldUpdate] = useState(false);
+    const flipUpdate = () => {
+        setShouldUpdate(!shouldUpdate);
+        console.log(shouldUpdate);
+    }
+
+    const pages = [<ProfileInformations setShowGallery={setShowGallery} updateInfo={flipUpdate} />,
     <ProfileOrders />, <ProfileLogout />];
     const [profilePage, setProfilePage] = useState(pages[0]);
     const handleProfileChange = (index) => {
@@ -27,9 +33,9 @@ export default function ProfilePage() {
         <>
             <Navbar bgColor='white' />
             <div className='profile'>
-                <ProfileMenu handleProfileChange={handleProfileChange} />
+                <ProfileMenu handleProfileChange={handleProfileChange} shouldUpdate={shouldUpdate} />
                 {showGallery
-                    ? <ProfilePictureGallery setShowGallery={setShowGallery} />
+                    ? <ProfilePictureGallery setShowGallery={setShowGallery} updatePic={flipUpdate} />
                     : profilePage}
             </div>
         </>
