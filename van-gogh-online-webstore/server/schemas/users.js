@@ -36,9 +36,10 @@ const user = new Schema({
     },
     orders: [{
         id: Number,
-        productId: Number,
+        name: String,
         qty: Number,
         price: Number,
+        img: String
     }],
     isAdmin: {
         type: Boolean,

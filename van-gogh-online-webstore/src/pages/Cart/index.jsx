@@ -11,28 +11,29 @@ export default function Cart() {
 		document.body.style.backgroundColor = 'white';
 	}, []);
 
-	let getProducts = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
+	let getProducts = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
 	const [products, setProducts] = useState(getProducts);
+	const [shipping, setShipping] = useState({
+		address: 'Log in to set your address',
+		price: 0
+	});
 
-	const loggedIn = localStorage.getItem('session') ? true : false;
-	let getSession, getProfile, address, price;
-
-	if (loggedIn) {
-		getSession = JSON.parse(localStorage.getItem('session'));
-		getProfile = JSON.parse(localStorage.getItem(getSession));
-		address = getProfile.address;
-		price = 0;
-	} else {
-		address = "Log in to set your address"
-		price = 0
-	}
+	useEffect(() => {
+		let session = localStorage.getItem('session')
+		console.log(session);
+		if (session) {
+			fetch('http://localhost:5000/users/' + JSON.parse(session))
+				.then(res => {
+					return res.json();
+				})
+				.then(data => {
+					setShipping({address: data.address, price: 0})
+				})
+		}
+	}, [])
 
 	const [isEmpty, setIsEmpty] = useState(getProducts.length > 0 ? false : true);
 	const [subtotalPrice, setSubtotalPrice] = useState(products.reduce((sum, product) => { return sum + (product.price * product.qty) }, 0));
-	const [shipping, setShipping] = useState({
-		address: address,
-		price: price
-	});
 
 	const handleProductAmount = (id, qty) => {
 		const newProducts = products.map(product => product.id === id ? { ...product, qty: qty } : product)
@@ -50,9 +51,18 @@ export default function Cart() {
 	};
 
 	const handleCompleteOrder = () => {
+		alert('oiii')
+		let session = localStorage.getItem('session')
 		let randId = Math.floor(Math.random() * 10000)
-		products.map(product => getProfile.orders.push({...product, orderId: randId}))
-		localStorage.setItem(getSession, JSON.stringify(getProfile))
+		products.map( product =>
+			fetch('http://localhost:5000/users/addOrder' + JSON.parse(session), {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({...product, orderId: randId})
+			})
+		)
 	}
 
 	useEffect(
@@ -72,7 +82,7 @@ export default function Cart() {
 						handleProductDeletion={handleProductDeletion} handleProductAmount={handleProductAmount} />)}
 					{isEmpty ? <Typography variant='mainSubtitle'>Your cart is empty</Typography> : undefined}
 				</div>
-				<PaymentInformations cartProducts={products} shipping={shipping} subtotalPrice={subtotalPrice} handleCompleteOrder={handleCompleteOrder} />
+				{shipping == 'Log in to set your address' ? <></> : <PaymentInformations cartProducts={products} shipping={shipping} subtotalPrice={subtotalPrice} handleCompleteOrder={handleCompleteOrder} />}
 			</div>
 		</>
 	);

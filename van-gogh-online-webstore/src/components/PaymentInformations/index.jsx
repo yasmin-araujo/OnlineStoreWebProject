@@ -15,7 +15,7 @@ export default function PaymentInformations({ shipping, subtotalPrice, handleCom
 		for (let i = 0; i < cartProducts.length; i++) {
 			const element = cartProducts[i];
 			const x = products.find((y) => y.id === element.id)
-			if (x.qty < element.quantity) {
+			if (x.qty < element.qty) {
 				haveStock = false;
 				productsOutStock.push(element.name);
 			}
@@ -67,14 +67,13 @@ export default function PaymentInformations({ shipping, subtotalPrice, handleCom
 	}
 
 	const handleSubmit = (e) => {
+		e.preventDefault();
 		if (!loggedIn) {
 			alert('Sign in to complete your purchase')
-			e.preventDefault();
 			return false;
 		}
 		if (subtotalPrice == 0) {
 			alert('Your cart is empty')
-			e.preventDefault();
 			return false;
 		}
 		setHaveStock();
@@ -84,13 +83,11 @@ export default function PaymentInformations({ shipping, subtotalPrice, handleCom
 				frase += y + ": We don't have this amount in stock\n"
 			})
 			alert(frase)
-			e.preventDefault();
 			return false;
 		}
 		localStorage.removeItem('cart');
 		changeProductStock();
 		handleCompleteOrder();
-		e.preventDefault();
 		navigate('/thanks');
 	}
 

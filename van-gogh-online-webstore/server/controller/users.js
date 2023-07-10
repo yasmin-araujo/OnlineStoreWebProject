@@ -49,4 +49,18 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.put('/addOrder/:id', async (req, res) => {
+    try {
+        console.log(req.body)
+        await User.findOneAndUpdate({ id: req.params.id }, {
+            $push: {
+                orders: req.body 
+            }
+        });
+        res.status(200).send({ message: 'Order added' });
+    } catch {
+        res.status(400).send('Error adding order');
+    }
+});
+
 module.exports = router;
