@@ -1,21 +1,75 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
 import Button from '../Button';
 import { profilePictures } from './profilePictures';
 import './style.css';
 
-export default function ProfilePictureGallery({ setShowGallery }) {
-    const getSession = JSON.parse(localStorage.getItem('session'));
-	const getProfile = JSON.parse(localStorage.getItem(getSession));
-    const [selected, setSelected] = useState(getProfile.profilePic);
-    
+export default function ProfilePictureGallery({ setShowGallery, updatePic }) {
+    const userId = JSON.parse(localStorage.getItem('session'));
+    const [user, setUser] = useState({ profilePic: 0 });
+
+    useEffect(() => {
+        try {
+            fetch('http://localhost:5000/users/' + userId, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+                .then(async res => {
+                    if (!res.ok) {
+                        alert("Error while fetching account.");
+                        return false;
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    if (!data) {
+                        return;
+                    }
+                    setUser(data);
+                })
+                .catch(error => {
+                    console.log(error);
+                    alert("Error while fetching account.");
+                });
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }, []);
+
     const handleImgClick = (e) => {
-        setSelected(parseInt(e.target.name));
+        setUser(user => ({
+            ...user,
+            profilePic: parseInt(e.target.name)
+        }));
     };
 
-    const handleImgChange = () => {
-        let updatedProfile = {...getProfile, profilePic: profilePictures[selected].id}
-        localStorage.setItem(getSession, JSON.stringify(updatedProfile))
+    const handleImgChange = (e) => {
+        e.preventDefault();
+        try {
+            fetch('http://localhost:5000/users/' + userId, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ profilePic: profilePictures[user.profilePic].id })
+            })
+                .then(res => {
+                    if (res.status === 200) {
+                        updatePic();
+                        alert("Profile picture succesfully updated!");
+                    }
+                    else {
+                        console.log(res);
+                        alert("Error while updating profile picture.");
+                    }
+                    return res.json();
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
         setShowGallery(false)
     }
 
@@ -29,7 +83,7 @@ export default function ProfilePictureGallery({ setShowGallery }) {
                     return (
                         <div className='profile-pic' key={'profile-icon-' + index}>
                             <img name={index} onClick={handleImgClick} className={'profile-pic-img'}
-                                style={{ borderColor: selected === index ? '#D6A324' : 'transparent' }}
+                                style={{ borderColor: user.profilePic === index ? '#D6A324' : 'transparent' }}
                                 src={require('../../images/paintings/' + pic.href)} alt='Profile Icon' />
                             {pic.active ? <></> : <div className='blocked-pic' />}
                         </div>

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const user = new Schema({
     id: {
-        type: Number,
+        type: String,
         required: true,
         index: true,
         unique: true,
@@ -16,6 +16,7 @@ const user = new Schema({
     email: {
         type: String,
         required: true,
+        unique: true,
     },
     address: {
         type: String,
@@ -33,6 +34,16 @@ const user = new Schema({
         type: Number,
         required: true,
     },
+    orders: [{
+        id: Number,
+        productId: Number,
+        qty: Number,
+        price: Number,
+    }],
+    isAdmin: {
+        type: Boolean,
+        default: false,
+    }
 });
 
 module.exports = mongoose.model('User', user);

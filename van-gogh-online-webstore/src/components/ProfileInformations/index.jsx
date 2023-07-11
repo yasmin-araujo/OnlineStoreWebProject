@@ -1,53 +1,109 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../Button'
 import { TextField, Typography } from '@mui/material';
 import './style.css';
 import { isNumber } from '../../utils/isNumber';
 
-export default function ProfileInformations({ setShowGallery }) {
-	
-	const getSession = JSON.parse(localStorage.getItem('session'));
-	const getProfile = JSON.parse(localStorage.getItem(getSession));
-	const [profileInformations, setProfileInformations] = useState({ name: getProfile.name, email: getProfile.email, adress: getProfile.adress, telephone: getProfile.telephone })
+export default function ProfileInformations({ setShowGallery, updateInfo }) {
 
-	const handleInputChange = (e) => {
-		setProfileInformations(profileInformations => ({
-			...profileInformations,
-			[e.target.name]: e.target.value
-		}))
-	}
+    const userId = JSON.parse(localStorage.getItem('session'));
+    const [user, setUser] = useState({ name: "", email: "", address: "", telephone: "" });
 
-	const handleNumberChange = (e) => {
-        if(!isNumber(e)){
+    useEffect(() => {
+        try {
+            fetch('http://localhost:5000/users/' + userId, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+                .then(async res => {
+                    if (!res.ok) {
+                        alert("Error while fetching account.");
+                        return false;
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    if (!data) {
+                        return;
+                    }
+                    setUser(data);
+                })
+                .catch(error => {
+                    console.log(error);
+                    alert("Error while fetching account.");
+                });
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }, []);
+
+
+    const handleInputChange = (e) => {
+        setUser(user => ({
+            ...user,
+            [e.target.name]: e.target.value
+        }))
+    }
+
+    const handleNumberChange = (e) => {
+        if (!isNumber(e)) {
             e.preventDefault()
         }
-        setProfileInformations(profileInformations => ({
-			...profileInformations,
-			[e.target.name]: e.target.value
-		}))
+        handleInputChange(e);
     }
+
+    const body = {
+        'name': user.name,
+        'email': user.email,
+        'address': user.address,
+        'telephone': user.telephone,
+    };
 
     const handleSubmit = (e) => {
-        localStorage.setItem(profileInformations.email, JSON.stringify({...profileInformations, password: getProfile.password, confirmpass: getProfile.confirmpass, orders: getProfile.orders, profilePic: getProfile.profilePic}))
-		localStorage.setItem('session', JSON.stringify(profileInformations.email))
+        e.preventDefault();
+        try {
+            fetch('http://localhost:5000/users/' + userId, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            })
+                .then(res => {
+                    if (res.status === 200) {
+                        updateInfo();
+                        alert("Personal information succesfully updated!");
+                    }
+                    else {
+                        console.log(res);
+                        alert("Error while updating account.");
+                    }
+                    return res.json();
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
 
-	return (
-		<div className='informations'>
-			<Typography variant='profileSectionTitle'>Informations</Typography>
-			<form onSubmit={handleSubmit}>
-				<div className='information-fields'>
-					<TextField onChange={handleInputChange} className='TextField' name='name' label='Name' variant='outlined' margin='normal' defaultValue={profileInformations.name} inputProps={{ maxLength: 30 }}/>
-					<TextField onChange={handleInputChange} className='TextField' name='email' label='Email' variant='outlined' margin='normal' defaultValue={profileInformations.email} type='email' />
-					<TextField onChange={handleInputChange} className='TextField' name='adress' label='Adress' variant='outlined' margin='normal' defaultValue={profileInformations.adress} />
-					<TextField onKeyDown={handleNumberChange} onChange={handleInputChange} className='TextField' name='telephone' label='Telephone' variant='outlined' margin='normal' defaultValue={profileInformations.telephone} type='tel' inputProps={{ maxLength: 14 }} />
+    return (
+        <div className='informations'>
+            <Typography variant='profileSectionTitle'>Informations</Typography>
+            <form onSubmit={handleSubmit}>
+                <div className='information-fields'>
+                    <TextField onChange={handleInputChange} className='TextField' name='name' label='Name' variant='outlined' margin='normal' value={user.name} inputProps={{ maxLength: 30 }} required />
+                    <TextField onChange={handleInputChange} className='TextField' name='email' label='Email' variant='outlined' margin='normal' value={user.email} type='email' required />
+                    <TextField onChange={handleInputChange} className='TextField' name='address' label='Address' variant='outlined' margin='normal' value={user.address} required />
+                    <TextField onKeyDown={handleNumberChange} onChange={handleInputChange} className='TextField' name='telephone' label='Telephone' variant='outlined' margin='normal' value={user.telephone} type='tel' inputProps={{ maxLength: 14 }} required />
 
-					<div className='buttons'>
-						<Button onClick={() => setShowGallery(true)} styles={{ backgroundColor: "#C4C4C4" }} >Update profile picture</Button>
-						<Button isSubmitForm={true} styles={{ backgroundColor: "black" }} name={'Save'}/>
-					</div>
-				</div>
-			</form>
-		</div>
-	);
+                    <div className='buttons'>
+                        <Button onClick={() => setShowGallery(true)} styles={{ backgroundColor: "#C4C4C4" }} >Update profile picture</Button>
+                        <Button isSubmitForm={true} styles={{ backgroundColor: "black" }} name={'Save'} />
+                    </div>
+                </div>
+            </form>
+        </div>
+    );
 }

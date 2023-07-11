@@ -1,26 +1,80 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const User = require('../schemas/users.js') 
+const User = require('../schemas/users.js')
 
 const router = express.Router();
-mongoose.model('User') 
+mongoose.model('User')
 
 // Return all users 
-router.get('/', async(req, res) => {
+router.get('/', async (req, res) => {
     try {
         const data = await User.find()
         res.status(200).send(data)
-    } catch(e) {
-        res.status(404).send(e);
+    } catch (e) {
+        res.status(400).send(e);
     }
 });
 
-router.get('/:id', async(req, res) => {
+router.get('/:id', async (req, res) => {
     try {
-        const data = await User.findOne({id: req.params.id})
-        res.status(200).send(data)
-    } catch(e) {
-        res.status(404).send(e);
+        const data = await User.findOne({ id: req.params.id });
+        console.log(data);
+        res.status(200).send(data);
+    } catch (e) {
+        res.status(400).send(e);
+    }
+});
+
+router.get('/byEmail/:email', async (req, res) => {
+    try {
+        const data = await User.findOne({ email: req.params.email });
+        if (data === null)
+            res.status(404).send(data);
+        else
+            res.status(200).send(data);
+    } catch (e) {
+        res.status(400).send(e);
+    }
+});
+
+// Add an user
+router.post('/', async (req, res) => {
+    const user = new User(req.body);
+    console.log(user);
+    try {
+        await user.save();
+        res.status(200).send({ message: 'User added' });
+    } catch (e) {
+        res.status(400).send({ message: 'Error to add user: ' + e });
+    }
+});
+
+// Update user by id
+router.put('/:id', async (req, res) => {
+    try {
+        await User.findOneAndUpdate({ id: req.params.id }, {
+            $set: {
+                name: req.body.name,
+                email: req.body.email,
+                address: req.body.address,
+                telephone: req.body.telephone,
+                profilePic: req.body.profilePic,
+                isAdmin: req.body.isAdmin,
+            }
+        });
+        res.status(200).send({ message: 'User updated' });
+    } catch {
+        res.status(400).send('Error to update user');
+    }
+});
+
+// Delete user by id
+router.delete('/:id', async (req, res) => {
+    try {
+        await User.deleteOne({ id: req.params.id })
+        res.status(200).send({ message: 'User deleted' });
+    } catch (e) {
+        res.status(400).send(e);
     }
 });
 

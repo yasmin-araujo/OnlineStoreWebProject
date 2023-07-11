@@ -81,7 +81,7 @@ export default function PaymentInformations({ shipping, subtotalPrice, handleCom
 		if (!haveStock) {
 			let frase = ""
 			productsOutStock.map(y => {
-				frase += y + " :We don't have this amount in stock\n"
+				frase += y + ": We don't have this amount in stock\n"
 			})
 			alert(frase)
 			e.preventDefault();

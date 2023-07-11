@@ -4,7 +4,6 @@ import Navbar from '../../components/Navbar'
 import Button from '../../components/Button'
 import { TextField } from '@mui/material';
 import { useNavigate } from 'react-router';
-import { admins } from '../../utils/admins';
 
 const SignIn = () => {
 
@@ -23,42 +22,52 @@ const SignIn = () => {
         }));
     };
 
-    const isAdmin = () => {
-        const match = admins.find((admin) => admin.email === signIn.email);
-        if (match === null || match.password !== signIn.password)
-            return false;
-        return true;
-    }
-
     const handleSubmit = (e) => {
-        let checkProfile = localStorage.getItem(signIn.email);
-        if (checkProfile === null) {
-            if (signIn.email === 'admin@admin' && signIn.password === 'admin')  {
-                localStorage.setItem('isAdmin', JSON.stringify(true))
-                localStorage.setItem('session', JSON.stringify(signIn.email))
-                localStorage.setItem(signIn.email, JSON.stringify(admins.find((admin) => admin.email === signIn.email)))
-                e.preventDefault();
-                navigate('/');
-                return;
-            }
-            alert('Incorrect email or password')
-            e.preventDefault();
-            return false;
-        }
-
-        checkProfile = JSON.parse(checkProfile);
-
-        if (checkProfile.password !== signIn.password) {
-            alert('Incorrect email or password');
-            e.preventDefault();
-            return false;
-        }
-
-        localStorage.setItem('session', JSON.stringify(signIn.email))
         e.preventDefault();
-        navigate('/');
-    }
 
+        try {
+            fetch('http://localhost:5000/users/byEmail/' + signIn.email, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+                .then(async res => {
+                    if (res.status === 404) {
+                        alert("Incorrect email or password.");
+                        return false;
+                    }
+                    else if (!res.ok) {
+                        alert("Error while fetching account.");
+                        return false;
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    if (!data) {
+                        return;
+                    }
+
+                    if (data.password !== signIn.password) {
+                        alert("Incorrect email or password.");
+                        return;
+                    }
+                    else {
+                        localStorage.setItem('session', JSON.stringify(data.id))
+                        console.log(data)
+                        if (data.isAdmin) {
+                            localStorage.setItem('isAdmin', true)
+                        }
+                        navigate('/');
+                    }
+                }).catch(error => {
+                    console.log(error);
+                    alert("Error while logging in.");
+                });
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
 
     return <>
         <Navbar fontColor='white' />
