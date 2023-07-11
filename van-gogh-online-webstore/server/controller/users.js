@@ -68,4 +68,14 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+// Delete user by id
+router.delete('/:id', async (req, res) => {
+    try {
+        await User.deleteOne({ id: req.params.id })
+        res.status(200).send({ message: 'User deleted' });
+    } catch (e) {
+        res.status(400).send(e);
+    }
+});
+
 module.exports = router;

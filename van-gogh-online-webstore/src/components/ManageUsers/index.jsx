@@ -104,7 +104,7 @@ const ManageUsers = () => {
             </div>
             <div className='EditUsers-bloco'>
                 {filteredUsers.map((user, index) => (
-                    <User key={'user-row-' + index} user={user} setUserToEdit={setUserToEdit} setModoEdicao={setModoEdicao} users={users} setUsers={setUsers} setFilteredUsers={setFilteredUsers} textFilter={textFilter} />
+                    <User key={'user-row-' + index} user={user} setUserToEdit={setUserToEdit} setModoEdicao={setModoEdicao} setUsers={setUsers} setFilteredUsers={setFilteredUsers} />
                 ))}
             </div>
 
