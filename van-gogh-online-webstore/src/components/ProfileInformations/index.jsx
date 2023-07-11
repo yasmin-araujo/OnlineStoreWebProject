@@ -31,7 +31,7 @@ export default function ProfileInformations({ setShowGallery, updateInfo }) {
                 })
                 .catch(error => {
                     console.log(error);
-                    alert("Error while logging in.");
+                    alert("Error while fetching account.");
                 });
         }
         catch (e) {
