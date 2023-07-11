@@ -74,11 +74,22 @@ router.put('/:id', async (req, res) => {
                 address: req.body.address,
                 telephone: req.body.telephone,
                 profilePic: req.body.profilePic,
+                isAdmin: req.body.isAdmin,
             }
         });
         res.status(200).send({ message: 'User updated' });
     } catch {
         res.status(400).send('Error to update user');
+    }
+});
+
+// Delete user by id
+router.delete('/:id', async (req, res) => {
+    try {
+        await User.deleteOne({ id: req.params.id })
+        res.status(200).send({ message: 'User deleted' });
+    } catch (e) {
+        res.status(400).send(e);
     }
 });
 

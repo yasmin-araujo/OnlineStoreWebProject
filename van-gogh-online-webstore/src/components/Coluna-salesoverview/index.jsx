@@ -6,8 +6,8 @@ const Coluna = ({ valores }) => {
 
     return <>
         <div className='col-container'>
-            {valores.map((valor) => (
-                <div className='col'>{valor}</div>
+            {valores.map((valor, index) => (
+                <div key={'col-admin-table-' + index} className='col'>{valor}</div>
             ))}
         </div>
     </>
