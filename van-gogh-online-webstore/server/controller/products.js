@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-//atualiza um produto a partir do slug
+//atualiza um produto a partir do id
 router.put('/:id', async (req, res) => {
     try {
         await Product.findOneAndUpdate({ id: req.params.id }, {
@@ -54,7 +54,19 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-//deleta um produto a partir do slug
+//atualiza o estoque de um produto
+router.put('/updateStock/:id', async (req, res) => {
+    try {
+        await Product.findOneAndUpdate({ id: req.params.id }, {
+            $inc: { qty: (req.body.qty)*-1 }
+        });
+        res.status(200).send({ message: 'Product updated' });
+    } catch (e) {
+        res.status(400).send(e);
+    }
+})
+
+//deleta um produto a partir do id
 router.delete('/:id', async (req, res) => {
     try {
         await Product.deleteOne({ id: req.params.id })
@@ -64,5 +76,16 @@ router.delete('/:id', async (req, res) => {
         res.status(400).send(e);
     }
 });
+
+//deleta todos os produtos
+router.delete('/', async(req, res) => {
+    try {
+        await Product.deleteMany()
+        res.status(200).send({ message: 'Products deleted' });
+    } catch (e) {
+        res.status(400).send(e);
+    }
+})
+
 
 module.exports = router;

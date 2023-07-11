@@ -14,7 +14,7 @@ import SalesOverview from './pages/SalesOverview';
 import SingleProduct from './pages/SingleProduct';
 import EditProduct from './pages/EditProduct';
 import AddProduct from './pages/AddProduct';
-// import { loadProductsToDB } from './loadProducts';
+import { loadProductsToDB } from './loadProducts';
 
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router';

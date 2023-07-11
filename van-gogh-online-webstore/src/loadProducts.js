@@ -1,7 +1,10 @@
 import { products } from './utils/products';
 
-export const loadProductsToDB = () => {
+export const loadProductsToDB = async () => {
     try {
+        await fetch('http://localhost:5000/products', {
+            method: 'DELETE'
+        });
         products.map(product =>
             fetch('http://localhost:5000/products', {
                 method: 'POST',

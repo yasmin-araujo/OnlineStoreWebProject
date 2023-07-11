@@ -3,10 +3,12 @@ import { Typography } from '@mui/material';
 import Button from '../Button';
 import { profilePictures } from './profilePictures';
 import './style.css';
+import { collectionsEnum } from '../../utils/collectionsEnum';
 
 export default function ProfilePictureGallery({ setShowGallery, updatePic }) {
     const userId = JSON.parse(localStorage.getItem('session'));
     const [user, setUser] = useState({ profilePic: 0 });
+    const [collectionIdList, setCollectionIdList] = useState([collectionsEnum.NONE.id]);
 
     useEffect(() => {
         try {
@@ -27,6 +29,15 @@ export default function ProfilePictureGallery({ setShowGallery, updatePic }) {
                         return;
                     }
                     setUser(data);
+
+                    let newCollectionIdList = collectionIdList;
+                    data.orders.map((order) => {
+                        if (newCollectionIdList.find((id) => id === order.collectionId) === undefined) {
+                            newCollectionIdList = [...newCollectionIdList, order.collectionId];
+                        }
+                        return true;
+                    })
+                    setCollectionIdList(newCollectionIdList);
                 })
                 .catch(error => {
                     console.log(error);
@@ -73,6 +84,10 @@ export default function ProfilePictureGallery({ setShowGallery, updatePic }) {
         setShowGallery(false)
     }
 
+    const isPicActive = (collectionId) => {
+        return collectionIdList.find((col) => col === collectionId) !== undefined;
+    }
+
     return (
         <div className='gallery'>
             <Typography variant='profileSectionTitle'>Profile Picture</Typography>
@@ -85,7 +100,7 @@ export default function ProfilePictureGallery({ setShowGallery, updatePic }) {
                             <img name={index} onClick={handleImgClick} className={'profile-pic-img'}
                                 style={{ borderColor: user.profilePic === index ? '#D6A324' : 'transparent' }}
                                 src={require('../../images/paintings/' + pic.href)} alt='Profile Icon' />
-                            {pic.active ? <></> : <div className='blocked-pic' />}
+                            {isPicActive(pic.collectionId) ? <></> : <div className='blocked-pic' />}
                         </div>
                     );
                 })}
