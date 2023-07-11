@@ -75,14 +75,15 @@ Following the steps described in the test plan, it is possible to analyze the co
 As a result, we have a project that passes all the tests, ensuring that all the points above are being fulfilled.
 
 ## Build Procedures
-1. **Install Node.js**: You can download and install Node.js at https://nodejs.org. 
+1. **Install Node.js**: You can download and install Node.js at https://nodejs.org
 2. **Navigate to the project directory**: Use the `cd` command to navigate into the project directory: `cd project-directory`
 3. **Install dependencies**: In the project directory, use the following command to install the required dependencies: `npm install`
 4. **Build the project**: Once the dependencies are installed, use the following command: `npm run build`
 5. **Run the project**: After completing the build process, use the following command: `npm start`
+6. **Run the server**: In another terminal, run the following command to setup the server: ``npm run server`
 
 ## Problems
-No problems were found during the development of the project.
+No major problems were found during the development of the project.
 
 ## Comments
 To access the admin panel, use the following credentials:
