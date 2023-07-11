@@ -52,10 +52,9 @@ const SignIn = () => {
                         return;
                     }
                     else {
-                        localStorage.setItem('session', JSON.stringify(data.id))
-                        console.log(data)
+                        localStorage.setItem('session', JSON.stringify(data.id));
                         if (data.isAdmin) {
-                            localStorage.setItem('isAdmin', true)
+                            localStorage.setItem('isAdmin', true);
                         }
                         navigate('/');
                     }

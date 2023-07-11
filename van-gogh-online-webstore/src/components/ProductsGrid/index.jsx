@@ -11,14 +11,11 @@ export default function ProductsGrid({ filter }) {
             .then(res => {
                 return res.json();
             })
-            .then(data => { 
+            .then(data => {
                 setProductsList(data);
-                setFilteredProducts(data);
+                setFilteredProducts(!filter.showUnavailable ? data.filter((product) => product.qty > 0) : data);
             })
     }, [])
-
-    //let products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
-    //const [productsList, setProductsList] = useState(products);
 
     useEffect(() => {
         let filteredList = productsList;
@@ -38,8 +35,6 @@ export default function ProductsGrid({ filter }) {
         if (!filter.showUnavailable) {
             filteredList = filteredList.filter((product) => product.qty > 0);
         }
-
-        console.log(filteredList)
 
         setFilteredProducts(filteredList);
     }, [filter]);
