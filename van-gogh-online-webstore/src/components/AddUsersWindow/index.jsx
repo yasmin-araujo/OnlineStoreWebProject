@@ -5,7 +5,7 @@ import Button from '../Button'
 import { isNumber } from '../../utils/isNumber';
 import { v4 as uuidv4 } from 'uuid';
 
-const AddUsers = ({ setUsers, users, setModoAdd, setFilteredUsers }) => {
+const AddUsers = ({ setUsers, users, setModoAdd, setFilteredUsers, setTextFilter }) => {
 
     const [info, setInfo] = useState({ name: '', email: '', address: '', telephone: '', password: '', confirmpass: '', isAdmin: false });
 
@@ -55,11 +55,11 @@ const AddUsers = ({ setUsers, users, setModoAdd, setFilteredUsers }) => {
                 body: JSON.stringify(body)
             })
                 .then(res => {
-                    console.log(res);
                     if (res.status === 200) {
                         const newUsers = [...users, body];
                         setUsers(newUsers);
                         setFilteredUsers(newUsers);
+                        setTextFilter('');
                     }
                     else {
                         alert("Error while adding account.");

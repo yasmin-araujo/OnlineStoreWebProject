@@ -82,12 +82,12 @@ const ManageUsers = () => {
     return (<>
         {modoAdd ? (
             <div onClick={handleOverlayClick} className='overlay'>
-                <AddUsers users={users} setUsers={setUsers} setFilteredUsers={setFilteredUsers} setModoAdd={setModoAdd} />
+                <AddUsers users={users} setUsers={setUsers} setFilteredUsers={setFilteredUsers} setModoAdd={setModoAdd} setTextFilter={setTextFilter} />
             </div>
         ) : ('')}
         {modoEdicao ? (
             <div onClick={handleOverlayClick} className='overlay'>
-                <EditUser userToEdit={userToEdit} users={users} setUsers={setUsers} setFilteredUsers={setFilteredUsers} setModoEdicao={setModoEdicao} />
+                <EditUser userToEdit={userToEdit} users={users} setUsers={setUsers} setFilteredUsers={setFilteredUsers} setModoEdicao={setModoEdicao} textFilter={textFilter} />
             </div>
         ) : ('')}
 
@@ -104,7 +104,7 @@ const ManageUsers = () => {
             </div>
             <div className='EditUsers-bloco'>
                 {filteredUsers.map((user, index) => (
-                    <User key={'user-row-' + index} user={user} setUserToEdit={setUserToEdit} setModoEdicao={setModoEdicao} setUsers={setUsers} setFilteredUsers={setFilteredUsers} />
+                    <User key={'user-row-' + index} user={user} setUserToEdit={setUserToEdit} setModoEdicao={setModoEdicao} setUsers={setUsers} setFilteredUsers={setFilteredUsers} textFilter={textFilter} />
                 ))}
             </div>
 

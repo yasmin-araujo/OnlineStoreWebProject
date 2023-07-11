@@ -52,14 +52,14 @@ const TabelaSales = () => {
                 <div className='line2'></div>
                 <div className='colunas'>
                     <div className='element-coluna'>
-                        {pastSix.map((valor) => (
-                            <div>{valor}</div>
+                        {pastSix.map((valor, index) => (
+                            <div key={'valor-coluna1-' + index}>{valor}</div>
                         ))}
 
                     </div>
                     <div className='element-coluna2'>
-                        {pastSix2.map((valor) => (
-                            <div>{valor}</div>
+                        {pastSix2.map((valor, index) => (
+                            <div key={'valor-coluna2-' + index} > {valor}</div>
                         ))}
                     </div>
                     <Coluna valores={totalIncome} />
@@ -68,7 +68,7 @@ const TabelaSales = () => {
                     <Coluna valores={qtyProducts} />
                 </div>
             </div>
-        </div>
+        </div >
 
     </>
 

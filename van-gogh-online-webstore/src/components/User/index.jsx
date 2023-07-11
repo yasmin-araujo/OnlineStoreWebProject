@@ -2,7 +2,7 @@ import { React } from 'react'
 import './style.css'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 
-const User = ({ setUserToEdit, user: selectedUser, setUsers, setFilteredUsers, setModoEdicao }) => {
+const User = ({ setUserToEdit, user: selectedUser, setUsers, setFilteredUsers, setModoEdicao, textFilter }) => {
     const handleDeleteClick = () => {
         if (!window.confirm('Do you really want to delete this account?')) {
             return;
@@ -29,7 +29,9 @@ const User = ({ setUserToEdit, user: selectedUser, setUsers, setFilteredUsers, s
                                 return res.json();
                             }).then(data => {
                                 setUsers(data);
-                                setFilteredUsers([...data]);
+                                setFilteredUsers(data.filter((user) =>
+                                    user.name.toLowerCase().includes(textFilter)
+                                ));
                             });
                     }
                     else {

@@ -4,7 +4,7 @@ import { TextField, FormControlLabel, Checkbox } from '@mui/material'
 import Button from '../Button'
 import { isNumber } from '../../utils/isNumber';
 
-const EditUser = ({ userToEdit, users, setUsers, setModoEdicao, setFilteredUsers }) => {
+const EditUser = ({ userToEdit, users, setUsers, setModoEdicao, setFilteredUsers, textFilter }) => {
 
     const [info, setInfo] = useState(userToEdit);
 
@@ -60,7 +60,9 @@ const EditUser = ({ userToEdit, users, setUsers, setModoEdicao, setFilteredUsers
                                 return res.json();
                             }).then(data => {
                                 setUsers(data);
-                                setFilteredUsers([...data]);
+                                setFilteredUsers(data.filter((user) =>
+                                    user.name.toLowerCase().includes(textFilter)
+                                ));
                             });
                     }
                     else {
