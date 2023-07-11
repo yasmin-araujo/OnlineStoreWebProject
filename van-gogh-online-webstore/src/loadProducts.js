@@ -1,6 +1,6 @@
 import { products } from './utils/products';
 
-export const loadProductsToDB =async () => {
+export const loadProductsToDB = async () => {
     try {
         await fetch('http://localhost:5000/products', {
             method: 'DELETE'

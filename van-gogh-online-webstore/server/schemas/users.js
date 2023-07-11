@@ -39,7 +39,8 @@ const user = new Schema({
         name: String,
         qty: Number,
         price: Number,
-        img: String
+        img: String,
+        collectionId: Number,
     }],
     isAdmin: {
         type: Boolean,

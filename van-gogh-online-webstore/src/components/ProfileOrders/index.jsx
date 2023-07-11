@@ -5,28 +5,31 @@ import Order from '../Order';
 
 
 export default function ProfileOrders() {
-	const [orders, setOrders] = useState([]);
-	
-	useEffect(() => {
-		let session = localStorage.getItem('session')
-		if (session) {
-			fetch('http://localhost:5000/users/' + JSON.parse(session))
-				.then(res => {
-					return res.json();
-				})
-				.then(data => {
-					setOrders(data.orders);
-				})
-		}
-	}, [])
-	
+    const [orders, setOrders] = useState([]);
 
-	return (
-		<div className='order-section'>
-			<Typography variant='profileSectionTitle'>Orders</Typography>
-			<div className='orders'>
-				{orders && orders.map((order) => <Order order={order} />)}
-			</div>
-		</div>
-	);
+    useEffect(() => {
+        let userId = localStorage.getItem('session')
+        if (userId) {
+            fetch('http://localhost:5000/users/' + JSON.parse(userId))
+                .then(res => {
+                    return res.json();
+                })
+                .then(data => {
+                    setOrders(data.orders);
+                })
+        }
+    }, [])
+
+
+    return (
+        <div className='order-section'>
+            <Typography variant='profileSectionTitle'>Orders</Typography>
+            <div className='orders'>
+                {Object.keys(orders).length > 0
+                    ? orders.map((order) => <Order order={order} />)
+                    : <Typography variant='smallTitle'>No orders</Typography>
+                }
+            </div>
+        </div>
+    );
 }

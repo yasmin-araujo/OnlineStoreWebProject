@@ -1,17 +1,19 @@
+import { collectionsEnum } from "../../utils/collectionsEnum";
+
 export const profilePictures = [{
     id: 0,
     href: 'vangogh-portrait.png',
-    active: true,
+    collectionId: collectionsEnum.NONE.id,
 }, {
     id: 1,
     href: 'almond-blossom.png',
-    active: true,
+    collectionId: collectionsEnum.ALMOND_BLOSSOM.id,
 }, {
     id: 2,
     href: 'sunflowers.png',
-    active: false,
+    collectionId: collectionsEnum.SUNFLOWERS.id,
 }, {
     id: 3,
     href: 'starry-night.png',
-    active: false,
+    collectionId: collectionsEnum.STARRY_NIGHT.id,
 }];
