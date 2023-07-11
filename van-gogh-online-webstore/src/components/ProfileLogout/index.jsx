@@ -13,7 +13,6 @@ export default function ProfileLogout() {
 		localStorage.removeItem('session');
 		localStorage.removeItem('cart');
 		localStorage.removeItem('isAdmin');
-        localStorage.removeItem('admin@admin');
 		e.preventDefault();
 		navigate('/');
 	}

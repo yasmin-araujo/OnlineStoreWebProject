@@ -15,18 +15,16 @@ export default function ProfilePage() {
     }, []);
 
     const [showGallery, setShowGallery] = useState(false);
-    const [shouldUpdate, setShouldUpdate] = useState(false);
+    const [shouldUpdate, setShouldUpdate] = useState(0);
+    
     const flipUpdate = () => {
         setShouldUpdate(!shouldUpdate);
-        console.log(shouldUpdate);
     }
 
-    const pages = [<ProfileInformations setShowGallery={setShowGallery} updateInfo={flipUpdate} />,
-    <ProfileOrders />, <ProfileLogout />];
-    const [profilePage, setProfilePage] = useState(pages[0]);
+    const [profilePage, setProfilePage] = useState(0);
     const handleProfileChange = (index) => {
         setShowGallery(false);
-        setProfilePage(pages[index]);
+        setProfilePage(index);
     }
 
     return (
@@ -35,8 +33,14 @@ export default function ProfilePage() {
             <div className='profile'>
                 <ProfileMenu handleProfileChange={handleProfileChange} shouldUpdate={shouldUpdate} />
                 {showGallery
-                    ? <ProfilePictureGallery setShowGallery={setShowGallery} updatePic={flipUpdate} />
-                    : profilePage}
+                    ? (<ProfilePictureGallery setShowGallery={setShowGallery} updatePic={flipUpdate} />)
+                    : (profilePage === 0
+                        ? <ProfileInformations setShowGallery={setShowGallery} updateInfo={flipUpdate} />
+                        : (profilePage === 1
+                            ? <ProfileOrders />
+                            : <ProfileLogout />)
+                    )
+                }
             </div>
         </>
     );
