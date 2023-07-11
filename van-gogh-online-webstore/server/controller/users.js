@@ -59,6 +59,7 @@ router.put('/:id', async (req, res) => {
                 address: req.body.address,
                 telephone: req.body.telephone,
                 profilePic: req.body.profilePic,
+                isAdmin: req.body.isAdmin,
             }
         });
         res.status(200).send({ message: 'User updated' });

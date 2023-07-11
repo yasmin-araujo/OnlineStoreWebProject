@@ -71,10 +71,9 @@ const ManageUsers = () => {
         }
     };
 
-    const [user, setUser] = useState({
+    const [userToEdit, setUserToEdit] = useState({
         name: '',
         email: '',
-        password: '',
         type: '',
         address: '',
         telephone: '',
@@ -88,7 +87,7 @@ const ManageUsers = () => {
         ) : ('')}
         {modoEdicao ? (
             <div onClick={handleOverlayClick} className='overlay'>
-                <EditUser user={user} users={users} setUsers={setUsers} setModoEdicao={setModoEdicao} />
+                <EditUser userToEdit={userToEdit} users={users} setUsers={setUsers} setFilteredUsers={setFilteredUsers} setModoEdicao={setModoEdicao} />
             </div>
         ) : ('')}
 
@@ -104,8 +103,8 @@ const ManageUsers = () => {
                 </div>
             </div>
             <div className='EditUsers-bloco'>
-                {filteredUsers.map((element, index) => (
-                    <User key={'user-row-' + index} setUser={setUser} setModoEdicao={setModoEdicao} element={element} users={users} setUsers={setUsers} setFilteredUsers={setFilteredUsers} textFilter={textFilter} />
+                {filteredUsers.map((user, index) => (
+                    <User key={'user-row-' + index} user={user} setUserToEdit={setUserToEdit} setModoEdicao={setModoEdicao} users={users} setUsers={setUsers} setFilteredUsers={setFilteredUsers} textFilter={textFilter} />
                 ))}
             </div>
 
