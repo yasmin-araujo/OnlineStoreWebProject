@@ -44,18 +44,23 @@ export default function PaymentInformations({ shipping, subtotalPrice, handleCom
 		}
 	}
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (!loggedIn) {
 			alert('Sign in to complete your purchase')
+			navigate('/signin');
 			return false;
 		}
 		if (subtotalPrice == 0) {
 			alert('Your cart is empty')
 			return false;
 		}
+		const completed = await handleCompleteOrder();
+		if(!completed){
+			console.log('oiii');
+			return false;
+		}
 		localStorage.removeItem('cart');
-		handleCompleteOrder();
 		navigate('/thanks');
 	}
 

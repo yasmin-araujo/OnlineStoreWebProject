@@ -66,6 +66,7 @@ const SingleProduct = () => {
         localStorage.setItem('cart', JSON.stringify(cart));
         e.preventDefault();
         navigate('/products');
+        alert('Product added to cart');
     }
 
     useEffect(() => {

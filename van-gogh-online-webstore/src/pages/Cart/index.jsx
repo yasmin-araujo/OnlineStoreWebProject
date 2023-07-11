@@ -20,7 +20,6 @@ export default function Cart() {
 
 	useEffect(() => {
 		let session = localStorage.getItem('session')
-		console.log(session);
 		if (session) {
 			fetch('http://localhost:5000/users/' + JSON.parse(session))
 				.then(res => {
@@ -50,42 +49,35 @@ export default function Cart() {
 		setProducts(newProducts)
 	};
 
-	const handleCompleteOrder = () => {
-		let session = localStorage.getItem('session')
-		let randId = Math.floor(Math.random() * 10000)
+	const handleCompleteOrder = async () => {
+		let session = localStorage.getItem('session');
+		let randId = Math.floor(Math.random() * 10000);
+		for (let product of products) {
+			const response = await fetch('http://localhost:5000/products/' + product.id)
+			const data = await response.json();
+			if (data.qty - product.qty < 0) {
+				alert('The product ' + product.name + ' will exceed the stock limit. Please remove this item and try again');
+				return false;
+			}
+		};
 		products.map(product => {
-			fetch('http://localhost:5000/products/' + product.id)
-				.then(res => {
-					return res.json();
-				})
-				.then(data => {
-					console.log('entrei aqui')
-					if (data.qty - product.qty < 0) {
-						alert('The product ' + product.name + ' will exced the stock limit' + product.qty)
-						return false;
-					}
-				})
-				.catch(e => {
-				})
-		})
-		products.map(product => {
-			fetch('http://localhost:5000/products/updateStock/' + product.id, {
-				method: 'PUT',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ qty: product.qty })
-			})
 			fetch('http://localhost:5000/users/addOrder/' + JSON.parse(session), {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify([{ id: randId, name: product.name, qty: product.qty, price: product.price, img: product.img }])
-			}).then(res => {
-				alert(res.status)
+				body: JSON.stringify({ id: randId, name: product.name, qty: product.qty, price: product.price, img: product.img })
+			}).then(() => {
+				fetch('http://localhost:5000/products/updateStock/' + product.id, {
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ qty: product.qty })
+				})
 			})
 		})
+		return true;
 	}
 
 	useEffect(
