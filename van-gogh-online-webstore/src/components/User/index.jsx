@@ -3,6 +3,8 @@ import './style.css'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 
 const User = ({ setUserToEdit, user: selectedUser, setUsers, setFilteredUsers, setModoEdicao, textFilter }) => {
+    const userId = JSON.parse(localStorage.getItem('session'));
+
     const handleDeleteClick = () => {
         if (!window.confirm('Do you really want to delete this account?')) {
             return;
@@ -56,8 +58,13 @@ const User = ({ setUserToEdit, user: selectedUser, setUsers, setFilteredUsers, s
             <div className='User-info'>{selectedUser.email}</div>
             <div className='User-info'>{selectedUser.isAdmin.toString()}</div>
             <div className='User-icons'>
-                <DeleteOutlined style={{ cursor: 'pointer' }} onClick={handleDeleteClick} />
-                <EditOutlined onClick={handleEditClick} style={{ cursor: 'pointer' }} />
+                {selectedUser.id == userId ?
+                    <div></div>
+                    : <>
+                        <DeleteOutlined style={{ cursor: 'pointer' }} onClick={handleDeleteClick} />
+                        <EditOutlined onClick={handleEditClick} style={{ cursor: 'pointer' }} />
+                    </>
+                }
             </div>
         </div>
     </>;
